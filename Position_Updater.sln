@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Position_Updater", "Position_Updater\Position_Updater.vbproj", "{06E624B3-1438-40EF-9043-3298576789A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06E624B3-1438-40EF-9043-3298576789A6}.Debug|x86.ActiveCfg = Debug|x86
+		{06E624B3-1438-40EF-9043-3298576789A6}.Debug|x86.Build.0 = Debug|x86
+		{06E624B3-1438-40EF-9043-3298576789A6}.Release|x86.ActiveCfg = Release|x86
+		{06E624B3-1438-40EF-9043-3298576789A6}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B0581EF-B8E7-4AAE-890D-7CE6CD20A8A5}
+	EndGlobalSection
+EndGlobal
