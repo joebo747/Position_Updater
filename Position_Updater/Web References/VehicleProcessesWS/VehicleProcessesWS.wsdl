@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.omnibridge.com/SDKWebServices/AssetData" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.omnibridge.com/SDKWebServices/AssetData" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.omnibridge.com/SDKWebServices/AssetData">
+      <s:element name="AddBasicVehicle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UnitType" type="tns:UnitTypes" />
+            <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TargetFuelConsumption" type="s:float" />
+            <s:element minOccurs="1" maxOccurs="1" name="DefaultDriverID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="UnitTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="FM1000" />
+          <s:enumeration value="FM200" />
+          <s:enumeration value="FM2000" />
+          <s:enumeration value="FM2100" />
+          <s:enumeration value="FM2300" />
+          <s:enumeration value="FM2200" />
+          <s:enumeration value="FM2001" />
+          <s:enumeration value="FM2000HV" />
+          <s:enumeration value="FM2100HV" />
+          <s:enumeration value="FM2300HV" />
+          <s:enumeration value="FM2200HV" />
+          <s:enumeration value="FM2001HV" />
+          <s:enumeration value="FM3310" />
+          <s:enumeration value="FM3210" />
+          <s:enumeration value="FM3311" />
+          <s:enumeration value="FM3211" />
+          <s:enumeration value="FM3316" />
+          <s:enumeration value="FM3310i" />
+          <s:enumeration value="FM3316i" />
+          <s:enumeration value="FM3106" />
+          <s:enumeration value="FM3517i" />
+          <s:enumeration value="FM3516i" />
+          <s:enumeration value="FM3617i" />
+          <s:enumeration value="FM3616i" />
+          <s:enumeration value="FM3717i" />
+          <s:enumeration value="FM3716i" />
+          <s:enumeration value="FM3817i" />
+          <s:enumeration value="FM3315" />
+          <s:enumeration value="MIX6000" />
+          <s:enumeration value="TrackTrace" />
+          <s:enumeration value="TrackTraceVt1330" />
+          <s:enumeration value="TrackTraceVt1300" />
+          <s:enumeration value="TrackTraceAt1330" />
+          <s:enumeration value="TrackTraceAt1340" />
+          <s:enumeration value="TrackTraceVt1305" />
+          <s:enumeration value="TrackTraceST2400" />
+          <s:enumeration value="TrackTraceST2410" />
+          <s:enumeration value="TrackTraceST3410" />
+          <s:enumeration value="TrackTracePT4310" />
+          <s:enumeration value="TrackTraceST4600" />
+          <s:enumeration value="TrackTraceST4700" />
+          <s:enumeration value="MIX2310i" />
+          <s:enumeration value="MIX2316" />
+          <s:enumeration value="MIX2416" />
+          <s:enumeration value="G52S" />
+          <s:enumeration value="RB100" />
+          <s:enumeration value="RB110" />
+          <s:enumeration value="RB200" />
+          <s:enumeration value="RB210" />
+          <s:enumeration value="RB300" />
+          <s:enumeration value="RB310" />
+          <s:enumeration value="NoUnit" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="AddBasicVehicleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddBasicVehicleResult" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TokenHeader" type="tns:TokenHeader" />
+      <s:complexType name="TokenHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="AddVehicle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Vehicle" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Vehicle">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RegistrationNumber" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="UnitType" type="tns:UnitTypes" />
+              <s:element minOccurs="0" maxOccurs="1" name="VehicleIcon" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TargetFuelConsumption" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="TargetHourlyConsumption" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="DefaultDriverID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastUpdate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="DistanceChecked" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastOdometer" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastTrip" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastEngineSeconds" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastServiceKey" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="NextServiceKm" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="ServiceKm" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="RemindKm" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="RemindKm2" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="NextServiceDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ServiceMonths" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="RemindWeeks" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="RemindWeeks2" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="NextServiceSeconds" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ServiceSeconds" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="RemindSeconds" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="RemindSeconds2" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastLicense" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="NextLicense" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="LicenseInterval" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="LicenseRemind" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="LicenseRemind2" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastCOR" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="NextCOR" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CORInterval" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="CORRemind" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="CORRemind2" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="IgnoreLateDownload" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="RemindOnDistance" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="RemindOnDuration" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ServiceHours" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="License" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="COR" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="DefaultAllowDriverAccess" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActiveReason" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ActiveState" type="s:unsignedByte" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddVehicleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddVehicleResult" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateVehicle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Vehicle" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateVehicleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateVehicleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateVehicleActiveState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ActiveState" type="tns:VehicleActiveState" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="VehicleActiveState">
+        <s:restriction base="s:string">
+          <s:enumeration value="Inactive" />
+          <s:enumeration value="Active" />
+          <s:enumeration value="BenchTested" />
+          <s:enumeration value="Decommissioned" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="UpdateVehicleActiveStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateVehicleActiveStateResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteVehicle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteVehicleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteVehicleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicleResult" type="tns:Vehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehiclesList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetVehiclesListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehiclesListResult" type="tns:ArrayOfVehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfVehicle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Vehicle" nillable="true" type="tns:Vehicle" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetVehiclesListFiltered">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="searchOption" type="tns:VehicleSearchOption" />
+            <s:element minOccurs="0" maxOccurs="1" name="searchText" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="firstRowNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="VehicleSearchOption">
+        <s:restriction base="s:string">
+          <s:enumeration value="Registration" />
+          <s:enumeration value="Description" />
+          <s:enumeration value="VehicleId" />
+          <s:enumeration value="UnitSerialNo" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetVehiclesListFilteredResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehiclesListFilteredResult" type="tns:ArrayOfVehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehiclesListByDeviceProperty">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeviceID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Property" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehiclesListByDevicePropertyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehiclesListByDevicePropertyResult" type="tns:ArrayOfVehicle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleReportingGroupList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetVehicleReportingGroupListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicleReportingGroupListResult" type="tns:ArrayOfVehicleReportingGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfVehicleReportingGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VehicleReportingGroup" nillable="true" type="tns:VehicleReportingGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VehicleReportingGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Vehicles" type="tns:ArrayOfReportingGroupMember" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfReportingGroupMember">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReportingGroupMember" nillable="true" type="tns:ReportingGroupMember" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReportingGroupMember">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Site" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetVehicleReportingGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleReportingGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicleReportingGroupResult" type="tns:VehicleReportingGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportingGroupAddVehicle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportingGroupAddVehicleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReportingGroupAddVehicleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportingGroupRemoveVehicle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportingGroupRemoveVehicleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReportingGroupRemoveVehicleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddBasicVehicleSoapIn">
+    <wsdl:part name="parameters" element="tns:AddBasicVehicle" />
+  </wsdl:message>
+  <wsdl:message name="AddBasicVehicleSoapOut">
+    <wsdl:part name="parameters" element="tns:AddBasicVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddBasicVehicleTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="AddVehicleSoapIn">
+    <wsdl:part name="parameters" element="tns:AddVehicle" />
+  </wsdl:message>
+  <wsdl:message name="AddVehicleSoapOut">
+    <wsdl:part name="parameters" element="tns:AddVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddVehicleTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="UpdateVehicleSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateVehicle" />
+  </wsdl:message>
+  <wsdl:message name="UpdateVehicleSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateVehicleTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="UpdateVehicleActiveStateSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateVehicleActiveState" />
+  </wsdl:message>
+  <wsdl:message name="UpdateVehicleActiveStateSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateVehicleActiveStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateVehicleActiveStateTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="DeleteVehicleSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteVehicle" />
+  </wsdl:message>
+  <wsdl:message name="DeleteVehicleSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteVehicleTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicle" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetVehiclesListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehiclesList" />
+  </wsdl:message>
+  <wsdl:message name="GetVehiclesListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehiclesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVehiclesListTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetVehiclesListFilteredSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehiclesListFiltered" />
+  </wsdl:message>
+  <wsdl:message name="GetVehiclesListFilteredSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehiclesListFilteredResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVehiclesListFilteredTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetVehiclesListByDevicePropertySoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehiclesListByDeviceProperty" />
+  </wsdl:message>
+  <wsdl:message name="GetVehiclesListByDevicePropertySoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehiclesListByDevicePropertyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVehiclesListByDevicePropertyTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleReportingGroupListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicleReportingGroupList" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleReportingGroupListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicleReportingGroupListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleReportingGroupListTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleReportingGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicleReportingGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleReportingGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicleReportingGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleReportingGroupTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="ReportingGroupAddVehicleSoapIn">
+    <wsdl:part name="parameters" element="tns:ReportingGroupAddVehicle" />
+  </wsdl:message>
+  <wsdl:message name="ReportingGroupAddVehicleSoapOut">
+    <wsdl:part name="parameters" element="tns:ReportingGroupAddVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReportingGroupAddVehicleTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="ReportingGroupRemoveVehicleSoapIn">
+    <wsdl:part name="parameters" element="tns:ReportingGroupRemoveVehicle" />
+  </wsdl:message>
+  <wsdl:message name="ReportingGroupRemoveVehicleSoapOut">
+    <wsdl:part name="parameters" element="tns:ReportingGroupRemoveVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReportingGroupRemoveVehicleTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:portType name="VehicleProcessesWSSoap">
+    <wsdl:operation name="AddBasicVehicle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a new Vehicle using the minimal set of supplied properties.</wsdl:documentation>
+      <wsdl:input message="tns:AddBasicVehicleSoapIn" />
+      <wsdl:output message="tns:AddBasicVehicleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddVehicle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a new Vehicle using the supplied entity.</wsdl:documentation>
+      <wsdl:input message="tns:AddVehicleSoapIn" />
+      <wsdl:output message="tns:AddVehicleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVehicle">
+      <wsdl:input message="tns:UpdateVehicleSoapIn" />
+      <wsdl:output message="tns:UpdateVehicleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVehicleActiveState">
+      <wsdl:input message="tns:UpdateVehicleActiveStateSoapIn" />
+      <wsdl:output message="tns:UpdateVehicleActiveStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVehicle">
+      <wsdl:input message="tns:DeleteVehicleSoapIn" />
+      <wsdl:output message="tns:DeleteVehicleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicle">
+      <wsdl:input message="tns:GetVehicleSoapIn" />
+      <wsdl:output message="tns:GetVehicleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehiclesList">
+      <wsdl:input message="tns:GetVehiclesListSoapIn" />
+      <wsdl:output message="tns:GetVehiclesListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehiclesListFiltered">
+      <wsdl:input message="tns:GetVehiclesListFilteredSoapIn" />
+      <wsdl:output message="tns:GetVehiclesListFilteredSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehiclesListByDeviceProperty">
+      <wsdl:input message="tns:GetVehiclesListByDevicePropertySoapIn" />
+      <wsdl:output message="tns:GetVehiclesListByDevicePropertySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleReportingGroupList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of the vehicle reporting groups defined in the organisation. Group members are not included in the output.</wsdl:documentation>
+      <wsdl:input message="tns:GetVehicleReportingGroupListSoapIn" />
+      <wsdl:output message="tns:GetVehicleReportingGroupListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleReportingGroup">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns details, including the list of members, of the vehicle reporting group having the specified group ID.</wsdl:documentation>
+      <wsdl:input message="tns:GetVehicleReportingGroupSoapIn" />
+      <wsdl:output message="tns:GetVehicleReportingGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportingGroupAddVehicle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds the specified Vehicle to the specified Vehicle reporting group</wsdl:documentation>
+      <wsdl:input message="tns:ReportingGroupAddVehicleSoapIn" />
+      <wsdl:output message="tns:ReportingGroupAddVehicleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportingGroupRemoveVehicle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Removes the specified vehicle from the specified vehicle reporting group</wsdl:documentation>
+      <wsdl:input message="tns:ReportingGroupRemoveVehicleSoapIn" />
+      <wsdl:output message="tns:ReportingGroupRemoveVehicleSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VehicleProcessesWSSoap" type="tns:VehicleProcessesWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddBasicVehicle">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/AddBasicVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddBasicVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddVehicle">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/AddVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVehicle">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/UpdateVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVehicleActiveState">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/UpdateVehicleActiveState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateVehicleActiveStateTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVehicle">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/DeleteVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicle">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehiclesList">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehiclesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetVehiclesListTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehiclesListFiltered">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehiclesListFiltered" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetVehiclesListFilteredTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehiclesListByDeviceProperty">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehiclesListByDeviceProperty" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetVehiclesListByDevicePropertyTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleReportingGroupList">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehicleReportingGroupList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetVehicleReportingGroupListTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleReportingGroup">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehicleReportingGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetVehicleReportingGroupTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportingGroupAddVehicle">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/ReportingGroupAddVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ReportingGroupAddVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportingGroupRemoveVehicle">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/ReportingGroupRemoveVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ReportingGroupRemoveVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VehicleProcessesWSSoap12" type="tns:VehicleProcessesWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddBasicVehicle">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/AddBasicVehicle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddBasicVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddVehicle">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/AddVehicle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVehicle">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/UpdateVehicle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVehicleActiveState">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/UpdateVehicleActiveState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateVehicleActiveStateTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVehicle">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/DeleteVehicle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicle">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehicle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehiclesList">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehiclesList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetVehiclesListTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehiclesListFiltered">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehiclesListFiltered" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetVehiclesListFilteredTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehiclesListByDeviceProperty">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehiclesListByDeviceProperty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetVehiclesListByDevicePropertyTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleReportingGroupList">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehicleReportingGroupList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetVehicleReportingGroupListTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleReportingGroup">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehicleReportingGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetVehicleReportingGroupTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportingGroupAddVehicle">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/ReportingGroupAddVehicle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ReportingGroupAddVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportingGroupRemoveVehicle">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/ReportingGroupRemoveVehicle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ReportingGroupRemoveVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VehicleProcessesWS">
+    <wsdl:port name="VehicleProcessesWSSoap" binding="tns:VehicleProcessesWSSoap">
+      <soap:address location="http://api.fm-web.co.uk/webservices/AssetDataWebSvc/VehicleProcessesWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VehicleProcessesWSSoap12" binding="tns:VehicleProcessesWSSoap12">
+      <soap12:address location="http://api.fm-web.co.uk/webservices/AssetDataWebSvc/VehicleProcessesWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

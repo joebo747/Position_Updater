@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.omnibridge.com/SDKWebServices/AssetData" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.omnibridge.com/SDKWebServices/AssetData" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">A web service to provide access to Driver functionality.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.omnibridge.com/SDKWebServices/AssetData">
+      <s:element name="AddBasicDriver">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DriverID" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmployeeNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddBasicDriverResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddBasicDriverResult" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TokenHeader" type="tns:TokenHeader" />
+      <s:complexType name="TokenHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="AddDriver">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Driver" type="tns:Driver" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Driver">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="EmployeeNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ExtendedID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DefaultAllowVehicleAccess" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="License" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastLicense" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="NextLicense" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="LicenseInterval" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="LicenseRemind" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="LicenseRemind2" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="DistanceChecked" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Updated" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddDriverResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddDriverResult" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDriver">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Driver" type="tns:Driver" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDriverResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateDriverResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDriver">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DriverID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDriverResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteDriverResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriver">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DriverID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDriverResult" type="tns:Driver" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDriverListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDriverListResult" type="tns:ArrayOfDriver" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDriver">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Driver" nillable="true" type="tns:Driver" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDriverListFiltered">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="searchOption" type="tns:DriverSearchOption" />
+            <s:element minOccurs="0" maxOccurs="1" name="searchText" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="firstRowNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DriverSearchOption">
+        <s:restriction base="s:string">
+          <s:enumeration value="DriverId" />
+          <s:enumeration value="EmployeeNumber" />
+          <s:enumeration value="Name" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetDriverListFilteredResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDriverListFilteredResult" type="tns:ArrayOfDriver" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverScoresInDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DriverIDs" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FromDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="ToDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverScoresInDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDriverScoresInDateRangeResult" type="tns:ArrayOfDriverScore" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDriverScore">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DriverScore" nillable="true" type="tns:DriverScore" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DriverScore">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DriverID" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="OverallScore" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Duration" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OverSpeedingScore" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="OverRevvingScore" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="HarshBrakingScore" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="OutOfGreenBandDrivingScore" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExcessiveIdlingScore" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="HarshAccelerationScore" nillable="true" type="s:float" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDriverReportingGroupList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDriverReportingGroupListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDriverReportingGroupListResult" type="tns:ArrayOfDriverReportingGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDriverReportingGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DriverReportingGroup" nillable="true" type="tns:DriverReportingGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DriverReportingGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Drivers" type="tns:ArrayOfReportingGroupMember" />
+          <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfReportingGroupMember">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReportingGroupMember" nillable="true" type="tns:ReportingGroupMember" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReportingGroupMember">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Site" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDriverReportingGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverReportingGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDriverReportingGroupResult" type="tns:DriverReportingGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportingGroupAddDriver">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DriverID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportingGroupAddDriverResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReportingGroupAddDriverResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportingGroupRemoveDriver">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DriverID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportingGroupRemoveDriverResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReportingGroupRemoveDriverResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddBasicDriverSoapIn">
+    <wsdl:part name="parameters" element="tns:AddBasicDriver" />
+  </wsdl:message>
+  <wsdl:message name="AddBasicDriverSoapOut">
+    <wsdl:part name="parameters" element="tns:AddBasicDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddBasicDriverTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="AddDriverSoapIn">
+    <wsdl:part name="parameters" element="tns:AddDriver" />
+  </wsdl:message>
+  <wsdl:message name="AddDriverSoapOut">
+    <wsdl:part name="parameters" element="tns:AddDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddDriverTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDriverSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDriver" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDriverSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDriverTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDriverSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteDriver" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDriverSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDriverTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDriver" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDriverList" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDriverListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverListTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverListFilteredSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDriverListFiltered" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverListFilteredSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDriverListFilteredResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverListFilteredTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverScoresInDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDriverScoresInDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverScoresInDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDriverScoresInDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverScoresInDateRangeTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverReportingGroupListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDriverReportingGroupList" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverReportingGroupListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDriverReportingGroupListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverReportingGroupListTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverReportingGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDriverReportingGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverReportingGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDriverReportingGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverReportingGroupTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="ReportingGroupAddDriverSoapIn">
+    <wsdl:part name="parameters" element="tns:ReportingGroupAddDriver" />
+  </wsdl:message>
+  <wsdl:message name="ReportingGroupAddDriverSoapOut">
+    <wsdl:part name="parameters" element="tns:ReportingGroupAddDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReportingGroupAddDriverTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="ReportingGroupRemoveDriverSoapIn">
+    <wsdl:part name="parameters" element="tns:ReportingGroupRemoveDriver" />
+  </wsdl:message>
+  <wsdl:message name="ReportingGroupRemoveDriverSoapOut">
+    <wsdl:part name="parameters" element="tns:ReportingGroupRemoveDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReportingGroupRemoveDriverTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:portType name="DriverProcessesWSSoap">
+    <wsdl:operation name="AddBasicDriver">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a new Driver using the minimal set of supplied properties.</wsdl:documentation>
+      <wsdl:input message="tns:AddBasicDriverSoapIn" />
+      <wsdl:output message="tns:AddBasicDriverSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDriver">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a new Driver using the supplied entity.</wsdl:documentation>
+      <wsdl:input message="tns:AddDriverSoapIn" />
+      <wsdl:output message="tns:AddDriverSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDriver">
+      <wsdl:input message="tns:UpdateDriverSoapIn" />
+      <wsdl:output message="tns:UpdateDriverSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDriver">
+      <wsdl:input message="tns:DeleteDriverSoapIn" />
+      <wsdl:output message="tns:DeleteDriverSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriver">
+      <wsdl:input message="tns:GetDriverSoapIn" />
+      <wsdl:output message="tns:GetDriverSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverList">
+      <wsdl:input message="tns:GetDriverListSoapIn" />
+      <wsdl:output message="tns:GetDriverListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverListFiltered">
+      <wsdl:input message="tns:GetDriverListFilteredSoapIn" />
+      <wsdl:output message="tns:GetDriverListFilteredSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverScoresInDateRange">
+      <wsdl:input message="tns:GetDriverScoresInDateRangeSoapIn" />
+      <wsdl:output message="tns:GetDriverScoresInDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverReportingGroupList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of the driver reporting groups defined in the organisation. Group members are not included in the output.</wsdl:documentation>
+      <wsdl:input message="tns:GetDriverReportingGroupListSoapIn" />
+      <wsdl:output message="tns:GetDriverReportingGroupListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverReportingGroup">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns details, including a list of members, of the driver reporting group having the specified group ID.</wsdl:documentation>
+      <wsdl:input message="tns:GetDriverReportingGroupSoapIn" />
+      <wsdl:output message="tns:GetDriverReportingGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportingGroupAddDriver">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds the specified driver to the specified driver reporting group</wsdl:documentation>
+      <wsdl:input message="tns:ReportingGroupAddDriverSoapIn" />
+      <wsdl:output message="tns:ReportingGroupAddDriverSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportingGroupRemoveDriver">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Removes the specified driver from the specified driver reporting group</wsdl:documentation>
+      <wsdl:input message="tns:ReportingGroupRemoveDriverSoapIn" />
+      <wsdl:output message="tns:ReportingGroupRemoveDriverSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DriverProcessesWSSoap" type="tns:DriverProcessesWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddBasicDriver">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/AddBasicDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddBasicDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDriver">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/AddDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDriver">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/UpdateDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDriver">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/DeleteDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriver">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverList">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetDriverList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDriverListTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverListFiltered">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetDriverListFiltered" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDriverListFilteredTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverScoresInDateRange">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetDriverScoresInDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDriverScoresInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverReportingGroupList">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetDriverReportingGroupList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDriverReportingGroupListTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverReportingGroup">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetDriverReportingGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDriverReportingGroupTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportingGroupAddDriver">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/ReportingGroupAddDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ReportingGroupAddDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportingGroupRemoveDriver">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/ReportingGroupRemoveDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ReportingGroupRemoveDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DriverProcessesWSSoap12" type="tns:DriverProcessesWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddBasicDriver">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/AddBasicDriver" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddBasicDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDriver">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/AddDriver" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDriver">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/UpdateDriver" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDriver">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/DeleteDriver" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriver">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetDriver" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverList">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetDriverList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDriverListTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverListFiltered">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetDriverListFiltered" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDriverListFilteredTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverScoresInDateRange">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetDriverScoresInDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDriverScoresInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverReportingGroupList">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetDriverReportingGroupList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDriverReportingGroupListTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverReportingGroup">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetDriverReportingGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDriverReportingGroupTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportingGroupAddDriver">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/ReportingGroupAddDriver" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ReportingGroupAddDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportingGroupRemoveDriver">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/ReportingGroupRemoveDriver" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ReportingGroupRemoveDriverTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DriverProcessesWS">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">A web service to provide access to Driver functionality.</wsdl:documentation>
+    <wsdl:port name="DriverProcessesWSSoap" binding="tns:DriverProcessesWSSoap">
+      <soap:address location="http://api.fm-web.co.uk/webservices/AssetDataWebSvc/DriverProcessesWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DriverProcessesWSSoap12" binding="tns:DriverProcessesWSSoap12">
+      <soap12:address location="http://api.fm-web.co.uk/webservices/AssetDataWebSvc/DriverProcessesWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -10,15 +10,15 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Position_Updater")> 
 <Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("")> 
+<Assembly: AssemblyCompany("Microsoft")> 
 <Assembly: AssemblyProduct("Position_Updater")> 
-<Assembly: AssemblyCopyright("Copyright ©  2018")> 
+<Assembly: AssemblyCopyright("Copyright © Microsoft 2013")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("30844bd2-74a8-4fd8-8a6d-b2e13f6592a3")> 
+<Assembly: Guid("83b865c8-9a17-4034-bfae-75285d0a3bb2")> 
 
 ' Version information for an assembly consists of the following four values:
 '

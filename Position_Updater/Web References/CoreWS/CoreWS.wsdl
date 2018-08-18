@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.omnibridge.com/SDKWebServices/Core" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.omnibridge.com/SDKWebServices/Core" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.omnibridge.com/SDKWebServices/Core">
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:WebLoginResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WebLoginResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoreLoginResult" type="tns:LoginResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LoginResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Indicator" type="tns:Indicators" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastLoginDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentUserContext" type="tns:UserContext" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="Indicators">
+        <s:restriction base="s:string">
+          <s:enumeration value="Success" />
+          <s:enumeration value="InvalidLogin" />
+          <s:enumeration value="Expired" />
+          <s:enumeration value="ChangePassword" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="UserContext">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="LoginUser" type="tns:User" />
+          <s:element minOccurs="0" maxOccurs="1" name="AllowedOrganisations" type="tns:ArrayOfOrganisation" />
+          <s:element minOccurs="0" maxOccurs="1" name="AllowedFunctions" type="tns:ArrayOfFunction" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentOrganisation" type="tns:Organisation" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrentOrganisationID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerGMTOffset" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="User">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="HasAlerts" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="HasQuickLinks" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="AllowedToLogin" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="DefaultOrgID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Language" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="WorkPhone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="WorkFax" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MobilePhone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HomePhone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="LoginExpires" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="LoginExpireDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ConsumptionType" type="tns:ConsumptionType" />
+              <s:element minOccurs="1" maxOccurs="1" name="MeasurementType" type="tns:MeasurementType" />
+              <s:element minOccurs="1" maxOccurs="1" name="FuelCaptureVolumeType" type="tns:MeasurementType" />
+              <s:element minOccurs="1" maxOccurs="1" name="FuelCaptureDistanceType" type="tns:MeasurementType" />
+              <s:element minOccurs="1" maxOccurs="1" name="GMTOffsetInSeconds" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="GMTType" type="tns:GMTOffsetType" />
+              <s:element minOccurs="0" maxOccurs="1" name="ViewName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ViewID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="LCID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CurrentOrgID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="GMTOffset" type="tns:TimeSpan" />
+              <s:element minOccurs="0" maxOccurs="1" name="View" type="tns:UIView" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Function">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ModuleID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ExtAppID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Organisation">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="OrganisationName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="GMTOffset" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Language" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="FMWebManaged" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="MapProviderID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UIView">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ConsumptionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="VolumeUnitsPer100DistanceUnits" />
+          <s:enumeration value="DistanceUnitsPerVolumeUnits" />
+          <s:enumeration value="DistanceUnitsPerVolumeUnits2" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="MeasurementType">
+        <s:restriction base="s:string">
+          <s:enumeration value="UseDefault" />
+          <s:enumeration value="Metric" />
+          <s:enumeration value="Imperial" />
+          <s:enumeration value="USImperial" />
+          <s:enumeration value="MetresPerMinute" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="GMTOffsetType">
+        <s:restriction base="s:string">
+          <s:enumeration value="UnSet" />
+          <s:enumeration value="OrganisazionGMT" />
+          <s:enumeration value="RegionalGMT" />
+          <s:enumeration value="DefinedGMT" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="TimeSpan" />
+      <s:complexType name="ArrayOfOrganisation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Organisation" nillable="true" type="tns:Organisation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFunction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Function" nillable="true" type="tns:Function" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AdminLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdminLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdminLoginResult" type="tns:WebLoginResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserContext">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserContextResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserContextResult" type="tns:UserContext" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserContext_NoMultiSearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserContext_NoMultiSearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserContext_NoMultiSearchResult" type="tns:UserContext" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadDaylightSavingsSettings">
+        <s:complexType />
+      </s:element>
+      <s:element name="LoadDaylightSavingsSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoadDaylightSavingsSettingsResult" type="tns:DaylightSaving" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DaylightSaving">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="Start" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="End" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="AdjustSeconds" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TokenHeader" type="tns:TokenHeader" />
+      <s:complexType name="TokenHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="SetCurrentOrgID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="NewOrganisationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCurrentOrgIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetCurrentOrgIDResult" type="tns:UserContext" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWebServiceURLs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWebServiceURLsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWebServiceURLsResult" type="tns:ArrayOfWebServiceURL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfWebServiceURL">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WebServiceURL" nillable="true" type="tns:WebServiceURL" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WebServiceURL">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFunctionsForUser">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFunctionsForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFunctionsForUserResult" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUsersForOrganisation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="OrganisationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersForOrganisationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersForOrganisationResult" type="tns:ArrayOfUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCurrentOrgID">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCurrentOrgIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCurrentOrgIDResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdminLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:AdminLogin" />
+  </wsdl:message>
+  <wsdl:message name="AdminLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:AdminLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserContextSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserContext" />
+  </wsdl:message>
+  <wsdl:message name="GetUserContextSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserContextResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserContext_NoMultiSearchSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserContext_NoMultiSearch" />
+  </wsdl:message>
+  <wsdl:message name="GetUserContext_NoMultiSearchSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserContext_NoMultiSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadDaylightSavingsSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadDaylightSavingsSettings" />
+  </wsdl:message>
+  <wsdl:message name="LoadDaylightSavingsSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadDaylightSavingsSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadDaylightSavingsSettingsTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="SetCurrentOrgIDSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCurrentOrgID" />
+  </wsdl:message>
+  <wsdl:message name="SetCurrentOrgIDSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCurrentOrgIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCurrentOrgIDTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetWebServiceURLsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWebServiceURLs" />
+  </wsdl:message>
+  <wsdl:message name="GetWebServiceURLsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWebServiceURLsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWebServiceURLsTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetFunctionsForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFunctionsForUser" />
+  </wsdl:message>
+  <wsdl:message name="GetFunctionsForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFunctionsForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFunctionsForUserTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersForOrganisationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersForOrganisation" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersForOrganisationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersForOrganisationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersForOrganisationTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentOrgIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentOrgID" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentOrgIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentOrgIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentOrgIDTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:portType name="CoreWSSoap">
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdminLogin">
+      <wsdl:input message="tns:AdminLoginSoapIn" />
+      <wsdl:output message="tns:AdminLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserContext">
+      <wsdl:input message="tns:GetUserContextSoapIn" />
+      <wsdl:output message="tns:GetUserContextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserContext_NoMultiSearch">
+      <wsdl:input message="tns:GetUserContext_NoMultiSearchSoapIn" />
+      <wsdl:output message="tns:GetUserContext_NoMultiSearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadDaylightSavingsSettings">
+      <wsdl:input message="tns:LoadDaylightSavingsSettingsSoapIn" />
+      <wsdl:output message="tns:LoadDaylightSavingsSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCurrentOrgID">
+      <wsdl:input message="tns:SetCurrentOrgIDSoapIn" />
+      <wsdl:output message="tns:SetCurrentOrgIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWebServiceURLs">
+      <wsdl:input message="tns:GetWebServiceURLsSoapIn" />
+      <wsdl:output message="tns:GetWebServiceURLsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFunctionsForUser">
+      <wsdl:input message="tns:GetFunctionsForUserSoapIn" />
+      <wsdl:output message="tns:GetFunctionsForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersForOrganisation">
+      <wsdl:input message="tns:GetUsersForOrganisationSoapIn" />
+      <wsdl:output message="tns:GetUsersForOrganisationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentOrgID">
+      <wsdl:input message="tns:GetCurrentOrgIDSoapIn" />
+      <wsdl:output message="tns:GetCurrentOrgIDSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CoreWSSoap" type="tns:CoreWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdminLogin">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/AdminLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserContext">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/GetUserContext" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserContext_NoMultiSearch">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/GetUserContext_NoMultiSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadDaylightSavingsSettings">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/LoadDaylightSavingsSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LoadDaylightSavingsSettingsTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCurrentOrgID">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/SetCurrentOrgID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SetCurrentOrgIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWebServiceURLs">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/GetWebServiceURLs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetWebServiceURLsTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFunctionsForUser">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/GetFunctionsForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetFunctionsForUserTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersForOrganisation">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/GetUsersForOrganisation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUsersForOrganisationTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentOrgID">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/GetCurrentOrgID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrentOrgIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CoreWSSoap12" type="tns:CoreWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdminLogin">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/AdminLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserContext">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/GetUserContext" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserContext_NoMultiSearch">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/GetUserContext_NoMultiSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadDaylightSavingsSettings">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/LoadDaylightSavingsSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LoadDaylightSavingsSettingsTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCurrentOrgID">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/SetCurrentOrgID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SetCurrentOrgIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWebServiceURLs">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/GetWebServiceURLs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetWebServiceURLsTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFunctionsForUser">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/GetFunctionsForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetFunctionsForUserTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersForOrganisation">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/GetUsersForOrganisation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUsersForOrganisationTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentOrgID">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Core/GetCurrentOrgID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrentOrgIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CoreWS">
+    <wsdl:port name="CoreWSSoap" binding="tns:CoreWSSoap">
+      <soap:address location="http://api.fm-web.co.uk/webservices/CoreWebSvc/CoreWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CoreWSSoap12" binding="tns:CoreWSSoap12">
+      <soap12:address location="http://api.fm-web.co.uk/webservices/CoreWebSvc/CoreWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="mydata">
+  <DataContextMoniker Name="/mydataDataContext" />
+  <nestedChildShapes>
+    <classShape Id="a4066402-6166-4684-aa41-a6a585b5ab34" absoluteBounds="4.625, 2.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/mydataDataContext/VehicleBase" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d8209d60-3f8a-4db6-95a4-2a32e7773053" absoluteBounds="4.64, 2.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c70cf0ad-7d50-43ad-810e-974fbb60e4f8" absoluteBounds="1.25, 1.5, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/mydataDataContext/GPSPosition" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a9110ffe-3df1-4622-8cb1-a73059b1d0f1" absoluteBounds="1.2650000000000001, 1.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0cc35b9e-a521-4a12-8582-b361dfdf6007" absoluteBounds="7.5, 1.25, 2, 2.5401025390625">
+      <DataClassMoniker Name="/mydataDataContext/fridgeTrailer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d03cbfb5-fbf0-40d6-b42c-c0c094536272" absoluteBounds="7.515, 1.71, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

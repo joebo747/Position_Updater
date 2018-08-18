@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://mixtelematics.com/WebServices/EventNotification" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://mixtelematics.com/WebServices/EventNotification" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service provides access to event notifications (active messages) received from units.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://mixtelematics.com/WebServices/EventNotification">
+      <s:element name="GetRecentNotifications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventIDs" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecentNotificationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRecentNotificationsResult" type="tns:ArrayOfEventNotification" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEventNotification">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EventNotification" nillable="true" type="tns:EventNotification" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EventNotification">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Priority" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReceivedDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="EventDate" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="DriverID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="GPSID" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Value" nillable="true" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Odometer" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Speed" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsArmed" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="Latitude" nillable="true" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Longitude" nillable="true" type="s:float" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TokenHeader" type="tns:TokenHeader" />
+      <s:complexType name="TokenHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetNotificationsSinceID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventIDs" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNotificationsSinceIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNotificationsSinceIDResult" type="tns:ArrayOfEventNotification" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNotificationsForVehicleInDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="FromDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="ToDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventIDs" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNotificationsForVehicleInDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNotificationsForVehicleInDateRangeResult" type="tns:ArrayOfEventNotification" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetRecentNotificationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRecentNotifications" />
+  </wsdl:message>
+  <wsdl:message name="GetRecentNotificationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRecentNotificationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRecentNotificationsTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetNotificationsSinceIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNotificationsSinceID" />
+  </wsdl:message>
+  <wsdl:message name="GetNotificationsSinceIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNotificationsSinceIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNotificationsSinceIDTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetNotificationsForVehicleInDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNotificationsForVehicleInDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetNotificationsForVehicleInDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNotificationsForVehicleInDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNotificationsForVehicleInDateRangeTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:portType name="EventNotificationWSSoap">
+    <wsdl:operation name="GetRecentNotifications">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list (up to &lt;b&gt;Count&lt;/b&gt; records) of the most recent event notifications (active messages) recorded in the database, ordered from most to least recent and optionally filtered by event ID.&lt;br/&gt;To restrict the results to specific events, pass a comma-delimited list of event description IDs as the &lt;b&gt;EventIDs&lt;/b&gt; parameter value.</wsdl:documentation>
+      <wsdl:input message="tns:GetRecentNotificationsSoapIn" />
+      <wsdl:output message="tns:GetRecentNotificationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotificationsSinceID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of event notifications (active messages) with record IDs greater than a supplied value (&lt;b&gt;ID&lt;/b&gt;), optionally filtered by event ID.&lt;br/&gt; To restrict the results to specific events, pass a comma-delimited list of event description IDs as the &lt;b&gt;EventIDs&lt;/b&gt; parameter value.</wsdl:documentation>
+      <wsdl:input message="tns:GetNotificationsSinceIDSoapIn" />
+      <wsdl:output message="tns:GetNotificationsSinceIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotificationsForVehicleInDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of event notifications (active messages) for a vehicle in a given date range, optionally filtered by event ID.&lt;br/&gt; To restrict the results to specific events, pass a comma-delimited list of event description IDs as the &lt;b&gt;EventIDs&lt;/b&gt; parameter value.&lt;br/&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetNotificationsForVehicleInDateRangeSoapIn" />
+      <wsdl:output message="tns:GetNotificationsForVehicleInDateRangeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EventNotificationWSSoap" type="tns:EventNotificationWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRecentNotifications">
+      <soap:operation soapAction="http://mixtelematics.com/WebServices/EventNotification/GetRecentNotifications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRecentNotificationsTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotificationsSinceID">
+      <soap:operation soapAction="http://mixtelematics.com/WebServices/EventNotification/GetNotificationsSinceID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetNotificationsSinceIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotificationsForVehicleInDateRange">
+      <soap:operation soapAction="http://mixtelematics.com/WebServices/EventNotification/GetNotificationsForVehicleInDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetNotificationsForVehicleInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EventNotificationWSSoap12" type="tns:EventNotificationWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRecentNotifications">
+      <soap12:operation soapAction="http://mixtelematics.com/WebServices/EventNotification/GetRecentNotifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRecentNotificationsTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotificationsSinceID">
+      <soap12:operation soapAction="http://mixtelematics.com/WebServices/EventNotification/GetNotificationsSinceID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetNotificationsSinceIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotificationsForVehicleInDateRange">
+      <soap12:operation soapAction="http://mixtelematics.com/WebServices/EventNotification/GetNotificationsForVehicleInDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetNotificationsForVehicleInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EventNotificationWS">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service provides access to event notifications (active messages) received from units.</wsdl:documentation>
+    <wsdl:port name="EventNotificationWSSoap" binding="tns:EventNotificationWSSoap">
+      <soap:address location="http://api.fm-web.co.uk/webservices/EventNotificationWebSvc/EventNotificationWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EventNotificationWSSoap12" binding="tns:EventNotificationWSSoap12">
+      <soap12:address location="http://api.fm-web.co.uk/webservices/EventNotificationWebSvc/EventNotificationWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

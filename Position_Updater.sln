@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Position_Updater", "Position_Updater\Position_Updater.vbproj", "{06E624B3-1438-40EF-9043-3298576789A6}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Position_Updater", "Position_Updater\Position_Updater.vbproj", "{0312DD65-DA3E-42DA-936D-A2807F49E397}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{06E624B3-1438-40EF-9043-3298576789A6}.Debug|x86.ActiveCfg = Debug|x86
-		{06E624B3-1438-40EF-9043-3298576789A6}.Debug|x86.Build.0 = Debug|x86
-		{06E624B3-1438-40EF-9043-3298576789A6}.Release|x86.ActiveCfg = Release|x86
-		{06E624B3-1438-40EF-9043-3298576789A6}.Release|x86.Build.0 = Release|x86
+		{0312DD65-DA3E-42DA-936D-A2807F49E397}.Debug|x86.ActiveCfg = Debug|x86
+		{0312DD65-DA3E-42DA-936D-A2807F49E397}.Debug|x86.Build.0 = Debug|x86
+		{0312DD65-DA3E-42DA-936D-A2807F49E397}.Release|x86.ActiveCfg = Release|x86
+		{0312DD65-DA3E-42DA-936D-A2807F49E397}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

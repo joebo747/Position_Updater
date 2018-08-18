@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Transport_TEST" Class="mydataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=vmsql1.gba.local\stirling;Initial Catalog=Transport_TEST;Persist Security Info=True;User ID=abacus" SettingsObjectName="Position_Updater.My.MySettings" SettingsPropertyName="Transport_TESTConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.VehicleBase" Member="VehicleBases">
+    <Type Name="VehicleBase">
+      <Column Name="szRegistration" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="dwVehicleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="dwClassificationIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vehClass" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GPSPosition" Member="GPSPositions">
+    <Type Name="GPSPosition">
+      <Column Name="LatLong" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="dateoffix" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Location" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="TrackedBY" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="VehID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.fridgeTrailers" Member="fridgeTrailers">
+    <Type Name="fridgeTrailer">
+      <Column Name="dwTrailerId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="szTrailerCode" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="szDescription" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="dwAnalysis1IdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="szModel" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="dwAnalysis2IdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwAnalysis3IdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwAnalysis4IdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwClassificationIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

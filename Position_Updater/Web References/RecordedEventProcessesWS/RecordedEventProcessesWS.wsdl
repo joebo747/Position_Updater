@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.omnibridge.com/SDKWebServices/AssetData" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.omnibridge.com/SDKWebServices/AssetData" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.omnibridge.com/SDKWebServices/AssetData">
+      <s:element name="GetVehicleEventsInDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDateTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventDescriptionIDs" type="tns:ArrayOfShort" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfShort">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="short" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetVehicleEventsInDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicleEventsInDateRangeResult" type="tns:ArrayOfRecordedEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRecordedEvent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RecordedEvent" nillable="true" type="tns:RecordedEvent" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RecordedEvent">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="EventType" type="tns:EventTypes" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartSeq" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndSeq" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DriverID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="OriginalDriverID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="Start" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="End" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="RecordedDateTime" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartOdo" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndOdo" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Odometer" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartGPSID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndGPSID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TotalTime" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TotalOccurs" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Litres" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="F3Parameter" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="F3Value" type="s:double" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="EventTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Detail" />
+          <s:enumeration value="Summary" />
+          <s:enumeration value="Notify" />
+          <s:enumeration value="Database" />
+          <s:enumeration value="DatabaseNotify" />
+          <s:enumeration value="System" />
+          <s:enumeration value="SystemDetail" />
+          <s:enumeration value="SystemSummary" />
+          <s:enumeration value="SystemNotify" />
+          <s:enumeration value="SystemGenerated" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="TokenHeader" type="tns:TokenHeader" />
+      <s:complexType name="TokenHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetVehicleEventsXMostRecent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="X" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventDescriptionIDs" type="tns:ArrayOfShort" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleEventsXMostRecentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicleEventsXMostRecentResult" type="tns:ArrayOfRecordedEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventsSinceID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventDescriptionIDs" type="tns:ArrayOfShort" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventsSinceIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEventsSinceIDResult" type="tns:ArrayOfRecordedEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventsInIDRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StartID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventDescriptionIDs" type="tns:ArrayOfShort" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventsInIDRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEventsInIDRangeResult" type="tns:ArrayOfRecordedEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventsInDateRangeForVehicles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VehicleIDs" type="tns:ArrayOfShort" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDateTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventDescriptionIDs" type="tns:ArrayOfShort" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventsInDateRangeForVehiclesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEventsInDateRangeForVehiclesResult" type="tns:ArrayOfRecordedEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventsInDateRangeForDrivers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DriverIDs" type="tns:ArrayOfShort" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDateTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventDescriptionIDs" type="tns:ArrayOfShort" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventsInDateRangeForDriversResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEventsInDateRangeForDriversResult" type="tns:ArrayOfRecordedEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetVehicleEventsInDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicleEventsInDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleEventsInDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicleEventsInDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleEventsInDateRangeTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleEventsXMostRecentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicleEventsXMostRecent" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleEventsXMostRecentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicleEventsXMostRecentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleEventsXMostRecentTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsSinceIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEventsSinceID" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsSinceIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEventsSinceIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsSinceIDTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsInIDRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEventsInIDRange" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsInIDRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEventsInIDRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsInIDRangeTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsInDateRangeForVehiclesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEventsInDateRangeForVehicles" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsInDateRangeForVehiclesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEventsInDateRangeForVehiclesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsInDateRangeForVehiclesTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsInDateRangeForDriversSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEventsInDateRangeForDrivers" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsInDateRangeForDriversSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEventsInDateRangeForDriversResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsInDateRangeForDriversTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:portType name="RecordedEventProcessesWSSoap">
+    <wsdl:operation name="GetVehicleEventsInDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of events for the specified vehicle and date range. To restrict the results to specific event types, specify a non-empty list of event description IDs when calling this method.</wsdl:documentation>
+      <wsdl:input message="tns:GetVehicleEventsInDateRangeSoapIn" />
+      <wsdl:output message="tns:GetVehicleEventsInDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleEventsXMostRecent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of the most recent events for a specified vehicle. To restrict the results to specific event types, specify a non-empty list of event description IDs when calling this method.&lt;br&gt;&lt;b&gt;Special case&lt;/b&gt;: to return the most recent event irrespective of vehicle, call this method with the paramater values (0, 1, null) and a token associated with a user having access to the entire organisation</wsdl:documentation>
+      <wsdl:input message="tns:GetVehicleEventsXMostRecentSoapIn" />
+      <wsdl:output message="tns:GetVehicleEventsXMostRecentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsSinceID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of events with record IDs greater than a given ID. To restrict the results to specific event types, specify a non-empty list of event description IDs when calling this method.</wsdl:documentation>
+      <wsdl:input message="tns:GetEventsSinceIDSoapIn" />
+      <wsdl:output message="tns:GetEventsSinceIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsInIDRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of events with record IDs within the specified range. To restrict the results to specific event types, specify a non-empty list of event description IDs when calling this method.</wsdl:documentation>
+      <wsdl:input message="tns:GetEventsInIDRangeSoapIn" />
+      <wsdl:output message="tns:GetEventsInIDRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsInDateRangeForVehicles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of events for the specified vehicles within the specified date range. To restrict the results to specific event types, specify a non-empty list of event description IDs when calling this method.</wsdl:documentation>
+      <wsdl:input message="tns:GetEventsInDateRangeForVehiclesSoapIn" />
+      <wsdl:output message="tns:GetEventsInDateRangeForVehiclesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsInDateRangeForDrivers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of events for the specified drivers within the specified date range. To restrict the results to specific event types, specify a non-empty list of event description IDs when calling this method.</wsdl:documentation>
+      <wsdl:input message="tns:GetEventsInDateRangeForDriversSoapIn" />
+      <wsdl:output message="tns:GetEventsInDateRangeForDriversSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RecordedEventProcessesWSSoap" type="tns:RecordedEventProcessesWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetVehicleEventsInDateRange">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehicleEventsInDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetVehicleEventsInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleEventsXMostRecent">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehicleEventsXMostRecent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetVehicleEventsXMostRecentTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsSinceID">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetEventsSinceID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEventsSinceIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsInIDRange">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetEventsInIDRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEventsInIDRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsInDateRangeForVehicles">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetEventsInDateRangeForVehicles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEventsInDateRangeForVehiclesTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsInDateRangeForDrivers">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetEventsInDateRangeForDrivers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEventsInDateRangeForDriversTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RecordedEventProcessesWSSoap12" type="tns:RecordedEventProcessesWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetVehicleEventsInDateRange">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehicleEventsInDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetVehicleEventsInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleEventsXMostRecent">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetVehicleEventsXMostRecent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetVehicleEventsXMostRecentTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsSinceID">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetEventsSinceID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEventsSinceIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsInIDRange">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetEventsInIDRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEventsInIDRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsInDateRangeForVehicles">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetEventsInDateRangeForVehicles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEventsInDateRangeForVehiclesTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsInDateRangeForDrivers">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetEventsInDateRangeForDrivers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEventsInDateRangeForDriversTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RecordedEventProcessesWS">
+    <wsdl:port name="RecordedEventProcessesWSSoap" binding="tns:RecordedEventProcessesWSSoap">
+      <soap:address location="http://api.fm-web.co.uk/webservices/AssetDataWebSvc/RecordedEventProcessesWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RecordedEventProcessesWSSoap12" binding="tns:RecordedEventProcessesWSSoap12">
+      <soap12:address location="http://api.fm-web.co.uk/webservices/AssetDataWebSvc/RecordedEventProcessesWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

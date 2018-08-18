@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.omnibridge.com/SDKWebServices/AssetData" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.omnibridge.com/SDKWebServices/AssetData" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.omnibridge.com/SDKWebServices/AssetData">
+      <s:element name="GetTripsForDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDateTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTripsForDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTripsForDateRangeResult" type="tns:ArrayOfTrip" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTrip">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Trip" nillable="true" type="tns:Trip" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Trip">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="TripNo" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DriverID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="OriginalDriverID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="TripStart" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="TripEnd" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TokenHeader" type="tns:TokenHeader" />
+      <s:complexType name="TokenHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetTripsWithTotalsForDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDateTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTripsWithTotalsForDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTripsWithTotalsForDateRangeResult" type="tns:ArrayOfTripWithTotals" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTripWithTotals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TripWithTotals" nillable="true" type="tns:TripWithTotals" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TripWithTotals">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Trip" type="tns:Trip" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartSubTripSeq" nillable="true" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndSubTripSeq" nillable="true" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="TripDistance" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="Odometer" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaxSpeed" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="SpeedTime" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="SpeedOccurs" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaxBrake" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="BrakeTime" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="BrakeOccurs" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaxAccel" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="AccelTime" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="AccelOccurs" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaxRPM" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="RPMTime" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="RPMOccurs" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="GBTime" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExIdleTime" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExIdleOccurs" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="NIdleTime" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="NIdleOccurs" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="StandingTime" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Litres" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartGPSID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndGPSID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartEngineSeconds" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndEngineSeconds" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetTripsSinceTripID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TripID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTripsSinceTripIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTripsSinceTripIDResult" type="tns:ArrayOfTrip" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTripsWithTotalsSinceTripID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TripID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTripsWithTotalsSinceTripIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTripsWithTotalsSinceTripIDResult" type="tns:ArrayOfTripWithTotals" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTripsForVehicleAndDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDateTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTripsForVehicleAndDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTripsForVehicleAndDateRangeResult" type="tns:ArrayOfTrip" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTripsForDriverAndDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DriverID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDateTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTripsForDriverAndDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTripsForDriverAndDateRangeResult" type="tns:ArrayOfTrip" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTripDriverIDs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Trips" type="tns:ArrayOfTrip" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTripDriverIDsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTripsWithTotalsForVehicleInDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleId" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDateTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTripsWithTotalsForVehicleInDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTripsWithTotalsForVehicleInDateRangeResult" type="tns:ArrayOfTripWithTotals" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTripsWithTotalsForDriverInDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="driverId" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDateTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTripsWithTotalsForDriverInDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTripsWithTotalsForDriverInDateRangeResult" type="tns:ArrayOfTripWithTotals" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetTripsForDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTripsForDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsForDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTripsForDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsForDateRangeTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsWithTotalsForDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTripsWithTotalsForDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsWithTotalsForDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTripsWithTotalsForDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsWithTotalsForDateRangeTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsSinceTripIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTripsSinceTripID" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsSinceTripIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTripsSinceTripIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsSinceTripIDTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsWithTotalsSinceTripIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTripsWithTotalsSinceTripID" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsWithTotalsSinceTripIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTripsWithTotalsSinceTripIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsWithTotalsSinceTripIDTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsForVehicleAndDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTripsForVehicleAndDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsForVehicleAndDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTripsForVehicleAndDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsForVehicleAndDateRangeTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsForDriverAndDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTripsForDriverAndDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsForDriverAndDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTripsForDriverAndDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsForDriverAndDateRangeTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTripDriverIDsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTripDriverIDs" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTripDriverIDsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTripDriverIDsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTripDriverIDsTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsWithTotalsForVehicleInDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTripsWithTotalsForVehicleInDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsWithTotalsForVehicleInDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTripsWithTotalsForVehicleInDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsWithTotalsForVehicleInDateRangeTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsWithTotalsForDriverInDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTripsWithTotalsForDriverInDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsWithTotalsForDriverInDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTripsWithTotalsForDriverInDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTripsWithTotalsForDriverInDateRangeTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:portType name="TripProcessesWSSoap">
+    <wsdl:operation name="GetTripsForDateRange">
+      <wsdl:input message="tns:GetTripsForDateRangeSoapIn" />
+      <wsdl:output message="tns:GetTripsForDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsWithTotalsForDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of trip summaries within the specified date range.</wsdl:documentation>
+      <wsdl:input message="tns:GetTripsWithTotalsForDateRangeSoapIn" />
+      <wsdl:output message="tns:GetTripsWithTotalsForDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsSinceTripID">
+      <wsdl:input message="tns:GetTripsSinceTripIDSoapIn" />
+      <wsdl:output message="tns:GetTripsSinceTripIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsWithTotalsSinceTripID">
+      <wsdl:input message="tns:GetTripsWithTotalsSinceTripIDSoapIn" />
+      <wsdl:output message="tns:GetTripsWithTotalsSinceTripIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsForVehicleAndDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of trips for the specified vehicle within the specified date range.</wsdl:documentation>
+      <wsdl:input message="tns:GetTripsForVehicleAndDateRangeSoapIn" />
+      <wsdl:output message="tns:GetTripsForVehicleAndDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsForDriverAndDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of trips for the specified driver within the specified date range.</wsdl:documentation>
+      <wsdl:input message="tns:GetTripsForDriverAndDateRangeSoapIn" />
+      <wsdl:output message="tns:GetTripsForDriverAndDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTripDriverIDs">
+      <wsdl:input message="tns:UpdateTripDriverIDsSoapIn" />
+      <wsdl:output message="tns:UpdateTripDriverIDsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsWithTotalsForVehicleInDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of trip summaries for the specified vehicle within the specified date range.</wsdl:documentation>
+      <wsdl:input message="tns:GetTripsWithTotalsForVehicleInDateRangeSoapIn" />
+      <wsdl:output message="tns:GetTripsWithTotalsForVehicleInDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsWithTotalsForDriverInDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of trip summaries for the specified driver within the specified date range.</wsdl:documentation>
+      <wsdl:input message="tns:GetTripsWithTotalsForDriverInDateRangeSoapIn" />
+      <wsdl:output message="tns:GetTripsWithTotalsForDriverInDateRangeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TripProcessesWSSoap" type="tns:TripProcessesWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTripsForDateRange">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsForDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTripsForDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsWithTotalsForDateRange">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsWithTotalsForDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTripsWithTotalsForDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsSinceTripID">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsSinceTripID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTripsSinceTripIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsWithTotalsSinceTripID">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsWithTotalsSinceTripID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTripsWithTotalsSinceTripIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsForVehicleAndDateRange">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsForVehicleAndDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTripsForVehicleAndDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsForDriverAndDateRange">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsForDriverAndDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTripsForDriverAndDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTripDriverIDs">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/UpdateTripDriverIDs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateTripDriverIDsTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsWithTotalsForVehicleInDateRange">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsWithTotalsForVehicleInDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTripsWithTotalsForVehicleInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsWithTotalsForDriverInDateRange">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsWithTotalsForDriverInDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTripsWithTotalsForDriverInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TripProcessesWSSoap12" type="tns:TripProcessesWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTripsForDateRange">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsForDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTripsForDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsWithTotalsForDateRange">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsWithTotalsForDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTripsWithTotalsForDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsSinceTripID">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsSinceTripID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTripsSinceTripIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsWithTotalsSinceTripID">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsWithTotalsSinceTripID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTripsWithTotalsSinceTripIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsForVehicleAndDateRange">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsForVehicleAndDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTripsForVehicleAndDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsForDriverAndDateRange">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsForDriverAndDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTripsForDriverAndDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTripDriverIDs">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/UpdateTripDriverIDs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateTripDriverIDsTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsWithTotalsForVehicleInDateRange">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsWithTotalsForVehicleInDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTripsWithTotalsForVehicleInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTripsWithTotalsForDriverInDateRange">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/AssetData/GetTripsWithTotalsForDriverInDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTripsWithTotalsForDriverInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TripProcessesWS">
+    <wsdl:port name="TripProcessesWSSoap" binding="tns:TripProcessesWSSoap">
+      <soap:address location="http://api.fm-web.co.uk/webservices/AssetDataWebSvc/TripProcessesWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TripProcessesWSSoap12" binding="tns:TripProcessesWSSoap12">
+      <soap12:address location="http://api.fm-web.co.uk/webservices/AssetDataWebSvc/TripProcessesWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

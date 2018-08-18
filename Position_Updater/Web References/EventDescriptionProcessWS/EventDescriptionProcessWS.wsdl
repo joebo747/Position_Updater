@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.mixtelematics.com/WebServices/UnitConfiguration" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.mixtelematics.com/WebServices/UnitConfiguration" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.mixtelematics.com/WebServices/UnitConfiguration">
+      <s:element name="GetEventsList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetEventsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEventsListResult" type="tns:ArrayOfEventDescription" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEventDescription">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EventDescription" nillable="true" type="tns:EventDescription" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EventDescription">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="EventType" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="InUse" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartOdo" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartPosition" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndOdo" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndPosition" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="RecordF3Count" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="UseWarningMessage" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="AvtivePosition" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="RecordTime" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="AlarmTime" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="RelayTime" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="Relay2Time" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="CriticalTime" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="ActiveTime" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="ActiveEndTime" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="TrackTime" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="TrackInterval" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="AlarmState" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="RelayState" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="Relay2State" type="s:unsignedByte" />
+              <s:element minOccurs="0" maxOccurs="1" name="CriticalID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="WarningMessage" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SummaryType" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="SummaryID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="Priority" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="EventSaveID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Updated" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TokenHeader" type="tns:TokenHeader" />
+      <s:complexType name="TokenHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetInUseEventsForVehicleID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInUseEventsForVehicleIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInUseEventsForVehicleIDResult" type="tns:ArrayOfEventDescription" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventDescriptionDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventDescriptionDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEventDescriptionDetailsResult" type="tns:EventDescription" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetEventsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEventsList" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEventsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsListTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetInUseEventsForVehicleIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInUseEventsForVehicleID" />
+  </wsdl:message>
+  <wsdl:message name="GetInUseEventsForVehicleIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInUseEventsForVehicleIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInUseEventsForVehicleIDTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetEventDescriptionDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEventDescriptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetEventDescriptionDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEventDescriptionDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEventDescriptionDetailsTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:portType name="EventDescriptionProcessWSSoap">
+    <wsdl:operation name="GetEventsList">
+      <wsdl:input message="tns:GetEventsListSoapIn" />
+      <wsdl:output message="tns:GetEventsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInUseEventsForVehicleID">
+      <wsdl:input message="tns:GetInUseEventsForVehicleIDSoapIn" />
+      <wsdl:output message="tns:GetInUseEventsForVehicleIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventDescriptionDetails">
+      <wsdl:input message="tns:GetEventDescriptionDetailsSoapIn" />
+      <wsdl:output message="tns:GetEventDescriptionDetailsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EventDescriptionProcessWSSoap" type="tns:EventDescriptionProcessWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEventsList">
+      <soap:operation soapAction="http://www.mixtelematics.com/WebServices/UnitConfiguration/GetEventsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEventsListTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInUseEventsForVehicleID">
+      <soap:operation soapAction="http://www.mixtelematics.com/WebServices/UnitConfiguration/GetInUseEventsForVehicleID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetInUseEventsForVehicleIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventDescriptionDetails">
+      <soap:operation soapAction="http://www.mixtelematics.com/WebServices/UnitConfiguration/GetEventDescriptionDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEventDescriptionDetailsTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EventDescriptionProcessWSSoap12" type="tns:EventDescriptionProcessWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEventsList">
+      <soap12:operation soapAction="http://www.mixtelematics.com/WebServices/UnitConfiguration/GetEventsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEventsListTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInUseEventsForVehicleID">
+      <soap12:operation soapAction="http://www.mixtelematics.com/WebServices/UnitConfiguration/GetInUseEventsForVehicleID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetInUseEventsForVehicleIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventDescriptionDetails">
+      <soap12:operation soapAction="http://www.mixtelematics.com/WebServices/UnitConfiguration/GetEventDescriptionDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEventDescriptionDetailsTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EventDescriptionProcessWS">
+    <wsdl:port name="EventDescriptionProcessWSSoap" binding="tns:EventDescriptionProcessWSSoap">
+      <soap:address location="http://api.fm-web.co.uk/webservices/UnitConfigurationWebSvc/EventDescriptionProcessWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EventDescriptionProcessWSSoap12" binding="tns:EventDescriptionProcessWSSoap12">
+      <soap12:address location="http://api.fm-web.co.uk/webservices/UnitConfigurationWebSvc/EventDescriptionProcessWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

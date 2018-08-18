@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.Position_Updater.RadForm1
+            Me.MainForm = Global.Position_Updater.Position_Updater
         End Sub
     End Class
 End Namespace

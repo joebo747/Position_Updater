@@ -13,44 +13,219 @@ Option Explicit On
 
 
 Namespace My
-
-    <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(), _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "10.0.0.0"), _
-     Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
+    
+    <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0"),  _
+     Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
-
-        Private Shared defaultInstance As MySettings = CType(Global.System.Configuration.ApplicationSettingsBase.Synchronized(New MySettings), MySettings)
-
+        
+        Private Shared defaultInstance As MySettings = CType(Global.System.Configuration.ApplicationSettingsBase.Synchronized(New MySettings()),MySettings)
+        
 #Region "My.Settings Auto-Save Functionality"
 #If _MyType = "WindowsForms" Then
-        Private Shared addedHandler As Boolean
+    Private Shared addedHandler As Boolean
 
-        Private Shared addedHandlerLockObject As New Object
+    Private Shared addedHandlerLockObject As New Object
 
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
-        Private Shared Sub AutoSaveSettings(ByVal sender As Global.System.Object, ByVal e As Global.System.EventArgs)
-            If My.Application.SaveMySettingsOnExit Then
-                My.Settings.Save()
-            End If
-        End Sub
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
+    Private Shared Sub AutoSaveSettings(sender As Global.System.Object, e As Global.System.EventArgs)
+        If My.Application.SaveMySettingsOnExit Then
+            My.Settings.Save()
+        End If
+    End Sub
 #End If
 #End Region
-
+        
         Public Shared ReadOnly Property [Default]() As MySettings
             Get
-
+                
 #If _MyType = "WindowsForms" Then
-                   If Not addedHandler Then
-                        SyncLock addedHandlerLockObject
-                            If Not addedHandler Then
-                                AddHandler My.Application.Shutdown, AddressOf AutoSaveSettings
-                                addedHandler = True
-                            End If
-                        End SyncLock
-                    End If
+               If Not addedHandler Then
+                    SyncLock addedHandlerLockObject
+                        If Not addedHandler Then
+                            AddHandler My.Application.Shutdown, AddressOf AutoSaveSettings
+                            addedHandler = True
+                        End If
+                    End SyncLock
+                End If
 #End If
                 Return defaultInstance
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=.\sqlexpress;Initial Catalog=Transport_Comp1;Integrated Security=True"& _ 
+            "")>  _
+        Public ReadOnly Property Transport_Comp1ConnectionString() As String
+            Get
+                Return CType(Me("Transport_Comp1ConnectionString"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=VMSQL1\STIRLING;Initial Catalog=Transport_Comp1;Persist Security Info"& _ 
+            "=True;User ID=abacus;Password=marge")>  _
+        Public ReadOnly Property Transport_Comp1ConnectionString1() As String
+            Get
+                Return CType(Me("Transport_Comp1ConnectionString1"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("slK486Q7542TW")>  _
+        Public Property BlueTreePassword() As String
+            Get
+                Return CType(Me("BlueTreePassword"),String)
+            End Get
+            Set
+                Me("BlueTreePassword") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("GBA-APIService")>  _
+        Public Property BlueTreeUser() As String
+            Get
+                Return CType(Me("BlueTreeUser"),String)
+            End Get
+            Set
+                Me("BlueTreeUser") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=vmsql1.gba.local\stirling;Initial Catalog=Transport_Comp1;Persist Sec"& _ 
+            "urity Info=True;User ID=abacus;Password=marge")>  _
+        Public ReadOnly Property Transport_Comp1ConnectionString2() As String
+            Get
+                Return CType(Me("Transport_Comp1ConnectionString2"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=vmsql1.gba.local\stirling;Initial Catalog=Transport_TEST;Persist Secu"& _ 
+            "rity Info=True;User ID=abacus;Password=marge")>  _
+        Public ReadOnly Property Transport_TESTConnectionString() As String
+            Get
+                Return CType(Me("Transport_TESTConnectionString"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://api.fm-web.co.uk/webservices/CoreWebSvc/CoreWS.asmx")>  _
+        Public ReadOnly Property Position_Updater_CoreWS_CoreWS() As String
+            Get
+                Return CType(Me("Position_Updater_CoreWS_CoreWS"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://api.fm-web.co.uk/webservices/AssetDataWebSvc/DriverProcessesWS.asmx")>  _
+        Public ReadOnly Property Position_Updater_DriverProcessesWS_DriverProcessesWS() As String
+            Get
+                Return CType(Me("Position_Updater_DriverProcessesWS_DriverProcessesWS"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://api.fm-web.co.uk/webservices/UnitConfigurationWebSvc/EventDescriptionProce"& _ 
+            "ssWS.asmx")>  _
+        Public ReadOnly Property Position_Updater_EventDescriptionProcessWS_EventDescriptionProcessWS() As String
+            Get
+                Return CType(Me("Position_Updater_EventDescriptionProcessWS_EventDescriptionProcessWS"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://api.fm-web.co.uk/webservices/EventNotificationWebSvc/EventNotificationWS.a"& _ 
+            "smx")>  _
+        Public ReadOnly Property Position_Updater_EventNotificationWSi_EventNotificationWS() As String
+            Get
+                Return CType(Me("Position_Updater_EventNotificationWSi_EventNotificationWS"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://api.fm-web.co.uk/webservices/PositioningWebSvc/PositioningWS.asmx")>  _
+        Public ReadOnly Property Position_Updater_PositioningWS_PositioningWS() As String
+            Get
+                Return CType(Me("Position_Updater_PositioningWS_PositioningWS"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("GBAmonitor")>  _
+        Public Property mixUser() As String
+            Get
+                Return CType(Me("mixUser"),String)
+            End Get
+            Set
+                Me("mixUser") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("GBAmonitor")>  _
+        Public Property mixPass() As String
+            Get
+                Return CType(Me("mixPass"),String)
+            End Get
+            Set
+                Me("mixPass") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://api.fm-web.co.uk/webservices/AssetDataWebSvc/VehicleProcessesWS.asmx")>  _
+        Public ReadOnly Property Position_Updater_VehicleProcessesWS_VehicleProcessesWS() As String
+            Get
+                Return CType(Me("Position_Updater_VehicleProcessesWS_VehicleProcessesWS"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://api.fm-web.co.uk/webservices/AssetDataWebSvc/RecordedEventProcessesWS.asmx"& _ 
+            "")>  _
+        Public ReadOnly Property Position_Updater_RecordedEventProcessesWS_RecordedEventProcessesWS() As String
+            Get
+                Return CType(Me("Position_Updater_RecordedEventProcessesWS_RecordedEventProcessesWS"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://api.fm-web.co.uk/webservices/AssetDataWebSvc/TripProcessesWS.asmx")>  _
+        Public ReadOnly Property Position_Updater_TripProcessesWS_TripProcessesWS() As String
+            Get
+                Return CType(Me("Position_Updater_TripProcessesWS_TripProcessesWS"),String)
             End Get
         End Property
     End Class

@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.omnibridge.com/SDKWebServices/Positioning" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.omnibridge.com/SDKWebServices/Positioning" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.omnibridge.com/SDKWebServices/Positioning">
+      <s:element name="GetLatest1GPSPositionForVehicle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLatest1GPSPositionForVehicleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLatest1GPSPositionForVehicleResult" type="tns:GPSPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GPSPosition">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="DriverID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="OriginalDriverID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="BlockSeq" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Time" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Latitude" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Longitude" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Altitude" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="Heading" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="Satellites" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="HDOP" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="AgeOfReading" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DistanceSinceReading" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Velocity" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsAVL" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CoordValid" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TokenHeader" type="tns:TokenHeader" />
+      <s:complexType name="TokenHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetLatestXGPSPositionsForVehicle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="X" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLatestXGPSPositionsForVehicleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLatestXGPSPositionsForVehicleResult" type="tns:ArrayOfGPSPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGPSPosition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GPSPosition" nillable="true" type="tns:GPSPosition" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetGPSPositionsSinceDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LastDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSPositionsSinceDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGPSPositionsSinceDateResult" type="tns:ArrayOfGPSPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSPositionsForVehicleSinceDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="LastDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSPositionsForVehicleSinceDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGPSPositionsForVehicleSinceDateResult" type="tns:ArrayOfGPSPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSPositionsInDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSPositionsInDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGPSPositionsInDateRangeResult" type="tns:ArrayOfGPSPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSPositionsForVehicleInDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSPositionsForVehicleInDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGPSPositionsForVehicleInDateRangeResult" type="tns:ArrayOfGPSPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLatestPositionPerVehicle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SpecificVehicleIDs" type="tns:ArrayOfShort" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfShort">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="short" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLatestPositionPerVehicleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLatestPositionPerVehicleResult" type="tns:ArrayOfGPSPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSPositionsInList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SpecificGPSIDs" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLong">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetGPSPositionsInListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGPSPositionsInListResult" type="tns:ArrayOfGPSPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSPositionsSinceID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fromID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSPositionsSinceIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGPSPositionsSinceIDResult" type="tns:ArrayOfGPSPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSPositionsForSpecifiedVehiclesSinceID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fromID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="VehicleIDs" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSPositionsForSpecifiedVehiclesSinceIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGPSPositionsForSpecifiedVehiclesSinceIDResult" type="tns:ArrayOfGPSPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReverseGeoForGPSPositions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GPSIDs" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReverseGeoForGPSPositionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReverseGeoForGPSPositionsResult" type="tns:ArrayOfGeoLocation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGeoLocation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GeoLocation" nillable="true" type="tns:GeoLocation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GeoLocation">
+        <s:attribute name="Road" type="s:string" />
+        <s:attribute name="Suburb" type="s:string" />
+        <s:attribute name="Town" type="s:string" />
+        <s:attribute name="City" type="s:string" />
+        <s:attribute name="Zip" type="s:string" />
+        <s:attribute name="Region" type="s:string" />
+        <s:attribute name="Country" type="s:string" />
+      </s:complexType>
+      <s:element name="GetPositionsV2SinceID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fromID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPositionsV2SinceIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPositionsV2SinceIDResult" type="tns:ArrayOfGPSPositionV2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGPSPositionV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GPSPositionV2" nillable="true" type="tns:GPSPositionV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GPSPositionV2">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="VehicleID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="DriverID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="OriginalDriverID" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="BlockSeq" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Time" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Latitude" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Longitude" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Altitude" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="Heading" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="Satellites" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="HDOP" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="AgeOfReading" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DistanceSinceReading" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Velocity" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsAVL" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="Odometer" nillable="true" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="CoordValid" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetLatestPositionV2PerVehicle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SpecificVehicleIDs" type="tns:ArrayOfShort" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLatestPositionV2PerVehicleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLatestPositionV2PerVehicleResult" type="tns:ArrayOfGPSPositionV2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetLatest1GPSPositionForVehicleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLatest1GPSPositionForVehicle" />
+  </wsdl:message>
+  <wsdl:message name="GetLatest1GPSPositionForVehicleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLatest1GPSPositionForVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLatest1GPSPositionForVehicleTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestXGPSPositionsForVehicleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLatestXGPSPositionsForVehicle" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestXGPSPositionsForVehicleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLatestXGPSPositionsForVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestXGPSPositionsForVehicleTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsSinceDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsSinceDate" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsSinceDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsSinceDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsSinceDateTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsForVehicleSinceDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsForVehicleSinceDate" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsForVehicleSinceDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsForVehicleSinceDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsForVehicleSinceDateTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsInDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsInDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsInDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsInDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsInDateRangeTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsForVehicleInDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsForVehicleInDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsForVehicleInDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsForVehicleInDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsForVehicleInDateRangeTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestPositionPerVehicleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLatestPositionPerVehicle" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestPositionPerVehicleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLatestPositionPerVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestPositionPerVehicleTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsInListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsInList" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsInListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsInListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsInListTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsSinceIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsSinceID" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsSinceIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsSinceIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsSinceIDTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsForSpecifiedVehiclesSinceIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsForSpecifiedVehiclesSinceID" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsForSpecifiedVehiclesSinceIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGPSPositionsForSpecifiedVehiclesSinceIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSPositionsForSpecifiedVehiclesSinceIDTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetReverseGeoForGPSPositionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReverseGeoForGPSPositions" />
+  </wsdl:message>
+  <wsdl:message name="GetReverseGeoForGPSPositionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReverseGeoForGPSPositionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReverseGeoForGPSPositionsTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetPositionsV2SinceIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPositionsV2SinceID" />
+  </wsdl:message>
+  <wsdl:message name="GetPositionsV2SinceIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPositionsV2SinceIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPositionsV2SinceIDTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestPositionV2PerVehicleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLatestPositionV2PerVehicle" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestPositionV2PerVehicleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLatestPositionV2PerVehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestPositionV2PerVehicleTokenHeader">
+    <wsdl:part name="TokenHeader" element="tns:TokenHeader" />
+  </wsdl:message>
+  <wsdl:portType name="PositioningWSSoap">
+    <wsdl:operation name="GetLatest1GPSPositionForVehicle">
+      <wsdl:input message="tns:GetLatest1GPSPositionForVehicleSoapIn" />
+      <wsdl:output message="tns:GetLatest1GPSPositionForVehicleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestXGPSPositionsForVehicle">
+      <wsdl:input message="tns:GetLatestXGPSPositionsForVehicleSoapIn" />
+      <wsdl:output message="tns:GetLatestXGPSPositionsForVehicleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsSinceDate">
+      <wsdl:input message="tns:GetGPSPositionsSinceDateSoapIn" />
+      <wsdl:output message="tns:GetGPSPositionsSinceDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsForVehicleSinceDate">
+      <wsdl:input message="tns:GetGPSPositionsForVehicleSinceDateSoapIn" />
+      <wsdl:output message="tns:GetGPSPositionsForVehicleSinceDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsInDateRange">
+      <wsdl:input message="tns:GetGPSPositionsInDateRangeSoapIn" />
+      <wsdl:output message="tns:GetGPSPositionsInDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsForVehicleInDateRange">
+      <wsdl:input message="tns:GetGPSPositionsForVehicleInDateRangeSoapIn" />
+      <wsdl:output message="tns:GetGPSPositionsForVehicleInDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestPositionPerVehicle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves the latest known GPS position of each vehicle in the list specified or, in the case of an empty list, all vehicles in the organisation</wsdl:documentation>
+      <wsdl:input message="tns:GetLatestPositionPerVehicleSoapIn" />
+      <wsdl:output message="tns:GetLatestPositionPerVehicleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsInList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves the GPS positions for each GPS ID in the list specified. A maximum of 1000 IDs may be specified.</wsdl:documentation>
+      <wsdl:input message="tns:GetGPSPositionsInListSoapIn" />
+      <wsdl:output message="tns:GetGPSPositionsInListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsSinceID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves GPS positions with IDs subsequent to the ID specified, up to a maximum of 1000 positions</wsdl:documentation>
+      <wsdl:input message="tns:GetGPSPositionsSinceIDSoapIn" />
+      <wsdl:output message="tns:GetGPSPositionsSinceIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsForSpecifiedVehiclesSinceID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves the first 1000 GPS positions with IDs greater than a given GPS ID, for vehicles in the given comma-delimited list of vehicle IDs</wsdl:documentation>
+      <wsdl:input message="tns:GetGPSPositionsForSpecifiedVehiclesSinceIDSoapIn" />
+      <wsdl:output message="tns:GetGPSPositionsForSpecifiedVehiclesSinceIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReverseGeoForGPSPositions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Performs reverse geo lookups on each GPS position record identified in the list supplied. Results are returned in the same order as the supplied list. Up to 1000 entries are permitted, though smaller batches of 200-300 entries are recommended.</wsdl:documentation>
+      <wsdl:input message="tns:GetReverseGeoForGPSPositionsSoapIn" />
+      <wsdl:output message="tns:GetReverseGeoForGPSPositionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPositionsV2SinceID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves GPS records with IDs subsequent to the ID specified, up to a maximum of 1000 positions</wsdl:documentation>
+      <wsdl:input message="tns:GetPositionsV2SinceIDSoapIn" />
+      <wsdl:output message="tns:GetPositionsV2SinceIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestPositionV2PerVehicle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves the latest known GPS position of each vehicle in the list specified or, in the case of an empty list, all vehicles in the organisation</wsdl:documentation>
+      <wsdl:input message="tns:GetLatestPositionV2PerVehicleSoapIn" />
+      <wsdl:output message="tns:GetLatestPositionV2PerVehicleSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PositioningWSSoap" type="tns:PositioningWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetLatest1GPSPositionForVehicle">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetLatest1GPSPositionForVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetLatest1GPSPositionForVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestXGPSPositionsForVehicle">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetLatestXGPSPositionsForVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetLatestXGPSPositionsForVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsSinceDate">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsSinceDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGPSPositionsSinceDateTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsForVehicleSinceDate">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsForVehicleSinceDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGPSPositionsForVehicleSinceDateTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsInDateRange">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsInDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGPSPositionsInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsForVehicleInDateRange">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsForVehicleInDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGPSPositionsForVehicleInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestPositionPerVehicle">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetLatestPositionPerVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetLatestPositionPerVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsInList">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsInList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGPSPositionsInListTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsSinceID">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsSinceID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGPSPositionsSinceIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsForSpecifiedVehiclesSinceID">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsForSpecifiedVehiclesSinceID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGPSPositionsForSpecifiedVehiclesSinceIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReverseGeoForGPSPositions">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetReverseGeoForGPSPositions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetReverseGeoForGPSPositionsTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPositionsV2SinceID">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetPositionsV2SinceID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetPositionsV2SinceIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestPositionV2PerVehicle">
+      <soap:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetLatestPositionV2PerVehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetLatestPositionV2PerVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PositioningWSSoap12" type="tns:PositioningWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetLatest1GPSPositionForVehicle">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetLatest1GPSPositionForVehicle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetLatest1GPSPositionForVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestXGPSPositionsForVehicle">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetLatestXGPSPositionsForVehicle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetLatestXGPSPositionsForVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsSinceDate">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsSinceDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetGPSPositionsSinceDateTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsForVehicleSinceDate">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsForVehicleSinceDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetGPSPositionsForVehicleSinceDateTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsInDateRange">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsInDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetGPSPositionsInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsForVehicleInDateRange">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsForVehicleInDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetGPSPositionsForVehicleInDateRangeTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestPositionPerVehicle">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetLatestPositionPerVehicle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetLatestPositionPerVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsInList">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsInList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetGPSPositionsInListTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsSinceID">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsSinceID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetGPSPositionsSinceIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSPositionsForSpecifiedVehiclesSinceID">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetGPSPositionsForSpecifiedVehiclesSinceID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetGPSPositionsForSpecifiedVehiclesSinceIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReverseGeoForGPSPositions">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetReverseGeoForGPSPositions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetReverseGeoForGPSPositionsTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPositionsV2SinceID">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetPositionsV2SinceID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetPositionsV2SinceIDTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestPositionV2PerVehicle">
+      <soap12:operation soapAction="http://www.omnibridge.com/SDKWebServices/Positioning/GetLatestPositionV2PerVehicle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetLatestPositionV2PerVehicleTokenHeader" part="TokenHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PositioningWS">
+    <wsdl:port name="PositioningWSSoap" binding="tns:PositioningWSSoap">
+      <soap:address location="http://api.fm-web.co.uk/webservices/PositioningWebSvc/PositioningWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PositioningWSSoap12" binding="tns:PositioningWSSoap12">
+      <soap12:address location="http://api.fm-web.co.uk/webservices/PositioningWebSvc/PositioningWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
