@@ -15,6 +15,7 @@
       <Column Name="Location" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="TrackedBY" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
       <Column Name="VehID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.fridgeTrailers" Member="fridgeTrailers">
@@ -28,6 +29,19 @@
       <Column Name="dwAnalysis3IdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="dwAnalysis4IdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="dwClassificationIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ActiveFleetfence" Member="ActiveFleetfences">
+    <Type Name="ActiveFleetfence">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="dwaccountidfk" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="szaccountname" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="dateadded" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="GBAcompany" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

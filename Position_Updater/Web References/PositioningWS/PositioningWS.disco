@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
-  <contractRef ref="http://api.fm-web.co.uk/webservices/PositioningWebSvc/PositioningWS.asmx?wsdl" docRef="http://api.fm-web.co.uk/webservices/PositioningWebSvc/PositioningWS.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
-  <soap address="http://api.fm-web.co.uk/webservices/PositioningWebSvc/PositioningWS.asmx" xmlns:q1="http://www.omnibridge.com/SDKWebServices/Positioning" binding="q1:PositioningWSSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-  <soap address="http://api.fm-web.co.uk/webservices/PositioningWebSvc/PositioningWS.asmx" xmlns:q2="http://www.omnibridge.com/SDKWebServices/Positioning" binding="q2:PositioningWSSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-</discovery>

@@ -51,6 +51,15 @@ Partial Class Position_Updater
         Me.RadLabel6 = New Telerik.WinControls.UI.RadLabel()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.Trackinglbl = New Telerik.WinControls.UI.RadLabel()
+        Me.RadMenu1 = New Telerik.WinControls.UI.RadMenu()
+        Me.RadMenuItem1 = New Telerik.WinControls.UI.RadMenuItem()
+        Me.BlueTree = New Telerik.WinControls.UI.RadMenuItem()
+        Me.Mix = New Telerik.WinControls.UI.RadMenuItem()
+        Me.RadMenuItem4 = New Telerik.WinControls.UI.RadMenuItem()
+        Me.PTVFormLoad = New Telerik.WinControls.UI.RadMenuItem()
+        Me.AutoUpdater = New Telerik.WinControls.UI.RadMenuItem()
+        Me.IDlabel = New Telerik.WinControls.UI.RadLabel()
+        Me.ListBuilder = New Telerik.WinControls.UI.RadCheckBox()
         CType(Me.RadLabel1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadLabel2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadLabel3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,13 +83,16 @@ Partial Class Position_Updater
         CType(Me.vehLock_chk, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadLabel6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Trackinglbl, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RadMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.IDlabel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ListBuilder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RadLabel1
         '
         Me.RadLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.RadLabel1.Location = New System.Drawing.Point(168, 82)
+        Me.RadLabel1.Location = New System.Drawing.Point(168, 92)
         Me.RadLabel1.Name = "RadLabel1"
         Me.RadLabel1.Size = New System.Drawing.Size(31, 16)
         Me.RadLabel1.TabIndex = 0
@@ -89,7 +101,7 @@ Partial Class Position_Updater
         'RadLabel2
         '
         Me.RadLabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.RadLabel2.Location = New System.Drawing.Point(67, 107)
+        Me.RadLabel2.Location = New System.Drawing.Point(67, 117)
         Me.RadLabel2.Name = "RadLabel2"
         Me.RadLabel2.Size = New System.Drawing.Size(31, 16)
         Me.RadLabel2.TabIndex = 1
@@ -98,7 +110,7 @@ Partial Class Position_Updater
         'RadLabel3
         '
         Me.RadLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.RadLabel3.Location = New System.Drawing.Point(296, 82)
+        Me.RadLabel3.Location = New System.Drawing.Point(296, 92)
         Me.RadLabel3.Name = "RadLabel3"
         Me.RadLabel3.Size = New System.Drawing.Size(32, 16)
         Me.RadLabel3.TabIndex = 1
@@ -107,7 +119,7 @@ Partial Class Position_Updater
         'RadLabel4
         '
         Me.RadLabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.RadLabel4.Location = New System.Drawing.Point(67, 145)
+        Me.RadLabel4.Location = New System.Drawing.Point(67, 155)
         Me.RadLabel4.Name = "RadLabel4"
         Me.RadLabel4.Size = New System.Drawing.Size(27, 16)
         Me.RadLabel4.TabIndex = 2
@@ -115,7 +127,7 @@ Partial Class Position_Updater
         '
         'GetPositons
         '
-        Me.GetPositons.Location = New System.Drawing.Point(420, 105)
+        Me.GetPositons.Location = New System.Drawing.Point(420, 115)
         Me.GetPositons.Name = "GetPositons"
         Me.GetPositons.Size = New System.Drawing.Size(100, 24)
         Me.GetPositons.TabIndex = 3
@@ -127,7 +139,7 @@ Partial Class Position_Updater
         Me.VehicleDropDown.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.VehicleDropDown.BackColor = System.Drawing.Color.White
         Me.VehicleDropDown.DropDownAnimationEasing = Telerik.WinControls.RadEasingType.InOutQuad
-        Me.VehicleDropDown.Location = New System.Drawing.Point(146, 16)
+        Me.VehicleDropDown.Location = New System.Drawing.Point(146, 26)
         Me.VehicleDropDown.Name = "VehicleDropDown"
         Me.VehicleDropDown.Size = New System.Drawing.Size(103, 24)
         Me.VehicleDropDown.TabIndex = 5
@@ -136,7 +148,7 @@ Partial Class Position_Updater
         'StartDate
         '
         Me.StartDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.StartDate.Location = New System.Drawing.Point(146, 107)
+        Me.StartDate.Location = New System.Drawing.Point(146, 117)
         Me.StartDate.Name = "StartDate"
         Me.StartDate.Size = New System.Drawing.Size(103, 24)
         Me.StartDate.TabIndex = 6
@@ -148,7 +160,7 @@ Partial Class Position_Updater
         'EndDate
         '
         Me.EndDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.EndDate.Location = New System.Drawing.Point(146, 145)
+        Me.EndDate.Location = New System.Drawing.Point(146, 155)
         Me.EndDate.Name = "EndDate"
         Me.EndDate.Size = New System.Drawing.Size(103, 24)
         Me.EndDate.TabIndex = 7
@@ -159,7 +171,7 @@ Partial Class Position_Updater
         '
         'StartTime
         '
-        Me.StartTime.Location = New System.Drawing.Point(285, 107)
+        Me.StartTime.Location = New System.Drawing.Point(285, 117)
         Me.StartTime.MaxValue = New Date(9999, 12, 31, 23, 59, 59, 0)
         Me.StartTime.MinValue = New Date(CType(0, Long))
         Me.StartTime.Name = "StartTime"
@@ -171,7 +183,7 @@ Partial Class Position_Updater
         '
         'EndTime
         '
-        Me.EndTime.Location = New System.Drawing.Point(285, 145)
+        Me.EndTime.Location = New System.Drawing.Point(285, 155)
         Me.EndTime.MaxValue = New Date(9999, 12, 31, 23, 59, 59, 0)
         Me.EndTime.MinValue = New Date(CType(0, Long))
         Me.EndTime.Name = "EndTime"
@@ -183,7 +195,7 @@ Partial Class Position_Updater
         '
         'RadGridView1
         '
-        Me.RadGridView1.Location = New System.Drawing.Point(12, 208)
+        Me.RadGridView1.Location = New System.Drawing.Point(12, 218)
         '
         '
         '
@@ -198,7 +210,7 @@ Partial Class Position_Updater
         'RadButton1
         '
         Me.RadButton1.Enabled = False
-        Me.RadButton1.Location = New System.Drawing.Point(430, 466)
+        Me.RadButton1.Location = New System.Drawing.Point(430, 476)
         Me.RadButton1.Name = "RadButton1"
         Me.RadButton1.Size = New System.Drawing.Size(100, 24)
         Me.RadButton1.TabIndex = 11
@@ -208,7 +220,7 @@ Partial Class Position_Updater
         'RadLabel5
         '
         Me.RadLabel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.RadLabel5.Location = New System.Drawing.Point(67, 19)
+        Me.RadLabel5.Location = New System.Drawing.Point(67, 29)
         Me.RadLabel5.Name = "RadLabel5"
         Me.RadLabel5.Size = New System.Drawing.Size(45, 16)
         Me.RadLabel5.TabIndex = 12
@@ -216,7 +228,7 @@ Partial Class Position_Updater
         '
         'positonCountlbl
         '
-        Me.positonCountlbl.Location = New System.Drawing.Point(12, 466)
+        Me.positonCountlbl.Location = New System.Drawing.Point(12, 476)
         Me.positonCountlbl.Name = "positonCountlbl"
         Me.positonCountlbl.Size = New System.Drawing.Size(36, 18)
         Me.positonCountlbl.TabIndex = 13
@@ -224,7 +236,7 @@ Partial Class Position_Updater
         '
         'RadWaitingBar1
         '
-        Me.RadWaitingBar1.Location = New System.Drawing.Point(54, 466)
+        Me.RadWaitingBar1.Location = New System.Drawing.Point(54, 476)
         Me.RadWaitingBar1.Name = "RadWaitingBar1"
         Me.RadWaitingBar1.Size = New System.Drawing.Size(370, 24)
         Me.RadWaitingBar1.TabIndex = 14
@@ -239,7 +251,7 @@ Partial Class Position_Updater
         'passtxt
         '
         Me.passtxt.AcceptsReturn = True
-        Me.passtxt.Location = New System.Drawing.Point(284, 172)
+        Me.passtxt.Location = New System.Drawing.Point(284, 182)
         Me.passtxt.Name = "passtxt"
         Me.passtxt.NullText = "Password:"
         Me.passtxt.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
@@ -252,7 +264,7 @@ Partial Class Position_Updater
         'Passlbl
         '
         Me.Passlbl.ForeColor = System.Drawing.Color.Red
-        Me.Passlbl.Location = New System.Drawing.Point(146, 174)
+        Me.Passlbl.Location = New System.Drawing.Point(146, 184)
         Me.Passlbl.Name = "Passlbl"
         Me.Passlbl.Size = New System.Drawing.Size(126, 18)
         Me.Passlbl.TabIndex = 16
@@ -262,7 +274,7 @@ Partial Class Position_Updater
         'selectedVehicle
         '
         Me.selectedVehicle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.selectedVehicle.Location = New System.Drawing.Point(296, 16)
+        Me.selectedVehicle.Location = New System.Drawing.Point(296, 26)
         Me.selectedVehicle.Name = "selectedVehicle"
         Me.selectedVehicle.Size = New System.Drawing.Size(112, 16)
         Me.selectedVehicle.TabIndex = 17
@@ -272,7 +284,7 @@ Partial Class Position_Updater
         'vehicle_lbl
         '
         Me.vehicle_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.vehicle_lbl.Location = New System.Drawing.Point(420, 16)
+        Me.vehicle_lbl.Location = New System.Drawing.Point(420, 26)
         Me.vehicle_lbl.Name = "vehicle_lbl"
         Me.vehicle_lbl.Size = New System.Drawing.Size(45, 16)
         Me.vehicle_lbl.TabIndex = 18
@@ -281,7 +293,7 @@ Partial Class Position_Updater
         '
         'vehLock_chk
         '
-        Me.vehLock_chk.Location = New System.Drawing.Point(488, 16)
+        Me.vehLock_chk.Location = New System.Drawing.Point(488, 26)
         Me.vehLock_chk.Name = "vehLock_chk"
         Me.vehLock_chk.Size = New System.Drawing.Size(43, 18)
         Me.vehLock_chk.TabIndex = 19
@@ -291,7 +303,7 @@ Partial Class Position_Updater
         '
         Me.RadLabel6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
         Me.RadLabel6.ForeColor = System.Drawing.Color.Red
-        Me.RadLabel6.Location = New System.Drawing.Point(15, 63)
+        Me.RadLabel6.Location = New System.Drawing.Point(15, 73)
         Me.RadLabel6.Name = "RadLabel6"
         Me.RadLabel6.Size = New System.Drawing.Size(502, 16)
         Me.RadLabel6.TabIndex = 20
@@ -304,21 +316,87 @@ Partial Class Position_Updater
         Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
         Me.ImageList1.Images.SetKeyName(0, "transparent.png")
+        Me.ImageList1.Images.SetKeyName(1, "ErrorDot.png")
         '
         'Trackinglbl
         '
         Me.Trackinglbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Trackinglbl.Location = New System.Drawing.Point(146, 46)
+        Me.Trackinglbl.Location = New System.Drawing.Point(146, 54)
         Me.Trackinglbl.Name = "Trackinglbl"
         Me.Trackinglbl.Size = New System.Drawing.Size(51, 16)
         Me.Trackinglbl.TabIndex = 21
         Me.Trackinglbl.Text = "Tracking"
+        '
+        'RadMenu1
+        '
+        Me.RadMenu1.Items.AddRange(New Telerik.WinControls.RadItem() {Me.RadMenuItem1, Me.PTVFormLoad, Me.AutoUpdater})
+        Me.RadMenu1.Location = New System.Drawing.Point(0, 0)
+        Me.RadMenu1.Name = "RadMenu1"
+        Me.RadMenu1.Size = New System.Drawing.Size(542, 28)
+        Me.RadMenu1.TabIndex = 22
+        Me.RadMenu1.ThemeName = "Office2007Black"
+        Me.RadMenu1.Visible = False
+        '
+        'RadMenuItem1
+        '
+        Me.RadMenuItem1.ForeColor = System.Drawing.Color.White
+        Me.RadMenuItem1.Items.AddRange(New Telerik.WinControls.RadItem() {Me.BlueTree, Me.Mix, Me.RadMenuItem4})
+        Me.RadMenuItem1.Name = "RadMenuItem1"
+        Me.RadMenuItem1.PopupDirection = Telerik.WinControls.UI.RadDirection.Down
+        Me.RadMenuItem1.Text = "Filters"
+        '
+        'BlueTree
+        '
+        Me.BlueTree.Name = "BlueTree"
+        Me.BlueTree.Text = "Blue Tree"
+        '
+        'Mix
+        '
+        Me.Mix.Name = "Mix"
+        Me.Mix.Text = "Mix"
+        '
+        'RadMenuItem4
+        '
+        Me.RadMenuItem4.Name = "RadMenuItem4"
+        Me.RadMenuItem4.Text = "Masternaut"
+        '
+        'PTVFormLoad
+        '
+        Me.PTVFormLoad.Name = "PTVFormLoad"
+        Me.PTVFormLoad.Text = "Show PTV"
+        '
+        'AutoUpdater
+        '
+        Me.AutoUpdater.Name = "AutoUpdater"
+        Me.AutoUpdater.Text = "Auto Update"
+        '
+        'IDlabel
+        '
+        Me.IDlabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.IDlabel.Location = New System.Drawing.Point(420, 54)
+        Me.IDlabel.Name = "IDlabel"
+        Me.IDlabel.Size = New System.Drawing.Size(60, 16)
+        Me.IDlabel.TabIndex = 23
+        Me.IDlabel.Text = "Vehicle ID"
+        '
+        'ListBuilder
+        '
+        Me.ListBuilder.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.ListBuilder.Location = New System.Drawing.Point(422, 187)
+        Me.ListBuilder.Name = "ListBuilder"
+        Me.ListBuilder.Size = New System.Drawing.Size(69, 18)
+        Me.ListBuilder.TabIndex = 24
+        Me.ListBuilder.Text = "Build List"
+        Me.ListBuilder.ThemeName = "Office2007Black"
         '
         'Position_Updater
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(542, 518)
+        Me.Controls.Add(Me.ListBuilder)
+        Me.Controls.Add(Me.IDlabel)
+        Me.Controls.Add(Me.RadMenu1)
         Me.Controls.Add(Me.Trackinglbl)
         Me.Controls.Add(Me.RadLabel6)
         Me.Controls.Add(Me.vehLock_chk)
@@ -341,9 +419,10 @@ Partial Class Position_Updater
         Me.Controls.Add(Me.RadLabel3)
         Me.Controls.Add(Me.RadLabel2)
         Me.Controls.Add(Me.RadLabel1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximumSize = New System.Drawing.Size(550, 550)
-        Me.MinimumSize = New System.Drawing.Size(550, 550)
+        Me.MinimumSize = New System.Drawing.Size(550, 522)
         Me.Name = "Position_Updater"
         '
         '
@@ -376,6 +455,9 @@ Partial Class Position_Updater
         CType(Me.vehLock_chk, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RadLabel6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Trackinglbl, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RadMenu1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.IDlabel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ListBuilder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -407,5 +489,14 @@ Partial Class Position_Updater
     Friend WithEvents RadLabel6 As Telerik.WinControls.UI.RadLabel
     Friend WithEvents ImageList1 As ImageList
     Friend WithEvents Trackinglbl As Telerik.WinControls.UI.RadLabel
+    Friend WithEvents RadMenu1 As Telerik.WinControls.UI.RadMenu
+    Friend WithEvents RadMenuItem1 As Telerik.WinControls.UI.RadMenuItem
+    Friend WithEvents BlueTree As Telerik.WinControls.UI.RadMenuItem
+    Friend WithEvents Mix As Telerik.WinControls.UI.RadMenuItem
+    Friend WithEvents RadMenuItem4 As Telerik.WinControls.UI.RadMenuItem
+    Friend WithEvents IDlabel As Telerik.WinControls.UI.RadLabel
+    Friend WithEvents PTVFormLoad As Telerik.WinControls.UI.RadMenuItem
+    Friend WithEvents AutoUpdater As Telerik.WinControls.UI.RadMenuItem
+    Friend WithEvents ListBuilder As Telerik.WinControls.UI.RadCheckBox
 End Class
 

@@ -1,15 +1,11 @@
-﻿Imports Position_Updater.FMApiNamespace
-Imports Position_Updater.JobsService
-Imports Position_Updater.PositonService
+﻿Imports Position_Updater.jobservice
 Imports System.Collections.ObjectModel
 Imports System.ComponentModel
-Imports BlueTreeSystems.FleetManagerAPI.WebServiceTestClient.bluetree.fmapi
-Imports SampleClient.bluetree.fmapi
-Imports BlueTreeTrial.fleetmanager
 Imports System.Threading.Tasks
 Imports System.Xml
 Imports System.IO
 Imports Telerik.WinControls.UI
+Imports Position_Updater.Fleetfence
 
 Public Class Position_Updater
     Private vehicle As IObservable(Of Vehicle)
@@ -22,9 +18,9 @@ Public Class Position_Updater
     Dim vehicleRegistrations As New List(Of String)()
     Public locations As New List(Of VehicleEvent)
     Private myBackgroundWorker As BackgroundWorker
-
+    Public vehlistx As New ObservableCollection(Of myVehicle)
     Private authenticationToken As String = Nothing
-
+    Public Request As New ObservableCollection(Of RequestVehicle)
     Private accessed As Boolean = False
     Private lastPositionId As Integer = Nothing
     Private lastTempId As Integer = Nothing
@@ -32,60 +28,86 @@ Public Class Position_Updater
     Private WithEvents loginBackground As System.ComponentModel.BackgroundWorker
     Private stillLogginIn As Boolean = False
     Private _isloaded As Boolean = False
+    Private sendNumber As Int16 = 0
+    Private notSent As Int16 = 0
     Private Async Sub Position_Updater_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Me.RadWaitingBar1.Visible = False
+            Me.KeyPreview = True
+            'If vehlist.Count = 0 Then
+            ShapedForm1.Close()
+            '    Me.Visible = False
+            'End If
+            'RadMenu1.Visible = False
+            'Me.Height -= 28
+            Me.RadWaitingBar1.Visible = True
             Me.RadWaitingBar1.StartWaiting()
             Me.Text = "  Position Updater Handle with care"
             Me.positonCountlbl.Text = ""
             'Dim DB As New PositonsDataContext
             'Dim Veh = (From V In DB.Vehicles Where V.bSold.Equals(0) Order By V.szRegistration Ascending Select V).ToList
-            Dim vehTask As Task(Of Integer) = GetTransportVehicles()
-            Me.RadWaitingBar1.Visible = True
-            Dim vehresult As Integer = Await vehTask
-            If vehresult > 0 Then
-                Me.VehicleDropDown.DataSource = vehlist
-                Me.VehicleDropDown.DataMember = "ID"
-                Me.VehicleDropDown.DisplayMember = "Registration"
-                Me.VehicleDropDown.ValueMember = "ID"
-
-                Me.VehicleDropDown.SelectedIndex = -1
+            'Dim vehTask As Task(Of Integer) = GetTransportVehicles()
+            'Me.RadWaitingBar1.Visible = True
+            'Dim vehresult As Integer = Await vehTask
+            'If vehresult > 0 Then
+            vehlistx = New ObservableCollection(Of myVehicle)
+            If vehlist.Count > 0 Then
+                'For Each V As myVehicle In vehlist
+                '    vehlistx.Add(V)
+                'Next
             End If
+            Me.VehicleDropDown.DataSource = vehlist
+            Me.VehicleDropDown.DataMember = "ID"
+            Me.VehicleDropDown.DisplayMember = "Registration"
+            Me.VehicleDropDown.ValueMember = "ID"
+            Me.VehicleDropDown.Refresh()
+            Me.VehicleDropDown.SelectedIndex = -1
+            ' End If
             myBackgroundWorker = New BackgroundWorker()
             myBackgroundWorker.WorkerReportsProgress = True
             myBackgroundWorker.WorkerSupportsCancellation = True
             AddHandler myBackgroundWorker.DoWork, AddressOf myBackgroundWorker1_DoWork
             AddHandler myBackgroundWorker.RunWorkerCompleted, AddressOf myBackgroundWorker1_RunWorkerCompleted
 
-            Me.StartDate.Value = DateTime.Now
+            Me.StartDate.Value = DateTime.Now.AddHours(-10)
             Me.EndDate.Value = DateTime.Now
 
-            Dim logintask As Task(Of Boolean) = loginMix()
-            Dim loginresult As Boolean = Await logintask
-            If loginresult = True Then
+            'Dim logintask As Task(Of Boolean) = loginMix()
+            'Dim loginresult As Boolean = Await logintask
+            'If loginresult = True Then
 
-                Dim mixtask As Task(Of Boolean) = getlatestMixPositions()
-                Dim mixResult As Boolean = Await mixtask
-                If mixResult = True Then
+            '    Dim mixtask As Task(Of Boolean) = getlatestMixPositions()
+            '    Dim mixResult As Boolean = Await mixtask
+            '    If mixResult = True Then
 
-                Else
-                    Throw New System.Exception("Failed to get mix login")
-                End If
-                Dim mixvehicles As Task(Of Boolean) = getlatestMixPositions()
-                mixResult = Await mixvehicles
-                If mixResult = True Then
-                    Dim img As Image = ImageList1.Images(0)
-                    PopUpAlert("Mix Telematics login succesfull", "Mix Login", 5, img)
-                    RadWaitingBar1.StopWaiting()
-                    Me.Text = "Mix logged in succesfully!"
-                    Me.RadWaitingBar1.Visible = False
-                End If
+            '    Else
+            '        Throw New System.Exception("Failed to get mix login")
+            '    End If
+            '    Dim mixvehicles As Task(Of Boolean) = getlatestMixPositions()
+            '    mixResult = Await mixvehicles
+            '    If mixResult = True Then
+            Dim img As Image = ImageList1.Images(0)
+            PopUpAlert("Mix Telematics login succesfull", "Mix Login", 5, img)
+            RadWaitingBar1.StopWaiting()
+            Me.Text = "Mix logged in succesfully!"
+            Me.RadWaitingBar1.Visible = False
+            ' End If
+            'End If
+            'Dim BlueTask As Task(Of Boolean) = GetBlueeTreeEvents() '(My.Settings.BlueTreeUser, My.Settings.BlueTreePassword)
+            'Dim BlueResult As Boolean = Await BlueTask
+            'If BlueResult = True Then
+
+            'End If
+            If Environment.UserName = "joe.bohen" Then
+                RadMenu1.Visible = True
+                Me.Height += 30
             End If
         Catch ex As Exception
             MsgBox(Err.Description)
             RadWaitingBar1.StopWaiting()
             Me.Text = "An Error has ocurred!"
             Me.RadWaitingBar1.Visible = False
+        Finally
+            _isloaded = True
         End Try
     End Sub
     Public Function GetTransportVehicles()
@@ -98,9 +120,6 @@ Public Class Position_Updater
                     Dim veh = (From V In dB.VehicleBases Order By V.dwClassificationIdFK Select V).ToList
 
                     For I As Integer = 0 To veh.Count - 1
-                        'If veh(I).szRegistration = "H20GBA" Then
-                        '    MessageBox.Show("Required Vehicle")
-                        'End If
                         Dim ve As New myVehicle
                         ve.ID = veh(I).dwVehicleId
                         Dim LastLoc = (From L In dB.GPSPositions Where L.VehID.Equals(ve.ID) Order By L.dateoffix Descending Take 1 Select L).FirstOrDefault
@@ -139,174 +158,12 @@ Public Class Position_Updater
     End Function
 
 
-    Private Function GetBlueeTreeEvents()
-        Return Task.Factory.StartNew(Of Boolean)(
-         Function()
-             Dim ListVeh As Vehicle
-             Try
-                 Dim test As String = GetLatestVehicleReadings(My.Settings.BlueTreeUser, My.Settings.BlueTreePassword)
-                 If InStr(test, "Error") > 0 Then Return Nothing
-                 Dim reader As XmlReader = XmlReader.Create(New StringReader(test))
-                 While reader.Read
-                     ' .Using db As New mydataDataContext
-                     If ((reader.NodeType = XmlNodeType.Element) _
-                                     AndAlso (reader.Name = "row")) Then
-                         'If Not reader.GetAttribute(1).Replace(" ", Nothing) Is Nothing Then
-                         '    ListVeh = (From v In vehlist Where v.Registration.Equals(reader.GetAttribute(1).Replace(" ", Nothing)) Select v).FirstOrDefault
 
-                         '    If Not ListVeh Is Nothing Then
-                         '        Try
-                         '            If ListVeh.Registration = "N20GBA" Then
-                         '                MessageBox.Show("N20")
-
-                         '            End If
-                         '            ListVeh.TrackedBy = "BlueTree"
-                         '            If ListVeh.DateofFix <> CDate(reader.GetAttribute("PositionTimeStamp")) Then
-                         '                ListVeh.DateofFix = CDate(reader.GetAttribute("PositionTimeStamp"))
-                         '                ListVeh.LatLong = reader.GetAttribute("Latitude") & "," & reader.GetAttribute("Longitude")
-                         '                ListVeh.Address = reader.GetAttribute("LocationDescription") & "," & reader.GetAttribute("Country")
-                         '                If ListVeh.Address.Length > 145 Then ListVeh.Address = ListVeh.Address.Substring(0, 145)
-                         '                If Not reader.GetAttribute("Speed") = String.Empty Then ListVeh.Speed = reader.GetAttribute("Speed")
-                         '                ListVeh.expose = True
-                         '                ListVeh.NewLoc = True
-                         '                If Not reader.GetAttribute("Odometer") = String.Empty Then ListVeh.odo = reader.GetAttribute("Odometer")
-                         '            End If
-                         '            If Not reader.GetAttribute("FridgeInfoTimeStamp") = String.Empty Then
-                         '                If ListVeh.DateofEvent <> CDate(reader.GetAttribute("FridgeInfoTimeStamp")) Then
-                         '                    ListVeh.DateofEvent = CDate(reader.GetAttribute("FridgeInfoTimeStamp"))
-                         '                    Dim fridgeTemp As String = 0
-                         '                    Console.WriteLine(("FridgeInfoTimeStamp = " + reader.GetAttribute(14)))
-                         '                    Console.WriteLine(("FridgeOn = " + reader.GetAttribute(15)))
-                         '                    For I As Int16 = 16 To 19
-                         '                        If Not reader.GetAttribute(I) Is Nothing Then
-                         '                            fridgeTemp = reader.GetAttribute(I) & "|"
-                         '                            ListVeh.NewEvt = True
-                         '                        End If
-                         '                    Next
-                         '                    If ListVeh.NewEvt = True Then ListVeh.Temperature = fridgeTemp.Substring(0, fridgeTemp.Length - 1)
-
-                         '                End If
-                         '            End If
-                         '        Catch ex As Exception
-                         '            MessageBox.Show("GetBlueeTreeEvents Loop error: " & ListVeh.Registration & " " & Err.Description)
-                         '        End Try
-
-                         '    End If
-                         'End If
-                     End If
-                     ' End Using
-                 End While
-                 MessageBox.Show("GetBlueeTreeEvents Completed Sucessfully")
-                 Return True
-             Catch ex As Exception
-                 MessageBox.Show("GetBlueeTreeEvents MAIN error: " & Err.Description)
-             End Try
-             Return True
-         End Function)
-    End Function
-    Public Function GetLatestVehicleReadings(ByVal usn As String, ByVal pwd As String) As String
-        Dim fmapi As FMApiWrapper = New FMApiWrapper(usn, pwd, True, Nothing)
-        ' Console.WriteLine(("Connecting to: " + fmapi.FleetManagerAPI.Url))
-        Dim strError As String
-        Dim strInfo As String
-        Dim columns As List(Of String) = New List(Of String)
-        columns.Add("VehicleID")
-        columns.Add("VehicleName")
-        'columns.Add("VehicleTypeID")
-        columns.Add("VehicleDescription")
-        'columns.Add("FolderID")
-        ' columns.Add("FolderName")
-        ' columns.Add("DriverID")
-        columns.Add("DriverName")
-        ' columns.Add("DriverFolderID")
-        ' columns.Add("DriverFolderName")
-        'columns.Add("LastCommTime")
-        columns.Add("PositionTimeStamp")
-        ' columns.Add("LastMovementTime")
-        columns.Add("RecordTimeStamp")
-        ' columns.Add("StoppedDuration")
-        columns.Add("RCOMTrackerStatus")
-        columns.Add("Latitude")
-        columns.Add("Longitude")
-        columns.Add("LocationDescription")
-        columns.Add("Country")
-        columns.Add("Speed")
-        ' columns.Add("VehicleDirection")
-        'columns.Add("DirectionDescription")
-        columns.Add("TrackerBatteryVoltageTime")
-        columns.Add("TrackerBatteryVoltage")
-        ' columns.Add("LocationID")
-        ' columns.Add("IsNamedLocation")
-
-        'columns.Add("LocationUserData")
-        columns.Add("FridgeInfoTimeStamp")
-        columns.Add("FridgeOn")
-        'columns.Add("TrackerDoorSwitch1Open")
-        ' columns.Add("TrackerDoorSwitch2Open")
-
-        'columns.Add("Zone1Setpoint")
-        'columns.Add("Zone1Return")
-        'columns.Add("Zone1Discharge")
-        'columns.Add("Zone2Setpoint")
-        'columns.Add("Zone2Return")
-        'columns.Add("Zone2Discharge")
-        'columns.Add("Zone3Setpoint")
-        'columns.Add("Zone3Return")
-        'columns.Add("Zone3Discharge")
-        columns.Add("Sensor1")
-        columns.Add("Sensor2")
-        columns.Add("Sensor3")
-        columns.Add("Sensor4")
-        'columns.Add("Sensor5")
-        'columns.Add("Sensor6")
-        columns.Add("ActiveAlarms")
-        columns.Add("FridgeEngineModeOn")
-        columns.Add("FridgeCycleSentryOn")
-        'columns.Add("Zone1On")
-        'columns.Add("Zone2On")
-        'columns.Add("Zone3On")
-        'columns.Add("DoorSwitch1Open")
-        'columns.Add("DoorSwitch2Open")
-        'columns.Add("DoorSwitch3Open")
-        'columns.Add("FridgeFuelLevel")
-        columns.Add("FridgeBatteryVoltage")
-        'columns.Add("TotalHourmeter")
-        'columns.Add("DieselHourmeter")
-        'columns.Add("ElectricHourmeter")
-        'columns.Add("HourmeterTimeStamp")
-        columns.Add("IgnitionOn")
-        columns.Add("IgnitionReadingTime")
-        columns.Add("Odometer")
-        columns.Add("FuelLevel")
-        columns.Add("FuelReadingTime")
-        columns.Add("CardPresent")
-        columns.Add("DriversStartOfDay")
-        columns.Add("LastValidBreakEndTime")
-        columns.Add("DrivingDurationMinutes")
-        columns.Add("DrivingTimeRemaining")
-        columns.Add("WorkingStateTypeID")
-        columns.Add("WorkingStateDescription")
-        'columns.Add("FMSFuelBurnt")
-        columns.Add("AlertOn")
-        columns.Add("PTOStatus")
-        columns.Add("IdleStatus")
-        'columns.Add("VehicleWeight")
-        strInfo = fmapi.GetLatestVehicleReadings(columns, strError)
-        If (strError.Length > 0) Then
-            Return ("Error has happened:" & vbLf + strError)
-            ' Console.WriteLine("Error has happened:\n" + strError);
-        Else
-            'Dim doc As XmlDocument = New XmlDocument
-            'doc.LoadXml(strInfo)
-            'doc.Save("CurrentInfo.xml")
-            'doc = Nothing
-            Return strInfo
-            ' Console.WriteLine(strInfo);
-        End If
-
-    End Function
     Private Async Sub GetPositons_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GetPositons.Click
         Try
+            If vehlist.Count <> 0 Then
+
+            End If
             startdatep = Format(Me.StartDate.Value, "dd/MM/yyyy") & " " & Format(Me.StartTime.Value, "HH:mm")
             enddatep = Format(Me.EndDate.Value, "dd/MM/yyyy") & " " & Format(Me.EndTime.Value, "HH:mm")
             RadWaitingBar1.StartWaiting()
@@ -317,27 +174,94 @@ Public Class Position_Updater
                 Exit Sub
 
             Else
-                Dim reg As String = Me.VehicleDropDown.Text
+                Dim reg As String = VehicleDropDown.Text
                 Dim veh = (From v In vehlist Where v.Registration = reg Select v).FirstOrDefault
                 If veh Is Nothing Then
                     MessageBox.Show("Error finding vehicle", Application.ProductName, MessageBoxButtons.OK)
                     Exit Sub
                 End If
                 If Trackinglbl.Text.IndexOf("Mix") > 0 Then
+                    movements = New List(Of movement)
                     Dim positionM As Task(Of Boolean) = GetMixTripsbyVehicle(veh.MixID, startdatep, enddatep)
                     Dim positionresult As Boolean = Await positionM
                     If positionresult = True Then
+                        If movements.Count = 1000 Then
+                            Dim d As Date = movements(999).DateofFix
+                            If DateDiff("n", d, enddatep) > 50 Then
+                                positionM = GetMixTripsbyVehicle(veh.MixID, d, enddatep)
+                                positionresult = Await positionM
+                                If positionresult = True Then
+
+                                End If
+                            End If
+                        End If
                         RadGridView1.DataSource = movements
                         RadGridView1.BestFitColumns()
                         Dim img As Image = ImageList1.Images(0)
-                        PopUpAlert(movements.Count & " Records retuned!", "Mix Login", 5, img)
+                        PopUpAlert(movements.Count & " Records retuned!", "Mix Positions", 5, img)
+                        RadWaitingBar1.StopWaiting()
+                        RadWaitingBar1.Visible = False
+                        RadWaitingBar1.Text = String.Empty
+                        Exit Sub
+                    Else
+                        Dim img As Image = ImageList1.Images(0)
+                        PopUpAlert("No Records retuned for the selected period!", "Mix Positions", 5, img)
                         RadWaitingBar1.StopWaiting()
                         RadWaitingBar1.Visible = False
                         RadWaitingBar1.Text = String.Empty
                         Exit Sub
                     End If
                 ElseIf Trackinglbl.Text.IndexOf("Blue") > 0 Then
+                    Dim BT As Int16 = VehicleDropDown.SelectedValue
+                    Dim vehId = (From v In vehlist Where v.ID.Equals(BT) Select v.BluetreeID).FirstOrDefault
+                    If vehId > 0 Then
+                        'dsGPS = New DataSet()
+                        Dim GPSTask As Task(Of String) = GetGPSForVehicle(My.Settings.BlueTreeUser, My.Settings.BlueTreePassword, vehId, startdatep, enddatep)
+                        Dim GPSResult As String = Await GPSTask
+                        movements.Clear()
+                        If GPSResult.Length > 50 Then
+                            Dim o As Int16 = 0
+                            Dim reader As XmlReader = XmlReader.Create(New StringReader(GPSResult))
+                            While reader.Read
+                                If ((reader.NodeType = XmlNodeType.Element) _
+                                     AndAlso (reader.Name = "row")) Then
+                                    Dim m As New movement
+                                    m.ID = o
+                                    m.DateofFix = reader.GetAttribute("RecordTimeStamp")
+                                    m.Latitude = reader.GetAttribute("Latitude")
+                                    m.Longitude = reader.GetAttribute("Longitude")
+                                    m.Address = reader.GetAttribute("LocationDescription") & reader.GetAttribute("Country")
+                                    movements.Add(m)
+                                    o += 1
+                                End If
+                            End While
 
+                            Dim lastRec = (From M In movements Order By M.DateofFix Select M).LastOrDefault
+                            Dim newTask As Task(Of Boolean) = GPStestforLast(lastRec.DateofFix, enddatep, "BlueTree", vehId, o)
+                            Dim newResult As Boolean = Await newTask
+                            If newResult = True Then
+                                lastRec = (From M In movements Order By M.DateofFix Select M).LastOrDefault
+                                newTask = GPStestforLast(lastRec.DateofFix, enddatep, "BlueTree", vehId, o)
+                                newResult = Await newTask
+                            End If
+                        End If
+                        Me.RadGridView1.DataSource = movements
+                        RadGridView1.TableElement.VScrollBar.PerformLast()
+                        RadGridView1.BestFitColumns()
+                        Me.RadGridView1.Refresh()
+                        Dim img As Image = ImageList1.Images(0)
+                        PopUpAlert(movements.Count & " Records retuned!", "Blue Tree", 5, img)
+                        RadWaitingBar1.StopWaiting()
+                        RadWaitingBar1.Visible = False
+                        RadWaitingBar1.Text = String.Empty
+                        Exit Sub
+                    Else
+                        MessageBox.Show("The selected vehicle is not listed as a Blue Tree Vehicle!")
+                        RadWaitingBar1.StopWaiting()
+                        RadWaitingBar1.Visible = False
+                        RadWaitingBar1.Text = String.Empty
+                        Exit Sub
+                    End If
                 Else
                     If Not myBackgroundWorker.IsBusy Then
                         Me.RadWaitingBar1.StartWaiting()
@@ -355,9 +279,50 @@ Public Class Position_Updater
                 End If
             End If
         Catch ex As Exception
-
+            MessageBox.Show("Error Getting GPS Positions " & Err.Description)
+        Finally
+            If Err.Number = 0 And RadGridView1.Rows.Count > 0 Then
+                Me.passtxt.Visible = True
+                Me.Passlbl.Visible = True
+                RadButton1.Enabled = True
+            End If
         End Try
     End Sub
+    Private Async Function GPStestforLast(ByVal lastRec As DateTime, enddatep As DateTime, ByVal caller As String, ByVal vehid As Int16, ByVal o As Int16) As Task(Of Boolean)
+        Try
+            Debug.Print(DateDiff(DateInterval.Minute, lastRec, EndDate.Value))
+            If DateDiff(DateInterval.Minute, lastRec, DateTime.Now) > 15 Then
+                Me.RadGridView1.DataSource = Nothing
+                If caller = "BlueTree" Then
+                    Dim GPSTask As Task(Of String) = GetGPSForVehicle(My.Settings.BlueTreeUser, My.Settings.BlueTreePassword, vehid, lastRec, enddatep)
+                    Dim GPSResult As String = Await GPSTask
+                    If GPSResult.Length > 50 Then
+                        Dim reader As XmlReader = XmlReader.Create(New StringReader(GPSResult))
+                        While reader.Read
+                            If ((reader.NodeType = XmlNodeType.Element) _
+                                 AndAlso (reader.Name = "row")) Then
+                                Dim m As New movement
+                                o += 1
+                                m.ID = o
+                                '     Debug.Print(reader.GetAttribute("RecordTimeStamp"))
+                                m.DateofFix = reader.GetAttribute("RecordTimeStamp")
+                                m.Latitude = reader.GetAttribute("Latitude") '& "," & reader.GetAttribute("Longitude")
+                                m.Longitude = reader.GetAttribute("Longitude")
+                                m.Address = reader.GetAttribute("LocationDescription") & "," & reader.GetAttribute("Country")
+                                movements.Add(m)
+                            End If
+                        End While
+                    End If
+                End If
+            End If
+            'Me.RadGridView1.DataSource = movements
+            'Me.RadGridView1.Refresh()
+
+        Catch ex As Exception
+
+        End Try
+    End Function
+
     Private Sub ON_timeEvent()
         Try
 
@@ -366,16 +331,113 @@ Public Class Position_Updater
         End Try
 
     End Sub
-    Private Sub getpositions()
+    Private Function SendToFleetFeence()
+        Return Task.Factory.StartNew(Of Boolean)(
+            Function()
+                Try
+                    Dim lastSent As DateTime
+                    sendNumber = 0
+                    notSent = 0
+                    Dim positions As New List(Of Fleetfence.Position)()
+                    Dim EV As Integer
+                    For I As Integer = 0 To Me.RadGridView1.Rows.Count - 1
+                        Dim position As Position = New Position()
+                        position = New Position()
+                        position.CID = 701
+                        ' Dim lastevent As Integer = VehicleHistory.Events.Count - 1
+                        ' Dim lastEventTime As DateTime = VehicleHistory.Events(lastevent).PositionDateTime
+
+                        Dim Pdate As Date = RadGridView1.Rows(I).Cells("DateOfFix").Value
+                        Dim tlag As Int16 = DateDiff(DateInterval.Minute, Pdate, DateTime.Now)
+                        Dim LatLng As String = RadGridView1.Rows(I).Cells("Latitude").Value '& "," & RadGridView1.Rows(I).Cells("Longitude").Value
+                        position.Lat = RadGridView1.Rows(I).Cells("Latitude").Value * 36000
+                        position.Lon = RadGridView1.Rows(I).Cells("Longitude").Value * 36000
+                        If Me.vehLock_chk.Checked = False Then
+                            position.ModemID = Me.VehicleDropDown.SelectedItem.Value
+                        Else
+                            position.ModemID = Me.vehicle_lbl.Tag
+                        End If
+
+                        Dim u As DateTime = Pdate.ToUniversalTime
+
+                        position.Time = DateTime.Parse(u).ToString("yyyy-MM-ddTHH:mm:ss").ToString
+                        '  If I > 0 Then Debug.Print(DateDiff("n", lastSent, CDate(RadGridView1.Rows(I).Cells("DateOfFix").Value)))
+
+                        If DateDiff("n", lastSent, CDate(RadGridView1.Rows(I).Cells("DateOfFix").Value)) > 5 AndAlso I > 0 Then
+                            positions.Add(position)
+                            EV += 1
+                            lastSent = RadGridView1.Rows(I).Cells("DateOfFix").Value
+                            '  Debug.Print(lastSent & "  " & EV)
+                        ElseIf I = 0 Then
+                            positions.Add(position)
+                            EV += 1
+                            lastSent = RadGridView1.Rows(I).Cells("DateOfFix").Value
+                        End If
+                    Next
+                    ' Exit Function '###
+                    Dim AddPos As Boolean = True
+
+                    If EV > 0 Then
+                        Dim o_result() As Result
+                        Dim CallWebService As New PositionServiceSoapClient()
+
+                        o_result = CallWebService.AddPosition("GBA", "positions", "L]V)M_''={w2#^r", positions.ToArray)
+
+                        For I = 0 To UBound(o_result)
+                            If o_result(I).ResultCode = 0 Then
+                                sendNumber += 1
+                            ElseIf o_result(I).ResultCode = 1 Then
+                                notSent += 1
+                                AddPos = False
+                            End If
+                        Next
+                    End If
+                    If AddPos = False Then
+                        Return False
+                    Else
+                        Return True
+                    End If
+                Catch ex As Exception
+                    Return False
+                End Try
+            End Function)
+    End Function
+
+    Private Async Sub RadButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadButton1.Click
+        Try
+            Dim password As String = "systemsOnly"
+
+            ' Dim input = InputBox("Password", "Update Password")
+            If Not passtxt.Text = password Then
+                MsgBox("Only authorised users are allowed to update positions!")
+                Me.RadButton1.Enabled = False
+                Exit Sub
+            End If
+
+            Me.RadButton1.Enabled = True
+
+            Dim sendTask As Task(Of Boolean) = SendToFleetFeence()
+            Dim sendResult As Boolean = Await sendTask
+            If sendResult = True Then
+                MsgBox("Results out of date! Not added = " & notSent & vbCrLf & "Positions added " & sendNumber)
+            Else
+                MsgBox("All results were added  " & vbCrLf & "Positions added " & sendNumber)
+
+            End If
+        Catch ex As Exception
+        Finally
+            Me.passtxt.Visible = False
+            Me.Passlbl.Visible = False
+        End Try
+    End Sub
+    Private Function getpositions()
+
         Try
             Dim positions As New List(Of Position)
-
-
-
-
+            'Dim start As DateTime = Format(Now.AddHours(-6), "dd/MM/yyyy HH:mm")
+            'Dim [end] As DateTime = Format(Now, "dd/MM/yyyy HH:mm")
             Dim start As DateTime = Format(startdatep, "dd/MM/yyyy HH:mm")
             Dim [end] As DateTime = Format(enddatep, "dd/MM/yyyy HH:mm")
-
             Dim Units As DistanceUnit
             Units = DistanceUnit.Mile
 
@@ -387,10 +449,10 @@ Public Class Position_Updater
             eventTypeignition.Code = EventCode.Ignition
             eventsToReturn.Add(eventTypeignition)
 
-
+            vehicleRegistrations.Clear()
             Dim reg As String = Me.VehicleDropDown.Text
             vehicleRegistrations.Add(reg)
-            Dim webService As New jobServiceSoapClient
+            Dim webService As New jobservice.jobService
 
             Dim vehicleHistorys As VehicleHistoryV2() = webService.GetHistoryV2(_login, _password, vehicleRegistrations.ToArray(), VehicleCollectionType.Vehicles, start, [end],
                              eventsToReturn.ToArray(), True)
@@ -403,105 +465,18 @@ Public Class Position_Updater
                     For Each vehicleEvent As VehicleEvent In vehicleHistory.Events
                         locations.Add(vehicleEvent)
                     Next
-
-
-
                     'Exit Sub
                 End If
 
             Next
-
+            Return True
         Catch ex As Exception
             MsgBox(Err.Description)
+            Return False
         End Try
-    End Sub
-    Private Sub RadButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadButton1.Click
-        Try
-            Dim password As String = "systemsOnly"
 
-            ' Dim input = InputBox("Password", "Update Password")
-            If Not passtxt.Text = password Then
-                MsgBox("Only authorised users are allowed to update positions!")
-                Exit Sub
-            End If
-            Me.RadButton1.Enabled = False
-            Dim positions As New List(Of Position)
-            Dim EV As Integer
-            For I As Integer = 0 To Me.RadGridView1.Rows.Count - 1
-                Dim position As Position = New Position()
-                position = New Position()
-                position.CID = 701
-                ' Dim lastevent As Integer = VehicleHistory.Events.Count - 1
-                ' Dim lastEventTime As DateTime = VehicleHistory.Events(lastevent).PositionDateTime
+    End Function
 
-                Dim Pdate As Date = RadGridView1.Rows(I).Cells("PositionDateTime").Value
-                Dim tlag As Int16 = DateDiff(DateInterval.Minute, Pdate, DateTime.Now)
-                Dim LatLng As String = RadGridView1.Rows(I).Cells("Latitude").Value & "," & RadGridView1.Rows(I).Cells("Longitude").Value
-                position.Lat = RadGridView1.Rows(I).Cells("Latitude").Value * 36000
-                position.Lon = RadGridView1.Rows(I).Cells("Longitude").Value * 36000
-                If Me.vehLock_chk.Checked = False Then
-                    position.ModemID = Me.VehicleDropDown.SelectedItem.Value
-                Else
-                    position.ModemID = Me.vehicle_lbl.Tag
-                End If
-
-                Dim u As DateTime = Pdate.ToUniversalTime
-
-                position.Time = DateTime.Parse(u).ToString("yyyy-MM-ddTHH:mm:ss").ToString
-                ' RadGridView1.Rows.Add(DateTime.Now, "Position Added", item.Registration, position.ModemID & " " & item.Registration, position.Lat & "," & position.Lon)
-                'Filelog = Filelog & vbCrLf & position.CID & "," & position.ModemID & "," & position.Lat & "," & position.Lon & "," & position.Time & vbCrLf
-                'If DateDiff(DateInterval.Minute, Pdate, DateTime.Now) < 35 Then
-                positions.Add(position)
-                EV += 1
-                'moveRec = New DHLVehicleUpdate With {.Registration = item.Registration, _
-                '                                 .LastSentdate = Pdate, _
-                '                                 .DwVehicleidfk = item.ID,
-                '                                 .accID = item.Company,
-                '                                 .latlong = LatLng,
-                '                                 .timelag = tlag,
-                '                                 .accepted = 1}
-                'DB.DHLVehicleUpdates.InsertOnSubmit(moveRec)
-            Next
-            Dim AddPos As Boolean = True
-            Dim G As Integer = 0
-            Dim b As Integer = 0
-            If EV > 0 Then
-                Dim o_result() As Result
-                Dim CallWebService As New PositionServiceSoapClient()
-
-                o_result = CallWebService.AddPosition("GBA", "positions", "L]V)M_''={w2#^r", positions.ToArray)
-
-                For I = 0 To UBound(o_result)
-                    If o_result(I).ResultCode = 0 Then
-                        G += 1
-                    ElseIf o_result(I).ResultCode = 1 Then
-                        b += 1
-                        AddPos = False
-                    End If
-                Next
-
-            End If
-            If AddPos = False Then
-                MsgBox("Results out of date! Not added = " & b & vbCrLf & "Positions added " & G)
-            Else
-                MsgBox("All results were added  " & vbCrLf & "Positions added " & G)
-            End If
-
-        Catch ex As Exception
-        Finally
-            Me.passtxt.Visible = False
-            Me.Passlbl.Visible = False
-        End Try
-    End Sub
-
-    'Private Sub BackgroundWorker1_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-    '    Try
-
-    '        getpositions()
-    '    Catch ex As Exception
-
-    '    End Try
-    'End Sub
     Private Sub myBackgroundWorker1_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs)
         Try
             Try
@@ -566,16 +541,25 @@ Public Class Position_Updater
 
     Private Sub RadDropDownList1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As Telerik.WinControls.UI.Data.PositionChangedEventArgs) Handles VehicleDropDown.SelectedIndexChanged
         Try
-
+            If _isloaded = False Then Exit Sub
             If vehLock_chk.Checked = False Then
                 vehicle_lbl.Text = VehicleDropDown.SelectedText
                 vehicle_lbl.Tag = VehicleDropDown.SelectedValue
+                IDlabel.Text = "Vehicle ID " & VehicleDropDown.SelectedValue
             End If
 
             Dim veh = (From v In vehlist Where v.Registration.Equals(VehicleDropDown.SelectedText) Select v).FirstOrDefault
             If Not veh Is Nothing Then
                 Trackinglbl.Text = "Tracked by " & veh.TrackedBy
-
+                If veh.TrackedBy = "" Then
+                    If veh.MixID > 0 Then
+                        Trackinglbl.Text = "Mix"
+                    ElseIf veh.BluetreeID > 0 Then
+                        Trackinglbl.Text = "BlueTree"
+                    Else
+                        Trackinglbl.Text = "Masternaut"
+                    End If
+                End If
             End If
             If locations.Count > 0 Then
                 locations.Clear()
@@ -584,8 +568,49 @@ Public Class Position_Updater
                 vehicle_lbl.Text = VehicleDropDown.SelectedText
                 vehicle_lbl.Tag = VehicleDropDown.SelectedValue
             End If
-        Catch ex As Exception
+            Try
+                If movements.Count > 0 Then
+                    Me.RadGridView1.DataSource = Nothing
+                End If
 
+                If ListBuilder.Checked = True Then
+                    startdatep = Format(Me.StartDate.Value, "dd/MM/yyyy") & " " & Format(Me.StartTime.Value, "HH:mm")
+                    enddatep = Format(Me.EndDate.Value, "dd/MM/yyyy") & " " & Format(Me.EndTime.Value, "HH:mm")
+                    If Request Is Nothing Then
+                        Request = New ObservableCollection(Of RequestVehicle)
+                    End If
+                    Dim reg As String = VehicleDropDown.Text
+                    veh = (From v In vehlist Where v.Registration = reg Select v).FirstOrDefault
+                    If veh Is Nothing Then
+                        MessageBox.Show("Error finding vehicle", Application.ProductName, MessageBoxButtons.OK)
+                        Exit Sub
+                    End If
+                    Dim bo As New RequestVehicle
+                    bo.ID = veh.ID
+                    bo.StartDate = startdatep
+                    bo.EndDate = enddatep
+                    bo.Registration = veh.Registration
+                    If veh.BluetreeID > 0 Then
+                        bo.BluetreeID = veh.BluetreeID
+                    ElseIf veh.MixID > 0 Then
+                        bo.MixID = veh.MixID
+                    End If
+                    Request.Add(bo)
+                End If
+                If Not Request Is Nothing Then
+                    If RadGridView1.DataSource Is Nothing Then
+                        RadGridView1.DataSource = Request
+                        RadGridView1.TableElement.VScrollBar.PerformLast()
+                        RadGridView1.BestFitColumns()
+                        Me.RadGridView1.Refresh()
+                    End If
+                    RadGridView1.Refresh()
+                End If
+            Catch ex As Exception
+                MessageBox.Show("error adding vehicle :" & Err.Description, "Position Updater", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        Catch ex As Exception
+            MessageBox.Show("error getting info:" & Err.Description, "Position Updater", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -626,5 +651,134 @@ Public Class Position_Updater
             args.VisualItem.ResetValue(LightVisualElement.BorderColorProperty, Telerik.WinControls.ValueResetFlags.Local)
             args.VisualItem.ResetValue(LightVisualElement.FontProperty, Telerik.WinControls.ValueResetFlags.Local)
         End If
+    End Sub
+
+    Private Sub passtxt_Leave(sender As Object, e As EventArgs) Handles passtxt.Leave
+        Try
+            Dim password As String = "systemsOnly"
+
+            ' Dim input = InputBox("Password", "Update Password")
+            If Not passtxt.Text = password Then
+                ' MsgBox("Only authorised users are allowed to update positions!")
+                passtxt.Text = String.Empty
+                Passlbl.ForeColor = Color.Red
+                Dim img As Image = ImageList1.Images(1)
+                PopUpAlert("You have provided the wrong password, please try again!", "GPS Updater", 5, img)
+                Passlbl.Text = "Password Required --->"
+                Exit Sub
+            Else
+                Passlbl.Text = "Good password"
+                Passlbl.ForeColor = Color.Green
+                Dim img As Image = ImageList1.Images(0)
+                PopUpAlert("Password correct please proceed, please try again!", "GPS Updater", 5, img)
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Position_Updater_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        ' Close()
+    End Sub
+
+
+
+    'Private Sub main_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
+    '    If (e.KeyCode = Keys.B AndAlso e.Modifiers = Keys.Control) Then
+    '        MsgBox("CTRL + B Pressed !")
+    '    End If
+    'End Sub
+
+
+
+    Private Sub Position_Updater_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        If (e.KeyCode = Keys.B AndAlso e.Modifiers = Keys.Control) Then
+            RadGridView1.DataSource = vehlist
+            Dim img As Image = ImageList1.Images(0)
+            PopUpAlert("Getting Data", "List Key Pressed", 5, img)
+        End If
+    End Sub
+
+    Private Sub PTVFormLoad_Click(sender As Object, e As EventArgs) Handles PTVFormLoad.Click
+        Try
+
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub MultiRecordsProcess()
+        Try
+            startdatep = Format(Me.StartDate.Value, "dd/MM/yyyy") & " " & Format(Me.StartTime.Value, "HH:mm")
+            enddatep = Format(Me.EndDate.Value, "dd/MM/yyyy") & " " & Format(Me.EndTime.Value, "HH:mm")
+            RadWaitingBar1.StartWaiting()
+            RadWaitingBar1.Text = "Attempting to get Records"
+            RadWaitingBar1.Visible = True
+            If enddatep < startdatep Then
+                MsgBox("The end date mus be after the start date", MsgBoxStyle.Critical)
+                Exit Sub
+            Else
+                Using db As New Comp1DataContext
+                    Dim Jobs = (From J In db.JobItems Where J.dtStartDate >= startdatep And J.dtDeliverDate <= enddatep Select J).ToList
+
+                End Using
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub AutoUpdater_Click(sender As Object, e As EventArgs) Handles AutoUpdater.Click
+        Try
+            If RadGridView1.Rows.Count > 0 Then
+                RadGridView1.DataSource = Nothing
+
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub RadGridView1_CellEndEdit(sender As Object, e As GridViewCellEventArgs) Handles RadGridView1.CellEndEdit
+        Try
+            If e.Column.HeaderText = "Registration" Then
+                Dim reg As String = e.Value
+                reg = reg.ToUpper
+                Dim veh = (From v In vehlist Where v.Registration = reg Select v).FirstOrDefault
+                If veh Is Nothing Then
+                    MessageBox.Show("Could not find the vehicle", Application.ProductName, MessageBoxButtons.OK)
+                    Exit Sub
+                Else
+                    Dim bo As New RequestVehicle
+                    bo.ID = veh.ID
+                    bo.StartDate = startdatep
+                    bo.EndDate = enddatep
+                    bo.Registration = veh.Registration
+                    If veh.BluetreeID > 0 Then
+                        bo.BluetreeID = veh.BluetreeID
+                    ElseIf veh.MixID > 0 Then
+                        bo.MixID = veh.MixID
+                    End If
+                    Request.Add(bo)
+                End If
+                If Not Request Is Nothing Then
+                    If RadGridView1.DataSource Is Nothing Then
+                        RadGridView1.DataSource = Request
+                        RadGridView1.TableElement.VScrollBar.PerformLast()
+                        RadGridView1.BestFitColumns()
+                        Me.RadGridView1.Refresh()
+                    End If
+                    e = Nothing
+                    RadGridView1.MasterTemplate.AllowAddNewRow = False
+                    RadGridView1.MasterTemplate.AllowAddNewRow = True
+                    RadGridView1.Refresh()
+                    e = Nothing
+                End If
+            End If
+           
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

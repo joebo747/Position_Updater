@@ -52,9 +52,6 @@
     <Setting Name="Position_Updater_EventNotificationWSi_EventNotificationWS" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://api.fm-web.co.uk/webservices/EventNotificationWebSvc/EventNotificationWS.asmx</Value>
     </Setting>
-    <Setting Name="Position_Updater_PositioningWS_PositioningWS" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://api.fm-web.co.uk/webservices/PositioningWebSvc/PositioningWS.asmx</Value>
-    </Setting>
     <Setting Name="mixUser" Type="System.String" Scope="User">
       <Value Profile="(Default)">GBAmonitor</Value>
     </Setting>
@@ -69,6 +66,23 @@
     </Setting>
     <Setting Name="Position_Updater_TripProcessesWS_TripProcessesWS" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://api.fm-web.co.uk/webservices/AssetDataWebSvc/TripProcessesWS.asmx</Value>
+    </Setting>
+    <Setting Name="Transport_Comp1ConnectionString3" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=vmsql1.gba.local\Stirling;Initial Catalog=Transport_Comp1;Persist Security Info=True;User ID=abacus;Password=marge&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=vmsql1.gba.local\Stirling;Initial Catalog=Transport_Comp1;Persist Security Info=True;User ID=abacus;Password=marge</Value>
+    </Setting>
+    <Setting Name="Position_Updater_jobservice_jobService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://webservices.masternaut.co.uk/JobTransfer/v3/jobservice.asmx</Value>
+    </Setting>
+    <Setting Name="Position_Updater_PositioningWS_PositioningWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://api.fm-web.co.uk/webservices/PositioningWebSvc/PositioningWS.asmx</Value>
+    </Setting>
+    <Setting Name="Position_Updater_fleetmanager_FleetManagerAPI" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://api.fleetmanager.com/FMAPIService/FleetManagerAPI.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

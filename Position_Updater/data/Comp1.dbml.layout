@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 52.25" name="Comp1">
+  <DataContextMoniker Name="/Comp1DataContext" />
+  <nestedChildShapes>
+    <classShape Id="53da91f3-6bca-43bd-b4f0-d15827b5ee62" absoluteBounds="4.5, 2, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/Comp1DataContext/PTVJobSchema" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c24fae56-555a-4b35-814d-dddd97501880" absoluteBounds="4.515, 2.46, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ff587360-bb85-47dc-95c0-07b4ce9e7c82" absoluteBounds="1, 1.375, 2, 50.615460611979167">
+      <DataClassMoniker Name="/Comp1DataContext/JobItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3418b200-4f4f-4bb5-87ea-7ff872bce506" absoluteBounds="1.0150000000000001, 1.835, 1.9700000000000002, 50.055460611979164" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

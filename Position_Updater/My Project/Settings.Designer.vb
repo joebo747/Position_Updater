@@ -164,16 +164,6 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("http://api.fm-web.co.uk/webservices/PositioningWebSvc/PositioningWS.asmx")>  _
-        Public ReadOnly Property Position_Updater_PositioningWS_PositioningWS() As String
-            Get
-                Return CType(Me("Position_Updater_PositioningWS_PositioningWS"),String)
-            End Get
-        End Property
-        
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("GBAmonitor")>  _
@@ -226,6 +216,47 @@ Namespace My
         Public ReadOnly Property Position_Updater_TripProcessesWS_TripProcessesWS() As String
             Get
                 Return CType(Me("Position_Updater_TripProcessesWS_TripProcessesWS"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=vmsql1.gba.local\Stirling;Initial Catalog=Transport_Comp1;Persist Sec"& _ 
+            "urity Info=True;User ID=abacus;Password=marge")>  _
+        Public ReadOnly Property Transport_Comp1ConnectionString3() As String
+            Get
+                Return CType(Me("Transport_Comp1ConnectionString3"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://webservices.masternaut.co.uk/JobTransfer/v3/jobservice.asmx")>  _
+        Public ReadOnly Property Position_Updater_jobservice_jobService() As String
+            Get
+                Return CType(Me("Position_Updater_jobservice_jobService"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://api.fm-web.co.uk/webservices/PositioningWebSvc/PositioningWS.asmx")>  _
+        Public ReadOnly Property Position_Updater_PositioningWS_PositioningWS() As String
+            Get
+                Return CType(Me("Position_Updater_PositioningWS_PositioningWS"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://api.fleetmanager.com/FMAPIService/FleetManagerAPI.asmx")>  _
+        Public ReadOnly Property Position_Updater_fleetmanager_FleetManagerAPI() As String
+            Get
+                Return CType(Me("Position_Updater_fleetmanager_FleetManagerAPI"),String)
             End Get
         End Property
     End Class

@@ -7,6 +7,7 @@ Imports System.Threading
 Imports BlueTreeSystems.FleetManagerAPI.WebServiceTestClient.bluetree.fmapi
 Imports SampleClient.bluetree.fmapi
 Imports BlueTreeTrial.fleetmanager
+Imports System.Net
 
 Namespace FMApiNamespace
 
@@ -14,7 +15,7 @@ Namespace FMApiNamespace
     ''' This class wraps calls to the webservice and separates the
     ''' webservice related logic from the rest of the application
     ''' </summary>
-   Partial  Class FMApiWrapper
+    Partial Class FMApiWrapper
 
         Private _usn As String
 
@@ -78,7 +79,7 @@ Namespace FMApiNamespace
             ' With the EnableDecompression flag turned on the proxy code will generate the proper
             ' http header and perform the decompression in the lower layer so if you want compression
             ' you can just set this flag and do not need to do anything else.
-            _fmapi.EnableDecompression = enableCompression
+            Me._fmapi.EnableDecompression = enableCompression
         End Sub
 
         ''' <summary>
@@ -95,7 +96,7 @@ Namespace FMApiNamespace
             Try
                 Return Me._fmapi.GetVehicles_v1(Me._usn, Me._pwd, cols.ToArray, "", [error])
             Catch ex As Exception
-                [Error] = ex.Message
+                [error] = ex.Message
                 Return ""
             End Try
 
@@ -141,24 +142,86 @@ Namespace FMApiNamespace
 
         End Function
         Public Function GetLatestVehicleReadings(ByVal cols As IEnumerable(Of String), ByRef err As String) As String
-        If ((cols Is Nothing)  _
-                    OrElse (cols.Count = 0)) Then
-            Throw New ArgumentException("invalid input parameter")
-        End If
-       
-        Try 
-               
-            Return _fmapi.GetLatestVehicleReadings_v1(_usn, _pwd, cols.ToArray, "", err)
-        Catch ex As Exception
-            err = ex.Message
-            'Return 
-        End Try
-        
-    End Function
+            If ((cols Is Nothing) _
+                        OrElse (cols.Count = 0)) Then
+                Throw New ArgumentException("invalid input parameter")
+            End If
+
+            Try
+                'Dim wReq As HttpWebRequest = DirectCast(WebRequest.Create("http://FleetManagerAPI.bluetree.ie/GetLatestVehicleReadings_v1"), HttpWebRequest)
+                'Dim px As IWebProxy = WebRequest.GetSystemWebProxy()
+                'wReq.Proxy = px
+                'wReq.Proxy.Credentials = CredentialCache.DefaultNetworkCredentials
+                'wReq.Credentials = CredentialCache.DefaultNetworkCredentials
+
+                '_fmapi.Credentials.Equals(wReq)
+
+
+                Return _fmapi.GetLatestVehicleReadings_v1(_usn, _pwd, cols.ToArray, "", err)
+            Catch ex As Exception
+                err = ex.Message
+                'Return 
+            End Try
+
+        End Function
         Public Function GetServiceInfo(ByRef errorMsg As String) As String
             Try
                 errorMsg = ""
                 Return Me._fmapi.GetServiceInfo_v1(Me._usn, Me._pwd, "", errorMsg)
+            Catch ex As Exception
+                errorMsg = ex.Message
+                Return ""
+            End Try
+
+        End Function
+        ''' <summary>
+        ''' Not amongst the original wrapper items.
+        ''' </summary>
+        ''' <param name="usn"></param>
+        ''' <param name="pwd"></param>
+        ''' <param name="requestedRowNumber"></param>
+        ''' <param name="cols"></param>
+        ''' <param name="startTimeStamp"></param>
+        ''' <param name="options"></param>
+        ''' <param name="lastTimeStamp"></param>
+        ''' <param name="errorMsg"></param>
+        ''' <param name="ajustedRowNumber"></param>
+        ''' <returns></returns>
+        Public Function Get_GPSReadings_v1(ByVal usn As String, ByVal pwd As String, ByVal requestedRowNumber As Integer, cols As IEnumerable(Of String), ByVal startTimeStamp As Date, ByVal options As String, ByRef lastTimeStamp As Date, ByRef errorMsg As String, ByRef ajustedRowNumber As Integer) As String
+            If ((cols Is Nothing) _
+                        OrElse (cols.Count = 0)) Then
+                Throw New ArgumentException("invalid input parameter")
+            End If
+
+            Try
+                Return Me._fmapi.GetGPSReadings_v1(Me._usn, Me._pwd, 1, cols.ToArray, startTimeStamp, "", lastTimeStamp, errorMsg, 1)
+            Catch ex As Exception
+                errorMsg = ex.Message
+                Return ""
+            End Try
+        End Function
+        ''' <summary>
+        ''' Not amongst the original wrapper items.
+        ''' </summary>
+        ''' <param name="usn"></param>
+        ''' <param name="pwd"></param>
+        ''' <param name="requestedRowNumber"></param>
+        ''' <param name="cols"></param>
+        ''' <param name="startTimeStamp"></param>
+        ''' <param name="options"></param>
+        ''' <param name="vehicleID"></param>
+        ''' <param name="lastTimeStamp"></param>
+        ''' <param name="errorMsg"></param>
+        ''' <param name="ajustedRowNumber"></param>
+        ''' <returns></returns>
+        Public Function GetGpsReadingsForVehicle_v1(ByVal usn As String, ByVal pwd As String, ByVal requestedRowNumber As Integer, cols As IEnumerable(Of String), ByVal startTimeStamp As Date, ByVal options As String, ByVal vehicleID As Integer, ByRef lastTimeStamp As Date, ByRef errorMsg As String, ByRef ajustedRowNumber As Integer) As String
+            If ((cols Is Nothing) _
+                        OrElse (cols.Count = 0)) Then
+                Throw New ArgumentException("invalid input parameter")
+            End If
+
+            Try
+                Return Me._fmapi.GetGpsReadingsForVehicle_v1(Me._usn, Me._pwd, 1, cols.ToArray, startTimeStamp, "", vehicleID, lastTimeStamp, errorMsg, 1)
             Catch ex As Exception
                 errorMsg = ex.Message
                 Return ""

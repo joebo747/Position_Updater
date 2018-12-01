@@ -31,6 +31,16 @@
     '    End Set
     'End Property
 
+    Private m_ID As Integer
+    Public Property ID As Integer
+        Get
+            Return m_ID
+        End Get
+        Set(value As Integer)
+            m_ID = value
+        End Set
+    End Property
+
     Private m_DateofFix As DateTime
     Public Property DateofFix As DateTime
         Get
@@ -61,15 +71,6 @@
     '    End Set
     'End Property
 
-    'Private m_Address As String
-    'Public Property Address As String
-    '    Get
-    '        Return m_Address
-    '    End Get
-    '    Set(ByVal value As String)
-    '        m_Address = value
-    '    End Set
-    'End Property
 
     Private m_Latitude As String
     Public Property Latitude As String
@@ -90,6 +91,17 @@
             m_Longitude = value
         End Set
     End Property
+
+    Private m_Address As String
+    Public Property Address As String
+        Get
+            Return m_Address
+        End Get
+        Set(ByVal value As String)
+            m_Address = value
+        End Set
+    End Property
+
 
     'Private m_trackedBy As String
     'Public Property TrackedBy As String

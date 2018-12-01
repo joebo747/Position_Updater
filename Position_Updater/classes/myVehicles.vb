@@ -1,6 +1,9 @@
 ﻿Imports System.Linq
+Imports Position_Updater
+
 Public Class myVehicle
-    'Implements IComparer(Of Vehicle)
+    'Implements IComparer(Of myVehicle)
+
     Private m_ID As Integer
     Public Property ID As Integer
         Get
@@ -414,6 +417,8 @@ Public Class myVehicle
         'LatLong = m_LatLong
         Company = m_Company
     End Sub
+
+
     ' Public doc As XDocument = XDocument.Load("\\dc1\applications$\DMUsers\vehoverride.xml")
     '    Public Function Regoverride(ByVal vehID As Integer, ByVal Reg As String) As String
     '        Try

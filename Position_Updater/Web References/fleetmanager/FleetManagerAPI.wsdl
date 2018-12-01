@@ -1,0 +1,3715 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://FleetManagerAPI.bluetree.ie/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://FleetManagerAPI.bluetree.ie/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://FleetManagerAPI.bluetree.ie/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="CreateFuelPurchasedRecord_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="timeStamp" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:float" />
+            <s:element minOccurs="1" maxOccurs="1" name="fuelTypeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="locationDescription" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="juristiction" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="countryISO" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="replaceExisting" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateFuelPurchasedRecord_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateFuelPurchasedRecord_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleInspectionDetails_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="generationNumber" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetVehicleInspectionDetails_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicleInspectionDetails_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicles_v2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="generationNumber" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicles_v2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicles_v2Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateVehicle_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="vehicleName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleType" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="vehicleFolderName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateVehicle_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateVehicle_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteVehicle_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteVehicle_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverDetails_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverDetails_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDriverDetails_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverDetails_v2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="generationNumber" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverDetails_v2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDriverDetails_v2Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDriver_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="surname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="telephoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="employeeNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="driverFolderName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDriver_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateDriver_v1Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="driverID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDriver_v2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="surname" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateOfBirth" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="telephoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="employeeNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="driverFolderName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="driverLicenceNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="licenceIssued" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="licenceExpiry" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="driverLicenceStateCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="driverCountryCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDriver_v2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateDriver_v2Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="driverID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDriver_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="driverID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="surname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="telephoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="employeeNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="driverFolderName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDriver_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDriver_v2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="driverID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="surname" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateOfBirth" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="telephoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="employeeNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="driverFolderName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="driverLicenceNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="licenceIssued" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="licenceExpiry" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="driverLicenceStateCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="driverCountryCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDriver_v2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDriver_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="driverID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDriver_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AssignPin_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="driverID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pin" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AssignPin_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AssignPin_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RevokePin_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="driverID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RevokePin_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentDriverLoginDetails_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentDriverLoginDetails_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrentDriverLoginDetails_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverAuthenticationEvents_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="recordTimeStamp" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverAuthenticationEvents_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDriverAuthenticationEvents_v1Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastRecordTimeStamp" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverVehicleHistory_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="earliestFromTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPointGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverVehicleHistory_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDriverVehicleHistory_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGpsWithTemperature_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedRowNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="fromTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="toTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGpsWithTemperature_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGpsWithTemperature_v1Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastTimeStamp" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedRowNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateLocation_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="locationName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="categoryName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="polygon" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateLocation_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateLocation_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateLocation_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="locationId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="locationName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="categoryName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="polygon" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateLocation_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocations_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="generationNumber" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocations_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocations_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteLocation_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="locationId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteLocation_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueEngineStart_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="permissionToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="expiryTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueEngineStart_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoteReeferConfigQueueEngineStart_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueEngineStop_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="permissionToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="expiryTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueEngineStop_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoteReeferConfigQueueEngineStop_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueChangeSetpoint_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="permissionToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="zone" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="setpoint" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="expiryTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueChangeSetpoint_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoteReeferConfigQueueChangeSetpoint_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueSetFridgeOpMode_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="permissionToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="opMode" type="tns:ReeferOpMode" />
+            <s:element minOccurs="1" maxOccurs="1" name="expiryTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ReeferOpMode">
+        <s:restriction base="s:string">
+          <s:enumeration value="StartStop" />
+          <s:enumeration value="Continuous" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="RemoteReeferConfigQueueSetFridgeOpMode_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoteReeferConfigQueueSetFridgeOpMode_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueClearAlarms_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="permissionToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="clearActiveOnly" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="expiryTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueClearAlarms_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoteReeferConfigQueueClearAlarms_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueDefrost_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="permissionToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="zone" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="expiryTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueDefrost_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoteReeferConfigQueueDefrost_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueuePretrip_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="permissionToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="expiryTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueuePretrip_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoteReeferConfigQueuePretrip_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueSetIntellisenseProfile_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="permissionToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="profileId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="profileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="expiryTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueSetIntellisenseProfile_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoteReeferConfigQueueSetIntellisenseProfile_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="permissionToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="expiryTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRCOMDeviceRequestStatus_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="requestIds" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRCOMDeviceRequestStatus_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRCOMDeviceRequestStatus_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigGetIntellisenseProfiles_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="vehicleIds" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteReeferConfigGetIntellisenseProfiles_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoteReeferConfigGetIntellisenseProfiles_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHoSDutyStateChanges_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="earliestStartTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPointGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHoSDutyStateChanges_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHoSDutyStateChanges_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHoSDriverAvailableHours_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHoSDriverAvailableHours_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHoSDriverAvailableHours_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHoSDriversDailyDutyLogSummary_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startOfDayUTC" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="driverID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHoSDriversDailyDutyLogSummary_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHoSDriversDailyDutyLogSummary_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHoSDriversWithUpdatedDutyLogsSummary_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startOfWeeklyCycleUTC" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="generationNumber" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHoSDriversWithUpdatedDutyLogsSummary_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHoSDriversWithUpdatedDutyLogsSummary_v1Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="generationNumberForNextCall" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTrailerNoForVehicle_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="timestamp" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="trailerNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTrailerNoForVehicle_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetShippingDocumentNoForVehicle_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="timestamp" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="shippingDocNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetShippingDocumentNoForVehicle_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemperatureReadings_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedRowNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="earliestServerTimeStamp" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="startRowId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemperatureReadings_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTemperatureReadings_v1Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastRowId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ajustedRowNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_TemperatureReadings_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedRowNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="earliestServerTimeStamp" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="startRowId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_TemperatureReadings_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_TemperatureReadings_v1Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastRowId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ajustedRowNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFridgeAlarms_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startTimeStamp" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPointGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFridgeAlarms_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFridgeAlarms_v1Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_ServiceInfo_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_ServiceInfo_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_ServiceInfo_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceInfo_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceInfo_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceInfo_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicles_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicles_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicles_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleFolders_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleFolders_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicleFolders_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentVehicleStatus_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentVehicleStatus_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrentVehicleStatus_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReadAllDataItems_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReadAllDataItems_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReadAllDataItems_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDataItems_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataItemType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataItem" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="groupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDataItems_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertDataItems_v1Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="itemID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReadDataItem_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="itemID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReadDataItem_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReadDataItem_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataItem" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDataItem_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="itemID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDataItem_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateDataItem_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="returnValue" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDataItem_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="itemID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDataItem_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteDataItem_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="returnValue" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDataItemGroup_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="guid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="groupName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDataItemGroup_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddDataItemGroup_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDataItemFleet_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="groupID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="guid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDataItemFleet_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddDataItemFleet_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendRCOMInCabFormMessage_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="vehicleIDs" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="msgTimeStamp" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="formId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="formVersion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="formSchema" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="messageBody" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendRCOMInCabFormMessage_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendRCOMInCabFormMessage_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRCOMInCabIncomingFormMessages_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="earliestCreationTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPointGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRCOMInCabIncomingFormMessages_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRCOMInCabIncomingFormMessages_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRCOMInCabOutgoingFormMessages_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="earliestCreationTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPointGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRCOMInCabOutgoingFormMessages_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRCOMInCabOutgoingFormMessages_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormDefinitions_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormDefinitions_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFormDefinitions_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddFormDefinition_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="formID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="formVersion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="formSchema" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="displayName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="status" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="formDefinition" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="unsolicited" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddFormDefinition_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddFormDefinition_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRCOMInCabStops_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="earliestCreationTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPointGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRCOMInCabStops_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRCOMInCabStops_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRCOMInCabStops_v2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="earliestCreationTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPointGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRCOMInCabStops_v2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRCOMInCabStops_v2Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRCOMInCabTrips_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="earliestUpdateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPointGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRCOMInCabTrips_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRCOMInCabTrips_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateIncomingInCabMessage_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="guid" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="formId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="formVersion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="formSchema" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateIncomingInCabMessage_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateIncomingInCabMessage_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="messageId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLiveTachographEvents_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="earliestStartTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPointGeneration" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLiveTachographEvents_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLiveTachographEvents_v1Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLatestVehicleReadings_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLatestVehicleReadings_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLatestVehicleReadings_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPTOEvents_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="onTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPointGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPTOEvents_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPTOEvents_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleStops_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="earliestArrivalTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPointGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleStops_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicleStops_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_GPSReadings_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedRowNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="startTimeStamp" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_GPSReadings_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_GPSReadings_v1Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastTimeStamp" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ajustedRowNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSReadings_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedRowNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="startTimeStamp" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPSReadings_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGPSReadings_v1Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastTimeStamp" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ajustedRowNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGpsReadingsForVehicle_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedRowNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="startTimeStamp" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGpsReadingsForVehicle_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGpsReadingsForVehicle_v1Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastTimeStamp" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ajustedRowNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFMSTrips_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPointGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="startTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFMSTrips_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFMSTrips_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFMSHarshBrakes_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPointGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="timeStamp" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFMSHarshBrakes_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFMSHarshBrakes_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastGeneration" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedNumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentDataTerminalStatus_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentDataTerminalStatus_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrentDataTerminalStatus_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleWorkingSummary_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="vehicleID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="startTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleWorkingSummary_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicleWorkingSummary_v1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleActivities_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="requestedRowNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="columns" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="earliestStartTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVehicleActivities_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVehicleActivities_v1Result" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastStartTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="adjustedRowNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateFuelPurchasedRecord_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:CreateFuelPurchasedRecord_v1" />
+  </wsdl:message>
+  <wsdl:message name="CreateFuelPurchasedRecord_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:CreateFuelPurchasedRecord_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleInspectionDetails_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicleInspectionDetails_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleInspectionDetails_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicleInspectionDetails_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicles_v2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicles_v2" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicles_v2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicles_v2Response" />
+  </wsdl:message>
+  <wsdl:message name="CreateVehicle_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:CreateVehicle_v1" />
+  </wsdl:message>
+  <wsdl:message name="CreateVehicle_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:CreateVehicle_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="DeleteVehicle_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteVehicle_v1" />
+  </wsdl:message>
+  <wsdl:message name="DeleteVehicle_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteVehicle_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverDetails_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetDriverDetails_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverDetails_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetDriverDetails_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverDetails_v2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetDriverDetails_v2" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverDetails_v2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetDriverDetails_v2Response" />
+  </wsdl:message>
+  <wsdl:message name="CreateDriver_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDriver_v1" />
+  </wsdl:message>
+  <wsdl:message name="CreateDriver_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDriver_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="CreateDriver_v2SoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDriver_v2" />
+  </wsdl:message>
+  <wsdl:message name="CreateDriver_v2SoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDriver_v2Response" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDriver_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDriver_v1" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDriver_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDriver_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDriver_v2SoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDriver_v2" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDriver_v2SoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDriver_v2Response" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDriver_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteDriver_v1" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDriver_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteDriver_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="AssignPin_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:AssignPin_v1" />
+  </wsdl:message>
+  <wsdl:message name="AssignPin_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:AssignPin_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="RevokePin_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:RevokePin_v1" />
+  </wsdl:message>
+  <wsdl:message name="RevokePin_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:RevokePin_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentDriverLoginDetails_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentDriverLoginDetails_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentDriverLoginDetails_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentDriverLoginDetails_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverAuthenticationEvents_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetDriverAuthenticationEvents_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverAuthenticationEvents_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetDriverAuthenticationEvents_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverVehicleHistory_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetDriverVehicleHistory_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverVehicleHistory_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetDriverVehicleHistory_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetGpsWithTemperature_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetGpsWithTemperature_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetGpsWithTemperature_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetGpsWithTemperature_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="CreateLocation_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:CreateLocation_v1" />
+  </wsdl:message>
+  <wsdl:message name="CreateLocation_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:CreateLocation_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="UpdateLocation_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateLocation_v1" />
+  </wsdl:message>
+  <wsdl:message name="UpdateLocation_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateLocation_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetLocations_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocations_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetLocations_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocations_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLocation_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteLocation_v1" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLocation_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteLocation_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueEngineStart_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueEngineStart_v1" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueEngineStart_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueEngineStart_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueEngineStop_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueEngineStop_v1" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueEngineStop_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueEngineStop_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueChangeSetpoint_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueChangeSetpoint_v1" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueChangeSetpoint_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueChangeSetpoint_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueSetFridgeOpMode_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueSetFridgeOpMode_v1" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueSetFridgeOpMode_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueSetFridgeOpMode_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueClearAlarms_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueClearAlarms_v1" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueClearAlarms_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueClearAlarms_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueDefrost_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueDefrost_v1" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueDefrost_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueDefrost_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueuePretrip_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueuePretrip_v1" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueuePretrip_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueuePretrip_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueSetIntellisenseProfile_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueSetIntellisenseProfile_v1" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueSetIntellisenseProfile_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueSetIntellisenseProfile_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetRCOMDeviceRequestStatus_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetRCOMDeviceRequestStatus_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetRCOMDeviceRequestStatus_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetRCOMDeviceRequestStatus_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigGetIntellisenseProfiles_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigGetIntellisenseProfiles_v1" />
+  </wsdl:message>
+  <wsdl:message name="RemoteReeferConfigGetIntellisenseProfiles_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:RemoteReeferConfigGetIntellisenseProfiles_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetHoSDutyStateChanges_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetHoSDutyStateChanges_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetHoSDutyStateChanges_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetHoSDutyStateChanges_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetHoSDriverAvailableHours_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetHoSDriverAvailableHours_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetHoSDriverAvailableHours_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetHoSDriverAvailableHours_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetHoSDriversDailyDutyLogSummary_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetHoSDriversDailyDutyLogSummary_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetHoSDriversDailyDutyLogSummary_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetHoSDriversDailyDutyLogSummary_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetHoSDriversWithUpdatedDutyLogsSummary_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetHoSDriversWithUpdatedDutyLogsSummary_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetHoSDriversWithUpdatedDutyLogsSummary_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetHoSDriversWithUpdatedDutyLogsSummary_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="SetTrailerNoForVehicle_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:SetTrailerNoForVehicle_v1" />
+  </wsdl:message>
+  <wsdl:message name="SetTrailerNoForVehicle_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:SetTrailerNoForVehicle_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="SetShippingDocumentNoForVehicle_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:SetShippingDocumentNoForVehicle_v1" />
+  </wsdl:message>
+  <wsdl:message name="SetShippingDocumentNoForVehicle_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:SetShippingDocumentNoForVehicle_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetTemperatureReadings_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetTemperatureReadings_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetTemperatureReadings_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetTemperatureReadings_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="Get_TemperatureReadings_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:Get_TemperatureReadings_v1" />
+  </wsdl:message>
+  <wsdl:message name="Get_TemperatureReadings_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:Get_TemperatureReadings_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetFridgeAlarms_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetFridgeAlarms_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetFridgeAlarms_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetFridgeAlarms_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="Get_ServiceInfo_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:Get_ServiceInfo_v1" />
+  </wsdl:message>
+  <wsdl:message name="Get_ServiceInfo_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:Get_ServiceInfo_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceInfo_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceInfo_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceInfo_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceInfo_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicles_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicles_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicles_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicles_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleFolders_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicleFolders_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleFolders_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicleFolders_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentVehicleStatus_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentVehicleStatus_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentVehicleStatus_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentVehicleStatus_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="ReadAllDataItems_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:ReadAllDataItems_v1" />
+  </wsdl:message>
+  <wsdl:message name="ReadAllDataItems_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:ReadAllDataItems_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="InsertDataItems_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:InsertDataItems_v1" />
+  </wsdl:message>
+  <wsdl:message name="InsertDataItems_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:InsertDataItems_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="ReadDataItem_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:ReadDataItem_v1" />
+  </wsdl:message>
+  <wsdl:message name="ReadDataItem_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:ReadDataItem_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataItem_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDataItem_v1" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataItem_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDataItem_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDataItem_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteDataItem_v1" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDataItem_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteDataItem_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="AddDataItemGroup_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:AddDataItemGroup_v1" />
+  </wsdl:message>
+  <wsdl:message name="AddDataItemGroup_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:AddDataItemGroup_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="AddDataItemFleet_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:AddDataItemFleet_v1" />
+  </wsdl:message>
+  <wsdl:message name="AddDataItemFleet_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:AddDataItemFleet_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="SendRCOMInCabFormMessage_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:SendRCOMInCabFormMessage_v1" />
+  </wsdl:message>
+  <wsdl:message name="SendRCOMInCabFormMessage_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:SendRCOMInCabFormMessage_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetRCOMInCabIncomingFormMessages_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetRCOMInCabIncomingFormMessages_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetRCOMInCabIncomingFormMessages_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetRCOMInCabIncomingFormMessages_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetRCOMInCabOutgoingFormMessages_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetRCOMInCabOutgoingFormMessages_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetRCOMInCabOutgoingFormMessages_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetRCOMInCabOutgoingFormMessages_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetFormDefinitions_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetFormDefinitions_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetFormDefinitions_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetFormDefinitions_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="AddFormDefinition_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:AddFormDefinition_v1" />
+  </wsdl:message>
+  <wsdl:message name="AddFormDefinition_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:AddFormDefinition_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetRCOMInCabStops_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetRCOMInCabStops_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetRCOMInCabStops_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetRCOMInCabStops_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetRCOMInCabStops_v2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetRCOMInCabStops_v2" />
+  </wsdl:message>
+  <wsdl:message name="GetRCOMInCabStops_v2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetRCOMInCabStops_v2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetRCOMInCabTrips_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetRCOMInCabTrips_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetRCOMInCabTrips_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetRCOMInCabTrips_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="CreateIncomingInCabMessage_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:CreateIncomingInCabMessage_v1" />
+  </wsdl:message>
+  <wsdl:message name="CreateIncomingInCabMessage_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:CreateIncomingInCabMessage_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetLiveTachographEvents_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetLiveTachographEvents_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetLiveTachographEvents_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetLiveTachographEvents_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestVehicleReadings_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetLatestVehicleReadings_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestVehicleReadings_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetLatestVehicleReadings_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetPTOEvents_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetPTOEvents_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetPTOEvents_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetPTOEvents_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleStops_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicleStops_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleStops_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicleStops_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="Get_GPSReadings_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:Get_GPSReadings_v1" />
+  </wsdl:message>
+  <wsdl:message name="Get_GPSReadings_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:Get_GPSReadings_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSReadings_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetGPSReadings_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetGPSReadings_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetGPSReadings_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetGpsReadingsForVehicle_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetGpsReadingsForVehicle_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetGpsReadingsForVehicle_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetGpsReadingsForVehicle_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetFMSTrips_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetFMSTrips_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetFMSTrips_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetFMSTrips_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetFMSHarshBrakes_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetFMSHarshBrakes_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetFMSHarshBrakes_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetFMSHarshBrakes_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentDataTerminalStatus_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentDataTerminalStatus_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentDataTerminalStatus_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentDataTerminalStatus_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleWorkingSummary_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicleWorkingSummary_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleWorkingSummary_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicleWorkingSummary_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleActivities_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetVehicleActivities_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetVehicleActivities_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetVehicleActivities_v1Response" />
+  </wsdl:message>
+  <wsdl:portType name="FleetManagerAPISoap">
+    <wsdl:operation name="CreateFuelPurchasedRecord_v1">
+      <wsdl:input message="tns:CreateFuelPurchasedRecord_v1SoapIn" />
+      <wsdl:output message="tns:CreateFuelPurchasedRecord_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleInspectionDetails_v1">
+      <wsdl:input message="tns:GetVehicleInspectionDetails_v1SoapIn" />
+      <wsdl:output message="tns:GetVehicleInspectionDetails_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicles_v2">
+      <wsdl:input message="tns:GetVehicles_v2SoapIn" />
+      <wsdl:output message="tns:GetVehicles_v2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateVehicle_v1">
+      <wsdl:input message="tns:CreateVehicle_v1SoapIn" />
+      <wsdl:output message="tns:CreateVehicle_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVehicle_v1">
+      <wsdl:input message="tns:DeleteVehicle_v1SoapIn" />
+      <wsdl:output message="tns:DeleteVehicle_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverDetails_v1">
+      <wsdl:input message="tns:GetDriverDetails_v1SoapIn" />
+      <wsdl:output message="tns:GetDriverDetails_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverDetails_v2">
+      <wsdl:input message="tns:GetDriverDetails_v2SoapIn" />
+      <wsdl:output message="tns:GetDriverDetails_v2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDriver_v1">
+      <wsdl:input message="tns:CreateDriver_v1SoapIn" />
+      <wsdl:output message="tns:CreateDriver_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDriver_v2">
+      <wsdl:input message="tns:CreateDriver_v2SoapIn" />
+      <wsdl:output message="tns:CreateDriver_v2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDriver_v1">
+      <wsdl:input message="tns:UpdateDriver_v1SoapIn" />
+      <wsdl:output message="tns:UpdateDriver_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDriver_v2">
+      <wsdl:input message="tns:UpdateDriver_v2SoapIn" />
+      <wsdl:output message="tns:UpdateDriver_v2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDriver_v1">
+      <wsdl:input message="tns:DeleteDriver_v1SoapIn" />
+      <wsdl:output message="tns:DeleteDriver_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AssignPin_v1">
+      <wsdl:input message="tns:AssignPin_v1SoapIn" />
+      <wsdl:output message="tns:AssignPin_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RevokePin_v1">
+      <wsdl:input message="tns:RevokePin_v1SoapIn" />
+      <wsdl:output message="tns:RevokePin_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentDriverLoginDetails_v1">
+      <wsdl:input message="tns:GetCurrentDriverLoginDetails_v1SoapIn" />
+      <wsdl:output message="tns:GetCurrentDriverLoginDetails_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverAuthenticationEvents_v1">
+      <wsdl:input message="tns:GetDriverAuthenticationEvents_v1SoapIn" />
+      <wsdl:output message="tns:GetDriverAuthenticationEvents_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverVehicleHistory_v1">
+      <wsdl:input message="tns:GetDriverVehicleHistory_v1SoapIn" />
+      <wsdl:output message="tns:GetDriverVehicleHistory_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGpsWithTemperature_v1">
+      <wsdl:input message="tns:GetGpsWithTemperature_v1SoapIn" />
+      <wsdl:output message="tns:GetGpsWithTemperature_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateLocation_v1">
+      <wsdl:input message="tns:CreateLocation_v1SoapIn" />
+      <wsdl:output message="tns:CreateLocation_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLocation_v1">
+      <wsdl:input message="tns:UpdateLocation_v1SoapIn" />
+      <wsdl:output message="tns:UpdateLocation_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocations_v1">
+      <wsdl:input message="tns:GetLocations_v1SoapIn" />
+      <wsdl:output message="tns:GetLocations_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLocation_v1">
+      <wsdl:input message="tns:DeleteLocation_v1SoapIn" />
+      <wsdl:output message="tns:DeleteLocation_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueEngineStart_v1">
+      <wsdl:input message="tns:RemoteReeferConfigQueueEngineStart_v1SoapIn" />
+      <wsdl:output message="tns:RemoteReeferConfigQueueEngineStart_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueEngineStop_v1">
+      <wsdl:input message="tns:RemoteReeferConfigQueueEngineStop_v1SoapIn" />
+      <wsdl:output message="tns:RemoteReeferConfigQueueEngineStop_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueChangeSetpoint_v1">
+      <wsdl:input message="tns:RemoteReeferConfigQueueChangeSetpoint_v1SoapIn" />
+      <wsdl:output message="tns:RemoteReeferConfigQueueChangeSetpoint_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueSetFridgeOpMode_v1">
+      <wsdl:input message="tns:RemoteReeferConfigQueueSetFridgeOpMode_v1SoapIn" />
+      <wsdl:output message="tns:RemoteReeferConfigQueueSetFridgeOpMode_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueClearAlarms_v1">
+      <wsdl:input message="tns:RemoteReeferConfigQueueClearAlarms_v1SoapIn" />
+      <wsdl:output message="tns:RemoteReeferConfigQueueClearAlarms_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueDefrost_v1">
+      <wsdl:input message="tns:RemoteReeferConfigQueueDefrost_v1SoapIn" />
+      <wsdl:output message="tns:RemoteReeferConfigQueueDefrost_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueuePretrip_v1">
+      <wsdl:input message="tns:RemoteReeferConfigQueuePretrip_v1SoapIn" />
+      <wsdl:output message="tns:RemoteReeferConfigQueuePretrip_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueSetIntellisenseProfile_v1">
+      <wsdl:input message="tns:RemoteReeferConfigQueueSetIntellisenseProfile_v1SoapIn" />
+      <wsdl:output message="tns:RemoteReeferConfigQueueSetIntellisenseProfile_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1">
+      <wsdl:input message="tns:RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1SoapIn" />
+      <wsdl:output message="tns:RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMDeviceRequestStatus_v1">
+      <wsdl:input message="tns:GetRCOMDeviceRequestStatus_v1SoapIn" />
+      <wsdl:output message="tns:GetRCOMDeviceRequestStatus_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigGetIntellisenseProfiles_v1">
+      <wsdl:input message="tns:RemoteReeferConfigGetIntellisenseProfiles_v1SoapIn" />
+      <wsdl:output message="tns:RemoteReeferConfigGetIntellisenseProfiles_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHoSDutyStateChanges_v1">
+      <wsdl:input message="tns:GetHoSDutyStateChanges_v1SoapIn" />
+      <wsdl:output message="tns:GetHoSDutyStateChanges_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHoSDriverAvailableHours_v1">
+      <wsdl:input message="tns:GetHoSDriverAvailableHours_v1SoapIn" />
+      <wsdl:output message="tns:GetHoSDriverAvailableHours_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHoSDriversDailyDutyLogSummary_v1">
+      <wsdl:input message="tns:GetHoSDriversDailyDutyLogSummary_v1SoapIn" />
+      <wsdl:output message="tns:GetHoSDriversDailyDutyLogSummary_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHoSDriversWithUpdatedDutyLogsSummary_v1">
+      <wsdl:input message="tns:GetHoSDriversWithUpdatedDutyLogsSummary_v1SoapIn" />
+      <wsdl:output message="tns:GetHoSDriversWithUpdatedDutyLogsSummary_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTrailerNoForVehicle_v1">
+      <wsdl:input message="tns:SetTrailerNoForVehicle_v1SoapIn" />
+      <wsdl:output message="tns:SetTrailerNoForVehicle_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetShippingDocumentNoForVehicle_v1">
+      <wsdl:input message="tns:SetShippingDocumentNoForVehicle_v1SoapIn" />
+      <wsdl:output message="tns:SetShippingDocumentNoForVehicle_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemperatureReadings_v1">
+      <wsdl:input message="tns:GetTemperatureReadings_v1SoapIn" />
+      <wsdl:output message="tns:GetTemperatureReadings_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_TemperatureReadings_v1">
+      <wsdl:input message="tns:Get_TemperatureReadings_v1SoapIn" />
+      <wsdl:output message="tns:Get_TemperatureReadings_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFridgeAlarms_v1">
+      <wsdl:input message="tns:GetFridgeAlarms_v1SoapIn" />
+      <wsdl:output message="tns:GetFridgeAlarms_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_ServiceInfo_v1">
+      <wsdl:input message="tns:Get_ServiceInfo_v1SoapIn" />
+      <wsdl:output message="tns:Get_ServiceInfo_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceInfo_v1">
+      <wsdl:input message="tns:GetServiceInfo_v1SoapIn" />
+      <wsdl:output message="tns:GetServiceInfo_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicles_v1">
+      <wsdl:input message="tns:GetVehicles_v1SoapIn" />
+      <wsdl:output message="tns:GetVehicles_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleFolders_v1">
+      <wsdl:input message="tns:GetVehicleFolders_v1SoapIn" />
+      <wsdl:output message="tns:GetVehicleFolders_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentVehicleStatus_v1">
+      <wsdl:input message="tns:GetCurrentVehicleStatus_v1SoapIn" />
+      <wsdl:output message="tns:GetCurrentVehicleStatus_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadAllDataItems_v1">
+      <wsdl:input message="tns:ReadAllDataItems_v1SoapIn" />
+      <wsdl:output message="tns:ReadAllDataItems_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDataItems_v1">
+      <wsdl:input message="tns:InsertDataItems_v1SoapIn" />
+      <wsdl:output message="tns:InsertDataItems_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadDataItem_v1">
+      <wsdl:input message="tns:ReadDataItem_v1SoapIn" />
+      <wsdl:output message="tns:ReadDataItem_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDataItem_v1">
+      <wsdl:input message="tns:UpdateDataItem_v1SoapIn" />
+      <wsdl:output message="tns:UpdateDataItem_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDataItem_v1">
+      <wsdl:input message="tns:DeleteDataItem_v1SoapIn" />
+      <wsdl:output message="tns:DeleteDataItem_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDataItemGroup_v1">
+      <wsdl:input message="tns:AddDataItemGroup_v1SoapIn" />
+      <wsdl:output message="tns:AddDataItemGroup_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDataItemFleet_v1">
+      <wsdl:input message="tns:AddDataItemFleet_v1SoapIn" />
+      <wsdl:output message="tns:AddDataItemFleet_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendRCOMInCabFormMessage_v1">
+      <wsdl:input message="tns:SendRCOMInCabFormMessage_v1SoapIn" />
+      <wsdl:output message="tns:SendRCOMInCabFormMessage_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabIncomingFormMessages_v1">
+      <wsdl:input message="tns:GetRCOMInCabIncomingFormMessages_v1SoapIn" />
+      <wsdl:output message="tns:GetRCOMInCabIncomingFormMessages_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabOutgoingFormMessages_v1">
+      <wsdl:input message="tns:GetRCOMInCabOutgoingFormMessages_v1SoapIn" />
+      <wsdl:output message="tns:GetRCOMInCabOutgoingFormMessages_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFormDefinitions_v1">
+      <wsdl:input message="tns:GetFormDefinitions_v1SoapIn" />
+      <wsdl:output message="tns:GetFormDefinitions_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFormDefinition_v1">
+      <wsdl:input message="tns:AddFormDefinition_v1SoapIn" />
+      <wsdl:output message="tns:AddFormDefinition_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabStops_v1">
+      <wsdl:input message="tns:GetRCOMInCabStops_v1SoapIn" />
+      <wsdl:output message="tns:GetRCOMInCabStops_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabStops_v2">
+      <wsdl:input message="tns:GetRCOMInCabStops_v2SoapIn" />
+      <wsdl:output message="tns:GetRCOMInCabStops_v2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabTrips_v1">
+      <wsdl:input message="tns:GetRCOMInCabTrips_v1SoapIn" />
+      <wsdl:output message="tns:GetRCOMInCabTrips_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateIncomingInCabMessage_v1">
+      <wsdl:input message="tns:CreateIncomingInCabMessage_v1SoapIn" />
+      <wsdl:output message="tns:CreateIncomingInCabMessage_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLiveTachographEvents_v1">
+      <wsdl:input message="tns:GetLiveTachographEvents_v1SoapIn" />
+      <wsdl:output message="tns:GetLiveTachographEvents_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestVehicleReadings_v1">
+      <wsdl:input message="tns:GetLatestVehicleReadings_v1SoapIn" />
+      <wsdl:output message="tns:GetLatestVehicleReadings_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPTOEvents_v1">
+      <wsdl:input message="tns:GetPTOEvents_v1SoapIn" />
+      <wsdl:output message="tns:GetPTOEvents_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleStops_v1">
+      <wsdl:input message="tns:GetVehicleStops_v1SoapIn" />
+      <wsdl:output message="tns:GetVehicleStops_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_GPSReadings_v1">
+      <wsdl:input message="tns:Get_GPSReadings_v1SoapIn" />
+      <wsdl:output message="tns:Get_GPSReadings_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSReadings_v1">
+      <wsdl:input message="tns:GetGPSReadings_v1SoapIn" />
+      <wsdl:output message="tns:GetGPSReadings_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGpsReadingsForVehicle_v1">
+      <wsdl:input message="tns:GetGpsReadingsForVehicle_v1SoapIn" />
+      <wsdl:output message="tns:GetGpsReadingsForVehicle_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFMSTrips_v1">
+      <wsdl:input message="tns:GetFMSTrips_v1SoapIn" />
+      <wsdl:output message="tns:GetFMSTrips_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFMSHarshBrakes_v1">
+      <wsdl:input message="tns:GetFMSHarshBrakes_v1SoapIn" />
+      <wsdl:output message="tns:GetFMSHarshBrakes_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentDataTerminalStatus_v1">
+      <wsdl:input message="tns:GetCurrentDataTerminalStatus_v1SoapIn" />
+      <wsdl:output message="tns:GetCurrentDataTerminalStatus_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleWorkingSummary_v1">
+      <wsdl:input message="tns:GetVehicleWorkingSummary_v1SoapIn" />
+      <wsdl:output message="tns:GetVehicleWorkingSummary_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleActivities_v1">
+      <wsdl:input message="tns:GetVehicleActivities_v1SoapIn" />
+      <wsdl:output message="tns:GetVehicleActivities_v1SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FleetManagerAPISoap" type="tns:FleetManagerAPISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateFuelPurchasedRecord_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/CreateFuelPurchasedRecord_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleInspectionDetails_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicleInspectionDetails_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicles_v2">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicles_v2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateVehicle_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/CreateVehicle_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVehicle_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/DeleteVehicle_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverDetails_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetDriverDetails_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverDetails_v2">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetDriverDetails_v2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDriver_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/CreateDriver_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDriver_v2">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/CreateDriver_v2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDriver_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/UpdateDriver_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDriver_v2">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/UpdateDriver_v2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDriver_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/DeleteDriver_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssignPin_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/AssignPin_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RevokePin_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/RevokePin_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentDriverLoginDetails_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetCurrentDriverLoginDetails_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverAuthenticationEvents_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetDriverAuthenticationEvents_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverVehicleHistory_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetDriverVehicleHistory_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGpsWithTemperature_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetGpsWithTemperature_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateLocation_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/CreateLocation_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLocation_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/UpdateLocation_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocations_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetLocations_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLocation_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/DeleteLocation_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueEngineStart_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueEngineStart_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueEngineStop_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueEngineStop_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueChangeSetpoint_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueChangeSetpoint_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueSetFridgeOpMode_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueSetFridgeOpMode_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueClearAlarms_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueClearAlarms_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueDefrost_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueDefrost_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueuePretrip_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueuePretrip_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueSetIntellisenseProfile_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueSetIntellisenseProfile_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMDeviceRequestStatus_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetRCOMDeviceRequestStatus_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigGetIntellisenseProfiles_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigGetIntellisenseProfiles_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHoSDutyStateChanges_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetHoSDutyStateChanges_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHoSDriverAvailableHours_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetHoSDriverAvailableHours_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHoSDriversDailyDutyLogSummary_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetHoSDriversDailyDutyLogSummary_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHoSDriversWithUpdatedDutyLogsSummary_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetHoSDriversWithUpdatedDutyLogsSummary_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTrailerNoForVehicle_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/SetTrailerNoForVehicle_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetShippingDocumentNoForVehicle_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/SetShippingDocumentNoForVehicle_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemperatureReadings_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetTemperatureReadings_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_TemperatureReadings_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/Get_TemperatureReadings_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFridgeAlarms_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetFridgeAlarms_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_ServiceInfo_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/Get_ServiceInfo_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceInfo_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetServiceInfo_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicles_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicles_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleFolders_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicleFolders_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentVehicleStatus_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetCurrentVehicleStatus_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadAllDataItems_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/ReadAllDataItems_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDataItems_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/InsertDataItems_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadDataItem_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/ReadDataItem_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDataItem_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/UpdateDataItem_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDataItem_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/DeleteDataItem_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDataItemGroup_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/AddDataItemGroup_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDataItemFleet_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/AddDataItemFleet_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendRCOMInCabFormMessage_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/SendRCOMInCabFormMessage_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabIncomingFormMessages_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetRCOMInCabIncomingFormMessages_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabOutgoingFormMessages_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetRCOMInCabOutgoingFormMessages_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFormDefinitions_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetFormDefinitions_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFormDefinition_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/AddFormDefinition_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabStops_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetRCOMInCabStops_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabStops_v2">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetRCOMInCabStops_v2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabTrips_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetRCOMInCabTrips_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateIncomingInCabMessage_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/CreateIncomingInCabMessage_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLiveTachographEvents_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetLiveTachographEvents_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestVehicleReadings_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetLatestVehicleReadings_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPTOEvents_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetPTOEvents_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleStops_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicleStops_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_GPSReadings_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/Get_GPSReadings_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSReadings_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetGPSReadings_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGpsReadingsForVehicle_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetGpsReadingsForVehicle_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFMSTrips_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetFMSTrips_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFMSHarshBrakes_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetFMSHarshBrakes_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentDataTerminalStatus_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetCurrentDataTerminalStatus_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleWorkingSummary_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicleWorkingSummary_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleActivities_v1">
+      <soap:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicleActivities_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FleetManagerAPISoap12" type="tns:FleetManagerAPISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateFuelPurchasedRecord_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/CreateFuelPurchasedRecord_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleInspectionDetails_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicleInspectionDetails_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicles_v2">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicles_v2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateVehicle_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/CreateVehicle_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVehicle_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/DeleteVehicle_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverDetails_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetDriverDetails_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverDetails_v2">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetDriverDetails_v2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDriver_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/CreateDriver_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDriver_v2">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/CreateDriver_v2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDriver_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/UpdateDriver_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDriver_v2">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/UpdateDriver_v2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDriver_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/DeleteDriver_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssignPin_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/AssignPin_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RevokePin_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/RevokePin_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentDriverLoginDetails_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetCurrentDriverLoginDetails_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverAuthenticationEvents_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetDriverAuthenticationEvents_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverVehicleHistory_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetDriverVehicleHistory_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGpsWithTemperature_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetGpsWithTemperature_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateLocation_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/CreateLocation_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLocation_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/UpdateLocation_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocations_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetLocations_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLocation_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/DeleteLocation_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueEngineStart_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueEngineStart_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueEngineStop_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueEngineStop_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueChangeSetpoint_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueChangeSetpoint_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueSetFridgeOpMode_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueSetFridgeOpMode_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueClearAlarms_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueClearAlarms_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueDefrost_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueDefrost_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueuePretrip_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueuePretrip_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueSetIntellisenseProfile_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueSetIntellisenseProfile_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigQueueDownloadIntellisenseProfiles_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMDeviceRequestStatus_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetRCOMDeviceRequestStatus_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteReeferConfigGetIntellisenseProfiles_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/RemoteReeferConfigGetIntellisenseProfiles_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHoSDutyStateChanges_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetHoSDutyStateChanges_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHoSDriverAvailableHours_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetHoSDriverAvailableHours_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHoSDriversDailyDutyLogSummary_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetHoSDriversDailyDutyLogSummary_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHoSDriversWithUpdatedDutyLogsSummary_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetHoSDriversWithUpdatedDutyLogsSummary_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTrailerNoForVehicle_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/SetTrailerNoForVehicle_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetShippingDocumentNoForVehicle_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/SetShippingDocumentNoForVehicle_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemperatureReadings_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetTemperatureReadings_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_TemperatureReadings_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/Get_TemperatureReadings_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFridgeAlarms_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetFridgeAlarms_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_ServiceInfo_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/Get_ServiceInfo_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceInfo_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetServiceInfo_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicles_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicles_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleFolders_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicleFolders_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentVehicleStatus_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetCurrentVehicleStatus_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadAllDataItems_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/ReadAllDataItems_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDataItems_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/InsertDataItems_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadDataItem_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/ReadDataItem_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDataItem_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/UpdateDataItem_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDataItem_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/DeleteDataItem_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDataItemGroup_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/AddDataItemGroup_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDataItemFleet_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/AddDataItemFleet_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendRCOMInCabFormMessage_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/SendRCOMInCabFormMessage_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabIncomingFormMessages_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetRCOMInCabIncomingFormMessages_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabOutgoingFormMessages_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetRCOMInCabOutgoingFormMessages_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFormDefinitions_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetFormDefinitions_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFormDefinition_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/AddFormDefinition_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabStops_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetRCOMInCabStops_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabStops_v2">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetRCOMInCabStops_v2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRCOMInCabTrips_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetRCOMInCabTrips_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateIncomingInCabMessage_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/CreateIncomingInCabMessage_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLiveTachographEvents_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetLiveTachographEvents_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestVehicleReadings_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetLatestVehicleReadings_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPTOEvents_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetPTOEvents_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleStops_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicleStops_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_GPSReadings_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/Get_GPSReadings_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPSReadings_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetGPSReadings_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGpsReadingsForVehicle_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetGpsReadingsForVehicle_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFMSTrips_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetFMSTrips_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFMSHarshBrakes_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetFMSHarshBrakes_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentDataTerminalStatus_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetCurrentDataTerminalStatus_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleWorkingSummary_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicleWorkingSummary_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVehicleActivities_v1">
+      <soap12:operation soapAction="http://FleetManagerAPI.bluetree.ie/GetVehicleActivities_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FleetManagerAPI">
+    <wsdl:port name="FleetManagerAPISoap" binding="tns:FleetManagerAPISoap">
+      <soap:address location="https://api.fleetmanager.com/FMAPIService/FleetManagerAPI.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FleetManagerAPISoap12" binding="tns:FleetManagerAPISoap12">
+      <soap12:address location="https://api.fleetmanager.com/FMAPIService/FleetManagerAPI.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Transport_Comp1" Class="Comp1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=vmsql1.gba.local\Stirling;Initial Catalog=Transport_Comp1;Persist Security Info=True;User ID=abacus" SettingsObjectName="Position_Updater.My.MySettings" SettingsPropertyName="Transport_Comp1ConnectionString3" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.PTVJobSchema" Member="PTVJobSchemas">
+    <Type Name="PTVJobSchema">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="dwJobitemID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SchemID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CollectionSchema" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="DeliverySchema" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Locations" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Loaded" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Responce" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Distance" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Job" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="Complete" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="DateAdded" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ETA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ETADate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.JobItem" Member="JobItems">
+    <Type Name="JobItem">
+      <Column Name="dwJobItemId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="dwJobIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwJobLocalIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwJobItemLocalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwJobItemNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="szCustomerPOD" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="dtStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dtCollectionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dtDeliverDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dtAvailableDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="bAccountCollectAddress" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="bAccountDeliverAddress" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="nCollectLine" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="nDeliverLine" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="szGoodsDesc" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="dwCollectAddressIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="szColAddr1" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="szColAddr2" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="szColAddr3" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="szColAddr4" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="szColAddr5" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="szColPostCode" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="szColTelephone" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="szDelAddr1" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="szDelAddr2" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="szDelAddr3" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="szDelAddr4" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="szDelAddr5" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="szDelPostCode" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="szDelTelephone" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="dwDeliverAddressIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwrQuantity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="szQuantityUnits" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="dwrWeight" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dwrVolume" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dwrRate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dwrNett" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="nValueMultiplier" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="dwVATIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwrWeighBridgeWeight" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="bTicketPrinted" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="bIsPersistent" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="dwAreaIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwJobStatusIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwAnalysis1IdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwAnalysis2IdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwAnalysis3IdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwAnalysis4IdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwProductIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="szUserDefined1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szUserDefined2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szUserDefined3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szUserDefined4" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szUserDefined5" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szUserDefined6" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="dwCompanyIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwUserIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dtLastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dwPalletsIn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwPalletsOut" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="szColAddress" Type="System.String" DbType="VarChar(125)" CanBeNull="true" />
+      <Column Name="szDelAddress" Type="System.String" DbType="VarChar(125)" CanBeNull="true" />
+      <Column Name="szDrivers" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="szVehicles" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="szTrailers" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="dwJobNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="szContractNumber" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="dwAccountIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="szAccCode" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="szAccName" Type="System.String" DbType="VarChar(125)" CanBeNull="true" />
+      <Column Name="szJobOrderNum" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="bRunSheetPrinted" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="bInvoiced" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="bInvoiceable" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="bDemurrage" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="szDelAddrName" Type="System.String" DbType="VarChar(125)" CanBeNull="true" />
+      <Column Name="szColAddrName" Type="System.String" DbType="VarChar(125)" CanBeNull="true" />
+      <Column Name="dwStartDate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwCollectionDate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwDeliveryDate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwEndDate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="szCustomTicketNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szSubContractors" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="szCollectionTime" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="szDeliveryTime" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="szInvoiceNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="dwrSCRate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dwrSCNett" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="bSCNotePrinted" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="szRemarks" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="szNotes" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="szColRef" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szDelRef" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szColOnAccOf" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szDelOnAccOf" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szPreviousLoad1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szPreviousLoad2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szPreviousLoad3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szColNotes" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="szNominalAccount" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="szColFax" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="szColMobile" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="szDelFax" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="szDelMobile" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="bPalletLineJob" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="dwDepotIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwrDriverDemurrage" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dwServiceLevelIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwPalletTypeIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="szDeletionReason" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="bIsDeleted" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="dwPalletLineNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bIsPFJob" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="szPFContractNum" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="szPFRefNum" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="dwLinkFlags" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bStandardJob" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="bGenStandardJob" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="szPalletLineNumber" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="szStartTime" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="szAvailableTime" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="szDelAddressRef" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="szColAddressRef" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="dwColAreaIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dtInvoiceDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dwInvoiceDate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwrDistance" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwExportFlag" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwImportFlag" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="szImportFlagDesc" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="dwLoadIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwLoadNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwLoadOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="szLoadRef" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="dwInternetJobNo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwrForeignJobRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrForeignJobNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrForeignExchangeRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="bForeignJob" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="dwCurrencyIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bQuotedInForeign" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="dwCreatedByIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dtCreateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dwCreateDate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="szColDrivers" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="szColVehicles" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="szColTrailers" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="szColSubContractors" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="nJobType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="dwColLoadIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwColLoadNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwColLoadOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="szColLoadRef" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="dwLoadViewOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="szLoadViewType" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="bColTicketPrinted" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="dwStockItemIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="szStockCode" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="dwStockNominalIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwrStockCost" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrStockRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrStockForeignRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="bProductJob" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="dwrStockNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrStockForeignNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="bProductEarnings" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="dwrTotalNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrForeignTotalNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrAggregateRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="szStockNominalAcc" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="nScannedDocuments" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwStandardJobGroupIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="szVia" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="bColRunSheetPrinted" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="bLockedForBatch" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="dwHubIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwCostServiceLevelIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwrHubCostRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrHubCostNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrDepotCostRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrDepotCostNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="szSupplementalCostCode" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="dwrSuppCostRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrSuppCostSubTotal" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrSuppCostAdditional" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrSupplementalCostNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrTotalCost" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwCostMultiplyBy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwSurchargeCodeIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bPreAdvice" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="szUserDefined7" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="szUserDefined8" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="dwrUserDefined9" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrUserDefined10" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrUserDefined11" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrUserDefined12" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dtUserDefined13" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dwUserDefined13" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dtUserDefined14" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dwUserDefined14" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dtUserDefined15" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dwUserDefined15" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dtUserDefined16" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dwUserDefined16" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwrMargin" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwCostSurchargeIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwAccountRatingIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwrSurchargeNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrForeignSurchargeNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrFullPalQuant" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrHalfPalQuant" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrQuartPalQuant" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrFullPalRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrHalfPalRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrQuartPalRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="bUseAutoRating" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="szAutoRateSummary" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="szCostAutoRateSummary" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="dwrForeignFullPalRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrForeignHalfPalRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrForeignQuartPalRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwAccountGroupIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwrFullPalNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrHalfPalNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrQuartPalNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrForeignFullPalNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrForeignHalfPalNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrForeignQuartPalNett" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwHubTypeIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwMapIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwRatingGroupIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwCostRatingGroupIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nRatingMultiplier" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwMrID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bAllExportedToPallex" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="dwImportSessionRef" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bHazardous" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwHazardousIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwOriginCompanyDepotIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwrLegCost" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwETransSubAccIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwColDepotIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwColHubIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwNomDeptIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwNomAreaIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dwrLoadCost" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dwrTotalLegCost" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="nNotesCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bColPalletDepotJob" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="dwColRequestedTimeIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="szColRequestedTimeStart" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="szColRequestedTimeEnd" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="dwDelRequestedTimeIdFK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="szDelRequestedTimeStart" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="szDelRequestedTimeEnd" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="rowversion" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Column Name="dwPeractoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="szPeractoPIN" Type="System.String" DbType="VarChar(32)" CanBeNull="true" />
+      <Column Name="szPeractoPhone" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

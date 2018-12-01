@@ -65,7 +65,7 @@ Namespace PositioningWS
         '''<remarks/>
         Public Sub New()
             MyBase.New
-            Me.Url = Global.Position_Updater.My.MySettings.Default.Position_Updater_PositioningWS_PositioningWS
+            Me.Url = "http://api.fm-web.co.uk/webservices/PositioningWebSvc/PositioningWS.asmx"
             If (Me.IsLocalFileSystemWebService(Me.Url) = true) Then
                 Me.UseDefaultCredentials = true
                 Me.useDefaultCredentialsSetExplicitly = false
