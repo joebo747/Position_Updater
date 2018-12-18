@@ -15,7 +15,6 @@
       <Column Name="Location" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="TrackedBY" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
       <Column Name="VehID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.fridgeTrailers" Member="fridgeTrailers">
@@ -42,6 +41,40 @@
       <Column Name="szaccountname" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="dateadded" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="GBAcompany" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ActiveBaseGBA" Member="ActiveBaseGBAs">
+    <Type Name="ActiveBaseGBA">
+      <Column Name="dwJobNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwAccountIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwJobItemId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="dwJobStatusIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dtCollectionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="szCollectionTime" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="ColDate" Type="System.String" DbType="VarChar(51)" CanBeNull="true" />
+      <Column Name="Vehicle" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="DelDate" Type="System.String" DbType="VarChar(51)" CanBeNull="true" />
+      <Column Name="szName" Type="System.String" DbType="VarChar(125)" CanBeNull="true" />
+      <Column Name="Trailers" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="dwJobItemIdFk" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dtUserDefined21" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="szUserDef20" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DelLatLng" Type="System.String" DbType="VarChar(100)" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ActiveBaseEurope" Member="ActiveBaseEuropes">
+    <Type Name="ActiveBaseEurope">
+      <Column Name="dwJobNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwAccountIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dwJobItemId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="dwJobStatusIdFK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dtCollectionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="szCollectionTime" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="ColDate" Type="System.String" DbType="VarChar(51)" CanBeNull="true" />
+      <Column Name="Vehicle" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="DelDate" Type="System.String" DbType="VarChar(51)" CanBeNull="true" />
+      <Column Name="szName" Type="System.String" CanBeNull="false" />
+      <Column Name="Trailers" Type="System.String" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

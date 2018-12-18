@@ -146,7 +146,7 @@ Module MixModule
                                               For I As Integer = 0 To vehicleList.Length - 1
 
                                                   Dim mixVeh As String = Replace(vehicleList(I).RegistrationNumber, " ", Nothing)
-                                                  Debug.Print(mixVeh & " " & vehicleList(I).GroupID)
+                                                  ' Debug.Print(mixVeh & " " & vehicleList(I).GroupID)
                                                   If mixVeh.Length = 7 Then
                                                       If mixVeh.Substring(0, 3) = "GBA" Then
                                                           mixVeh = mixVeh.Replace("GBA", Nothing)
@@ -156,6 +156,11 @@ Module MixModule
 
                                                   Dim veh = (From V In vehlist Where V.Registration.Equals(mixVeh) Select V).FirstOrDefault
                                                   If Not veh Is Nothing Then
+                                                      'If veh.Registration = "Y30GBA" Then
+                                                      '    Debug.Print(vehicleList(I).ID)
+                                                      '    Debug.Print(vehicleList(I).ID)
+                                                      'End If
+
                                                       veh.odo = vehicleList(I).LastOdometer
                                                       veh.MixID = vehicleList(I).ID
                                                       veh.NewLoc = False
@@ -203,7 +208,7 @@ Module MixModule
         End Try
 
     End Function
-    Public Function GetMixTripsbyVehicle(ByVal vehid As Int16, ByVal sdate As Date, ByVal edate As Date)
+    Public Function GetMixTripsbyVehicle(ByVal vehid As Int16, ByVal sdate As Date, ByVal edate As Date, ByVal GBAID As Int16)
         Return Task.Factory.StartNew(Of Boolean)(
                   Function()
                       Try
@@ -217,11 +222,13 @@ Module MixModule
                           If vehPos.Length > 0 Then
                               Dim revGEO
                               If vehPos.Length > 1000 Then
+                                  MixRecCount = 1000
                                   vehicle = Array.CreateInstance(GetType(Int64), 1000)
                                   For I As Integer = 0 To 999
                                       vehicle.SetValue(CInt(vehPos(I).ID), I)
                                   Next
                               Else
+                                  MixRecCount = vehPos.Count
                                   vehicle = Array.CreateInstance(GetType(Int64), vehPos.Length)
                                   For I As Integer = 0 To vehPos.Length - 1
                                       vehicle.SetValue(CInt(vehPos(I).ID), I)
@@ -230,13 +237,24 @@ Module MixModule
                               revGEO = PositionDetails.GetReverseGeoForGPSPositions(vehicle)
 
                               If revGEO.Length > 0 Then
+
                                   For x As Integer = 0 To vehPos.Count - 1
                                       Try
                                           If x > revGEO.length - 1 Then Exit For
                                           Dim xx As Int16 = vehPos(x).VehicleID
+                                          Dim reg = (From v In vehlist Where v.MixID.Equals(vehid) Select v.Registration).FirstOrDefault
                                           Dim m As New movement
+                                          If revGEO(x) Is Nothing Then
+                                              Continue For
+                                          End If
                                           Dim compAdd As String = revGEO(x).Road & "," & revGEO(x).Town & "," & revGEO(x).Zip & "," & revGEO(x).Country
-                                          If Not m.Address = compAdd Then
+                                          Dim lastAdd As String
+                                          If movements.Count > 0 Then
+                                              lastAdd = movements(movements.Count - 1).Address
+                                          Else
+                                              lastAdd = "x"
+                                          End If
+                                          If Not lastAdd = compAdd Then
                                               '  Debug.Print("Comparison Add: " & compAdd & " " & "Current Add: " & m.Address)
                                               If Not revGEO(x).Road Is Nothing Then m.Address = revGEO(x).Road
                                               If Not revGEO(x).Town Is Nothing Then m.Address += "," & revGEO(x).Town
@@ -244,16 +262,18 @@ Module MixModule
                                               If Not revGEO(x).Country Is Nothing Then m.Address += "," & revGEO(x).Country
                                               '  m.Address = revGEO(x).Road & "," & revGEO(x).Town & "," & revGEO(x).Zip & "," & revGEO(x).Country
                                               'replaced 19Feb16 If DateDiff(DateInterval.Minute, m.DateofFix, DateTime.Now) < 60 Then m.NewLoc = True
-                                              m.ID = x
+                                              m.ID = GBAID
                                               Dim currentUTC As DateTime = localZone.ToUniversalTime(vehPos(x).Time)
                                               Dim currentOffset As TimeSpan = localZone.GetUtcOffset(vehPos(x).Time)
                                               m.Latitude = vehPos(x).Latitude
                                               m.Longitude = vehPos(x).Longitude
                                               Dim truedate As DateTime = currentUTC
                                               m.DateofFix = truedate 'vehPos(x).Time
+                                              m.Registration = reg
+                                              movements.Add(m)
                                           End If
 
-                                          movements.Add(m)
+
                                       Catch ex As Exception
                                           MessageBox.Show("error adding movement geting positions from Mix " & Err.Description, "Position Updater")
                                       End Try
@@ -263,13 +283,13 @@ Module MixModule
                           End If
 
                           If movements.Count > 0 Then
-                                              Return True
-                                          End If
-                                          Return False
-                                      Catch ex As Exception
+                              Return True
+                          End If
+                          Return False
+                      Catch ex As Exception
                           MessageBox.Show("error geting positions from Mix " & Err.Description, "Position Updater")
                           Return False
-                                      End Try
+                      End Try
                   End Function)
     End Function
 
@@ -301,11 +321,11 @@ Module MixModule
         Return populated
     End Function
 
-    Public Function getlatestMixPositions()
-
+    Public Function GetlatestMixPositions()
         Return Task.Factory.StartNew(Of Boolean)(
               Function()
-
+                  Dim Line As Int16 = 0
+                  Dim errVeh As String = String.Empty
                   Dim localZone As TimeZone = TimeZone.CurrentTimeZone
                   Try
                       Dim vehicle
@@ -328,40 +348,53 @@ Module MixModule
                       If revGEO.Length > 0 Then
                           For x As Integer = 0 To allPos.Count - 1
                               Try
+                                  Line += 1
+                                  If allPos(x).VehicleID = 0 Then Continue For
                                   Dim xx As Int16 = allPos(x).VehicleID
-                                  Dim m As New movement
-                                  Dim compAdd As String = revGEO(x).Road & "," & revGEO(x).Town & "," & revGEO(x).Zip & "," & revGEO(x).Country
-                                  If Not m.Address = compAdd Then
-                                      '  Debug.Print("Comparison Add: " & compAdd & " " & "Current Add: " & m.Address)
-                                      If Not revGEO(x).Road Is Nothing Then m.Address = revGEO(x).Road
-                                      If Not revGEO(x).Town Is Nothing Then m.Address += "," & revGEO(x).Town
-                                      If Not revGEO(x).Zip Is Nothing Then m.Address += "," & revGEO(x).Zip
-                                      If Not revGEO(x).Country Is Nothing Then m.Address += "," & revGEO(x).Country
-                                      '  m.Address = revGEO(x).Road & "," & revGEO(x).Town & "," & revGEO(x).Zip & "," & revGEO(x).Country
-                                      'replaced 19Feb16 If DateDiff(DateInterval.Minute, m.DateofFix, DateTime.Now) < 60 Then m.NewLoc = True
-
-                                      Dim currentUTC As DateTime = localZone.ToUniversalTime(allPos(x).Time)
-                                      Dim currentOffset As TimeSpan = localZone.GetUtcOffset(allPos(x).Time)
-
-                                      Dim truedate As DateTime = currentUTC
-
-
-                                      m.DateofFix = currentUTC
-
+                                  Dim veh = (From V In vehlist Where V.MixID.Equals(xx) Select V).FirstOrDefault
+                                  If Not veh Is Nothing Then
+                                      'If veh.Registration = "P2GBA" Then
+                                      '    MessageBox.Show("Vehicle")
                                       'End If
-
+                                      errVeh = veh.Registration
+                                      If revGEO(x) Is Nothing Then
+                                          Continue For
+                                      End If
+                                      ' Debug.Print(veh.Registration & " " & revGEO(x).Country & " " & allPos(x).Time)
+                                      ' Dim compAdd As String = revGEO(x).Road & "," & revGEO(x).Town & "," & revGEO(x).Zip & "," & revGEO(x).Country
+                                      If Not veh.MixRecID = CInt(allPos(x).ID) Then
+                                          If Not revGEO(x).Road Is Nothing Then veh.Address = revGEO(x).Road
+                                          If Not revGEO(x).Town Is Nothing Then veh.Address += "," & revGEO(x).Town
+                                          If Not revGEO(x).Zip Is Nothing Then veh.Address += "," & revGEO(x).Zip
+                                          If Not revGEO(x).Country Is Nothing Then veh.Address += "," & revGEO(x).Country
+                                          veh.NewLoc = True
+                                          veh.TrackedBy = "Mix Tel"
+                                          Dim currentUTC As DateTime = localZone.ToUniversalTime(allPos(x).Time)
+                                          Dim currentOffset As TimeSpan = localZone.GetUtcOffset(allPos(x).Time)
+                                          If Not revGEO(x).Country = "United Kingdom" Then
+                                              Dim Xtime As Int16 = SavedTimezone(revGEO(x).Country)
+                                              Dim CorrectedTime As DateTime = DateAdd(DateInterval.Hour, Xtime, currentUTC)
+                                              'currentUTC = CorrectedTime
+                                          End If
+                                          ' Dim truedate As DateTime = currentUTC
+                                          veh.DateofFix = currentUTC
+                                          veh.LatLong = allPos(x).Latitude & "," & allPos(x).Longitude
+                                          veh.MixRecID = allPos(x).ID
+                                      End If
                                   End If
                               Catch ex As Exception
-
+                                  MessageBox.Show("Error getting latest mix positions Loop . " & errVeh & " " & Err.Source)
+                                  Dim trace = New Diagnostics.StackTrace(ex, True)
+                                  Dim lineN As String = Right(trace.ToString, 5)
+                                  MessageBox.Show(ex.Message & "'" & " Error in- Line number: " & Line & vbCrLf & ex.Message)
                               End Try
                           Next
                       End If
                       Return True
                   Catch ex As Exception
-                      MsgBox(Err.Description)
+                      MessageBox.Show("Error Getting latest Mix positions! " & Err.Description)
                       Return False
                   End Try
-
               End Function)
     End Function
 End Module

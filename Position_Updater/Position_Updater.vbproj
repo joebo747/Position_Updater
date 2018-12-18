@@ -85,6 +85,9 @@
     <ApplicationIcon>map_JU6_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
@@ -114,7 +117,8 @@
       <HintPath>file:\\\C:\Users\j.bohen\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WinForms_2014_3_1202_dev_dlls\Bin40\Telerik.WinControls.RadChart.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.RadDock, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RadDock, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.MaterialTeal, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.Themes.Office2007Black, Version=2014.3.1202.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>file:\\\C:\Users\j.bohen\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WinForms_2014_3_1202_dev_dlls\Bin40\Telerik.WinControls.Themes.Office2007Black.dll</HintPath>
@@ -144,6 +148,13 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoUpdater.Designer.vb">
+      <DependentUpon>AutoUpdater.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AutoUpdater.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="classes\GPSsent.vb" />
     <Compile Include="classes\Job.vb" />
     <Compile Include="classes\RequestList.vb" />
     <Compile Include="data\Comp1.designer.vb">
@@ -274,6 +285,9 @@
     <None Include="data\Comp1.dbml.layout">
       <DependentUpon>Comp1.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="AutoUpdater.resx">
+      <DependentUpon>AutoUpdater.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PTVUpdater.resx">
       <DependentUpon>PTVUpdater.vb</DependentUpon>
     </EmbeddedResource>
@@ -303,6 +317,7 @@
       <LastGenOutput>mydata.designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
     <None Include="Position_Updater_1_TemporaryKey.pfx" />
     <None Include="Position_Updater_TemporaryKey.pfx" />
     <None Include="Positons.dbml.layout">

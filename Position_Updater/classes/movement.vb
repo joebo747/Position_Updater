@@ -11,15 +11,15 @@
     '    End Set
     'End Property
 
-    'Private m_Registration As String
-    'Public Property Registration As String
-    '    Get
-    '        Return m_Registration
-    '    End Get
-    '    Set(ByVal value As String)
-    '        m_Registration = value
-    '    End Set
-    'End Property
+    Private m_Registration As String
+    Public Property Registration As String
+        Get
+            Return m_Registration
+        End Get
+        Set(ByVal value As String)
+            m_Registration = value
+        End Set
+    End Property
 
     'Private m_VehID As Integer
     'Public Property VehID As Integer

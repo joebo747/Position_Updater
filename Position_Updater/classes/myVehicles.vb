@@ -408,6 +408,16 @@ Public Class myVehicle
             m_Destination = value
         End Set
     End Property
+
+    Private m_FleetFence As Integer
+    Public Property FleetFence As Integer
+        Get
+            Return m_FleetFence
+        End Get
+        Set(ByVal value As Integer)
+            m_FleetFence = value
+        End Set
+    End Property
     Public Sub New()
         'Me.Registration = Registration 'Regoverride(ID, Registration)
         'Me.ID = ID

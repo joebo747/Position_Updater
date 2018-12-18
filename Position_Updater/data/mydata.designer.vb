@@ -93,6 +93,18 @@ Partial Public Class mydataDataContext
 			Return Me.GetTable(Of ActiveFleetfence)
 		End Get
 	End Property
+	
+	Public ReadOnly Property ActiveBaseGBAs() As System.Data.Linq.Table(Of ActiveBaseGBA)
+		Get
+			Return Me.GetTable(Of ActiveBaseGBA)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ActiveBaseEuropes() As System.Data.Linq.Table(Of ActiveBaseEurope)
+		Get
+			Return Me.GetTable(Of ActiveBaseEurope)
+		End Get
+	End Property
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.VehicleBase")>  _
@@ -236,8 +248,6 @@ Partial Public Class GPSPosition
 	
 	Private _VehID As Integer
 	
-	Private _Status As String
-	
 	Public Sub New()
 		MyBase.New
 	End Sub
@@ -299,18 +309,6 @@ Partial Public Class GPSPosition
 			If ((Me._VehID = value)  _
 						= false) Then
 				Me._VehID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="NVarChar(50)", CanBeNull:=false)>  _
-	Public Property Status() As String
-		Get
-			Return Me._Status
-		End Get
-		Set
-			If (String.Equals(Me._Status, value) = false) Then
-				Me._Status = value
 			End If
 		End Set
 	End Property
@@ -690,4 +688,387 @@ Partial Public Class ActiveFleetfence
 			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
 		End If
 	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ActiveBaseGBA")>  _
+Partial Public Class ActiveBaseGBA
+	
+	Private _dwJobNumber As System.Nullable(Of Integer)
+	
+	Private _dwAccountIdFK As System.Nullable(Of Integer)
+	
+	Private _dwJobItemId As Integer
+	
+	Private _dwJobStatusIdFK As System.Nullable(Of Integer)
+	
+	Private _dtCollectionDate As System.Nullable(Of Date)
+	
+	Private _szCollectionTime As String
+	
+	Private _ColDate As String
+	
+	Private _Vehicle As String
+	
+	Private _DelDate As String
+	
+	Private _szName As String
+	
+	Private _Trailers As String
+	
+	Private _dwJobItemIdFk As Integer
+	
+	Private _dtUserDefined21 As System.Nullable(Of Date)
+	
+	Private _szUserDef20 As String
+	
+	Private _DelLatLng As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dwJobNumber", DbType:="Int")>  _
+	Public Property dwJobNumber() As System.Nullable(Of Integer)
+		Get
+			Return Me._dwJobNumber
+		End Get
+		Set
+			If (Me._dwJobNumber.Equals(value) = false) Then
+				Me._dwJobNumber = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dwAccountIdFK", DbType:="Int")>  _
+	Public Property dwAccountIdFK() As System.Nullable(Of Integer)
+		Get
+			Return Me._dwAccountIdFK
+		End Get
+		Set
+			If (Me._dwAccountIdFK.Equals(value) = false) Then
+				Me._dwAccountIdFK = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dwJobItemId", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
+	Public Property dwJobItemId() As Integer
+		Get
+			Return Me._dwJobItemId
+		End Get
+		Set
+			If ((Me._dwJobItemId = value)  _
+						= false) Then
+				Me._dwJobItemId = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dwJobStatusIdFK", DbType:="Int")>  _
+	Public Property dwJobStatusIdFK() As System.Nullable(Of Integer)
+		Get
+			Return Me._dwJobStatusIdFK
+		End Get
+		Set
+			If (Me._dwJobStatusIdFK.Equals(value) = false) Then
+				Me._dwJobStatusIdFK = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dtCollectionDate", DbType:="DateTime")>  _
+	Public Property dtCollectionDate() As System.Nullable(Of Date)
+		Get
+			Return Me._dtCollectionDate
+		End Get
+		Set
+			If (Me._dtCollectionDate.Equals(value) = false) Then
+				Me._dtCollectionDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_szCollectionTime", DbType:="VarChar(40)")>  _
+	Public Property szCollectionTime() As String
+		Get
+			Return Me._szCollectionTime
+		End Get
+		Set
+			If (String.Equals(Me._szCollectionTime, value) = false) Then
+				Me._szCollectionTime = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ColDate", DbType:="VarChar(51)")>  _
+	Public Property ColDate() As String
+		Get
+			Return Me._ColDate
+		End Get
+		Set
+			If (String.Equals(Me._ColDate, value) = false) Then
+				Me._ColDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Vehicle", DbType:="VarChar(8000)")>  _
+	Public Property Vehicle() As String
+		Get
+			Return Me._Vehicle
+		End Get
+		Set
+			If (String.Equals(Me._Vehicle, value) = false) Then
+				Me._Vehicle = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DelDate", DbType:="VarChar(51)")>  _
+	Public Property DelDate() As String
+		Get
+			Return Me._DelDate
+		End Get
+		Set
+			If (String.Equals(Me._DelDate, value) = false) Then
+				Me._DelDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_szName", DbType:="VarChar(125)")>  _
+	Public Property szName() As String
+		Get
+			Return Me._szName
+		End Get
+		Set
+			If (String.Equals(Me._szName, value) = false) Then
+				Me._szName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Trailers", DbType:="VarChar(8000)")>  _
+	Public Property Trailers() As String
+		Get
+			Return Me._Trailers
+		End Get
+		Set
+			If (String.Equals(Me._Trailers, value) = false) Then
+				Me._Trailers = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dwJobItemIdFk", DbType:="Int NOT NULL")>  _
+	Public Property dwJobItemIdFk() As Integer
+		Get
+			Return Me._dwJobItemIdFk
+		End Get
+		Set
+			If ((Me._dwJobItemIdFk = value)  _
+						= false) Then
+				Me._dwJobItemIdFk = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dtUserDefined21", DbType:="DateTime")>  _
+	Public Property dtUserDefined21() As System.Nullable(Of Date)
+		Get
+			Return Me._dtUserDefined21
+		End Get
+		Set
+			If (Me._dtUserDefined21.Equals(value) = false) Then
+				Me._dtUserDefined21 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_szUserDef20", DbType:="VarChar(50)")>  _
+	Public Property szUserDef20() As String
+		Get
+			Return Me._szUserDef20
+		End Get
+		Set
+			If (String.Equals(Me._szUserDef20, value) = false) Then
+				Me._szUserDef20 = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DelLatLng", DbType:="VarChar(100)", CanBeNull:=false)>  _
+	Public Property DelLatLng() As String
+		Get
+			Return Me._DelLatLng
+		End Get
+		Set
+			If (String.Equals(Me._DelLatLng, value) = false) Then
+				Me._DelLatLng = value
+			End If
+		End Set
+	End Property
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ActiveBaseEurope")>  _
+Partial Public Class ActiveBaseEurope
+	
+	Private _dwJobNumber As System.Nullable(Of Integer)
+	
+	Private _dwAccountIdFK As System.Nullable(Of Integer)
+	
+	Private _dwJobItemId As Integer
+	
+	Private _dwJobStatusIdFK As System.Nullable(Of Integer)
+	
+	Private _dtCollectionDate As System.Nullable(Of Date)
+	
+	Private _szCollectionTime As String
+	
+	Private _ColDate As String
+	
+	Private _Vehicle As String
+	
+	Private _DelDate As String
+	
+	Private _szName As String
+	
+	Private _Trailers As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dwJobNumber", DbType:="Int")>  _
+	Public Property dwJobNumber() As System.Nullable(Of Integer)
+		Get
+			Return Me._dwJobNumber
+		End Get
+		Set
+			If (Me._dwJobNumber.Equals(value) = false) Then
+				Me._dwJobNumber = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dwAccountIdFK", DbType:="Int")>  _
+	Public Property dwAccountIdFK() As System.Nullable(Of Integer)
+		Get
+			Return Me._dwAccountIdFK
+		End Get
+		Set
+			If (Me._dwAccountIdFK.Equals(value) = false) Then
+				Me._dwAccountIdFK = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dwJobItemId", AutoSync:=AutoSync.Always, DbType:="Int NOT NULL IDENTITY", IsDbGenerated:=true)>  _
+	Public Property dwJobItemId() As Integer
+		Get
+			Return Me._dwJobItemId
+		End Get
+		Set
+			If ((Me._dwJobItemId = value)  _
+						= false) Then
+				Me._dwJobItemId = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dwJobStatusIdFK", DbType:="Int")>  _
+	Public Property dwJobStatusIdFK() As System.Nullable(Of Integer)
+		Get
+			Return Me._dwJobStatusIdFK
+		End Get
+		Set
+			If (Me._dwJobStatusIdFK.Equals(value) = false) Then
+				Me._dwJobStatusIdFK = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_dtCollectionDate", DbType:="DateTime")>  _
+	Public Property dtCollectionDate() As System.Nullable(Of Date)
+		Get
+			Return Me._dtCollectionDate
+		End Get
+		Set
+			If (Me._dtCollectionDate.Equals(value) = false) Then
+				Me._dtCollectionDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_szCollectionTime", DbType:="VarChar(40)")>  _
+	Public Property szCollectionTime() As String
+		Get
+			Return Me._szCollectionTime
+		End Get
+		Set
+			If (String.Equals(Me._szCollectionTime, value) = false) Then
+				Me._szCollectionTime = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ColDate", DbType:="VarChar(51)")>  _
+	Public Property ColDate() As String
+		Get
+			Return Me._ColDate
+		End Get
+		Set
+			If (String.Equals(Me._ColDate, value) = false) Then
+				Me._ColDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Vehicle", DbType:="VarChar(8000)")>  _
+	Public Property Vehicle() As String
+		Get
+			Return Me._Vehicle
+		End Get
+		Set
+			If (String.Equals(Me._Vehicle, value) = false) Then
+				Me._Vehicle = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DelDate", DbType:="VarChar(51)")>  _
+	Public Property DelDate() As String
+		Get
+			Return Me._DelDate
+		End Get
+		Set
+			If (String.Equals(Me._DelDate, value) = false) Then
+				Me._DelDate = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_szName", CanBeNull:=false)>  _
+	Public Property szName() As String
+		Get
+			Return Me._szName
+		End Get
+		Set
+			If (String.Equals(Me._szName, value) = false) Then
+				Me._szName = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Trailers", CanBeNull:=false)>  _
+	Public Property Trailers() As String
+		Get
+			Return Me._Trailers
+		End Get
+		Set
+			If (String.Equals(Me._Trailers, value) = false) Then
+				Me._Trailers = value
+			End If
+		End Set
+	End Property
 End Class

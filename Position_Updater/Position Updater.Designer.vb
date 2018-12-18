@@ -23,7 +23,7 @@ Partial Class Position_Updater
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TableViewDefinition1 As Telerik.WinControls.UI.TableViewDefinition = New Telerik.WinControls.UI.TableViewDefinition()
+        Dim TableViewDefinition2 As Telerik.WinControls.UI.TableViewDefinition = New Telerik.WinControls.UI.TableViewDefinition()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Position_Updater))
         Me.RadLabel1 = New Telerik.WinControls.UI.RadLabel()
         Me.RadLabel2 = New Telerik.WinControls.UI.RadLabel()
@@ -57,9 +57,11 @@ Partial Class Position_Updater
         Me.Mix = New Telerik.WinControls.UI.RadMenuItem()
         Me.RadMenuItem4 = New Telerik.WinControls.UI.RadMenuItem()
         Me.PTVFormLoad = New Telerik.WinControls.UI.RadMenuItem()
-        Me.AutoUpdater = New Telerik.WinControls.UI.RadMenuItem()
+        Me.AutoUpdatermenu = New Telerik.WinControls.UI.RadMenuItem()
         Me.IDlabel = New Telerik.WinControls.UI.RadLabel()
         Me.ListBuilder = New Telerik.WinControls.UI.RadCheckBox()
+        Me.RadButton2 = New Telerik.WinControls.UI.RadButton()
+        Me.RadButton3 = New Telerik.WinControls.UI.RadButton()
         CType(Me.RadLabel1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadLabel2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadLabel3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,6 +88,8 @@ Partial Class Position_Updater
         CType(Me.RadMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.IDlabel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ListBuilder, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RadButton2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RadButton3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -199,8 +203,9 @@ Partial Class Position_Updater
         '
         '
         '
+        Me.RadGridView1.MasterTemplate.AllowAddNewRow = False
         Me.RadGridView1.MasterTemplate.EnableGrouping = False
-        Me.RadGridView1.MasterTemplate.ViewDefinition = TableViewDefinition1
+        Me.RadGridView1.MasterTemplate.ViewDefinition = TableViewDefinition2
         Me.RadGridView1.Name = "RadGridView1"
         Me.RadGridView1.Padding = New System.Windows.Forms.Padding(0, 0, 0, 1)
         Me.RadGridView1.Size = New System.Drawing.Size(518, 242)
@@ -329,7 +334,7 @@ Partial Class Position_Updater
         '
         'RadMenu1
         '
-        Me.RadMenu1.Items.AddRange(New Telerik.WinControls.RadItem() {Me.RadMenuItem1, Me.PTVFormLoad, Me.AutoUpdater})
+        Me.RadMenu1.Items.AddRange(New Telerik.WinControls.RadItem() {Me.RadMenuItem1, Me.PTVFormLoad, Me.AutoUpdatermenu})
         Me.RadMenu1.Location = New System.Drawing.Point(0, 0)
         Me.RadMenu1.Name = "RadMenu1"
         Me.RadMenu1.Size = New System.Drawing.Size(542, 28)
@@ -365,10 +370,10 @@ Partial Class Position_Updater
         Me.PTVFormLoad.Name = "PTVFormLoad"
         Me.PTVFormLoad.Text = "Show PTV"
         '
-        'AutoUpdater
+        'AutoUpdatermenu
         '
-        Me.AutoUpdater.Name = "AutoUpdater"
-        Me.AutoUpdater.Text = "Auto Update"
+        Me.AutoUpdatermenu.Name = "AutoUpdatermenu"
+        Me.AutoUpdatermenu.Text = "Auto Update"
         '
         'IDlabel
         '
@@ -382,18 +387,38 @@ Partial Class Position_Updater
         'ListBuilder
         '
         Me.ListBuilder.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.ListBuilder.Location = New System.Drawing.Point(422, 187)
+        Me.ListBuilder.Location = New System.Drawing.Point(420, 184)
         Me.ListBuilder.Name = "ListBuilder"
         Me.ListBuilder.Size = New System.Drawing.Size(69, 18)
         Me.ListBuilder.TabIndex = 24
         Me.ListBuilder.Text = "Build List"
         Me.ListBuilder.ThemeName = "Office2007Black"
         '
+        'RadButton2
+        '
+        Me.RadButton2.Location = New System.Drawing.Point(12, 177)
+        Me.RadButton2.Name = "RadButton2"
+        Me.RadButton2.Size = New System.Drawing.Size(100, 24)
+        Me.RadButton2.TabIndex = 25
+        Me.RadButton2.Text = "Get Json"
+        Me.RadButton2.ThemeName = "Office2007Black"
+        '
+        'RadButton3
+        '
+        Me.RadButton3.Location = New System.Drawing.Point(12, 92)
+        Me.RadButton3.Name = "RadButton3"
+        Me.RadButton3.Size = New System.Drawing.Size(100, 24)
+        Me.RadButton3.TabIndex = 26
+        Me.RadButton3.Text = "Re-set Form"
+        Me.RadButton3.ThemeName = "Office2007Black"
+        '
         'Position_Updater
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(542, 518)
+        Me.Controls.Add(Me.RadButton3)
+        Me.Controls.Add(Me.RadButton2)
         Me.Controls.Add(Me.ListBuilder)
         Me.Controls.Add(Me.IDlabel)
         Me.Controls.Add(Me.RadMenu1)
@@ -458,6 +483,8 @@ Partial Class Position_Updater
         CType(Me.RadMenu1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.IDlabel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ListBuilder, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RadButton2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RadButton3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -496,7 +523,9 @@ Partial Class Position_Updater
     Friend WithEvents RadMenuItem4 As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents IDlabel As Telerik.WinControls.UI.RadLabel
     Friend WithEvents PTVFormLoad As Telerik.WinControls.UI.RadMenuItem
-    Friend WithEvents AutoUpdater As Telerik.WinControls.UI.RadMenuItem
+    Friend WithEvents AutoUpdatermenu As Telerik.WinControls.UI.RadMenuItem
     Friend WithEvents ListBuilder As Telerik.WinControls.UI.RadCheckBox
+    Friend WithEvents RadButton2 As Telerik.WinControls.UI.RadButton
+    Friend WithEvents RadButton3 As Telerik.WinControls.UI.RadButton
 End Class
 

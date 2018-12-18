@@ -55,4 +55,24 @@
             m_EndDate = value
         End Set
     End Property
+
+    Private m_RecordCount As Integer
+    Public Property RecordCount As Integer
+        Get
+            Return m_RecordCount
+        End Get
+        Set(value As Integer)
+            m_RecordCount = value
+        End Set
+    End Property
+
+    Private m_user As String
+    Public Property user As String
+        Get
+            Return m_user
+        End Get
+        Set(ByVal value As String)
+            m_user = value
+        End Set
+    End Property
 End Class
